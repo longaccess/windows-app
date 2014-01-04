@@ -1,0 +1,4 @@
+﻿WinGuiLA2013
+thrift --gen csharp C:\Users\Lampridis\Documents\GitHub\longaccess-cli\lacli\server\ClientInterface.thrift
+
+D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\lacli.exe --batch --home "C:\Users\Lampridis\AppData\Local\LongAccess" server --port 9090

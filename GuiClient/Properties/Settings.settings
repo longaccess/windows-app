@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GuiClient.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DefaultExtractionFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="RetrievePassUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://www.longaccess.com/admin/password_reset/</Value>
+    </Setting>
+    <Setting Name="SingUpUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://www.longaccess.com/accounts/register/</Value>
+    </Setting>
+    <Setting Name="DownloadUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://the.longaccess.com/downloads/</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
