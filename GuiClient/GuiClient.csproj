@@ -70,7 +70,7 @@
     <AssemblyOriginatorKeyFile>LongAccess.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>944754_185808858261592_622057659_n %281%29.ico</ApplicationIcon>
+    <ApplicationIcon>icons\longaccess.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
@@ -102,84 +102,6 @@
     <Compile Include="Logger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="bin\Debug\lacli\bz2.pyd" />
-    <None Include="bin\Debug\lacli\cacert.pem" />
-    <None Include="bin\Debug\lacli\eggs\crochet-1.0.0-py2.7.egg" />
-    <None Include="bin\Debug\lacli\eggs\docopt-0.6.1-py2.7.egg" />
-    <None Include="bin\Debug\lacli\eggs\filechunkio-1.5-py2.7.egg" />
-    <None Include="bin\Debug\lacli\eggs\lacli-0.2rc2-py2.7.egg" />
-    <None Include="bin\Debug\lacli\eggs\logutils-0.3.3-py2.7.egg" />
-    <None Include="bin\Debug\lacli\eggs\progressbar-2.3-py2.7.egg" />
-    <None Include="bin\Debug\lacli\eggs\pyaml-13.07.1-py2.7.egg" />
-    <None Include="bin\Debug\lacli\eggs\pycrypto-2.6-py2.7-win-amd64.egg" />
-    <None Include="bin\Debug\lacli\eggs\pyyaml-3.10-py2.7-win-amd64.egg" />
-    <None Include="bin\Debug\lacli\eggs\six-1.4.1-py2.7.egg" />
-    <None Include="bin\Debug\lacli\eggs\treq-0.2.0-py2.7.egg" />
-    <None Include="bin\Debug\lacli\eggs\unidecode-0.04.14-py2.7.egg" />
-    <None Include="bin\Debug\lacli\lacli.exe.manifest" />
-    <None Include="bin\Debug\lacli\Microsoft.VC90.CRT.manifest" />
-    <None Include="bin\Debug\lacli\OpenSSL.crypto.pyd" />
-    <None Include="bin\Debug\lacli\OpenSSL.rand.pyd" />
-    <None Include="bin\Debug\lacli\OpenSSL.SSL.pyd" />
-    <None Include="bin\Debug\lacli\pyexpat.pyd" />
-    <None Include="bin\Debug\lacli\select.pyd" />
-    <None Include="bin\Debug\lacli\thrift.protocol.fastbinary.pyd" />
-    <None Include="bin\Debug\lacli\unicodedata.pyd" />
-    <None Include="bin\Debug\lacli\win32api.pyd" />
-    <None Include="bin\Debug\lacli\win32event.pyd" />
-    <None Include="bin\Debug\lacli\win32evtlog.pyd" />
-    <None Include="bin\Debug\lacli\win32file.pyd" />
-    <None Include="bin\Debug\lacli\win32gui.pyd" />
-    <None Include="bin\Debug\lacli\win32pipe.pyd" />
-    <None Include="bin\Debug\lacli\win32process.pyd" />
-    <None Include="bin\Debug\lacli\win32security.pyd" />
-    <None Include="bin\Debug\lacli\win32wnet.pyd" />
-    <None Include="bin\Debug\lacli\zope.interface._zope_interface_coptimizations.pyd" />
-    <None Include="bin\Debug\lacli\_ctypes.pyd" />
-    <None Include="bin\Debug\lacli\_hashlib.pyd" />
-    <None Include="bin\Debug\lacli\_multiprocessing.pyd" />
-    <None Include="bin\Debug\lacli\_socket.pyd" />
-    <None Include="bin\Debug\lacli\_ssl.pyd" />
-    <None Include="bin\Debug\lacli\_win32sysloader.pyd" />
-    <None Include="lacli\bz2.pyd" />
-    <None Include="lacli\cacert.pem" />
-    <None Include="lacli\eggs\crochet-1.0.0-py2.7.egg" />
-    <None Include="lacli\eggs\docopt-0.6.1-py2.7.egg" />
-    <None Include="lacli\eggs\filechunkio-1.5-py2.7.egg" />
-    <None Include="lacli\eggs\lacli-0.2rc2-py2.7.egg" />
-    <None Include="lacli\eggs\logutils-0.3.3-py2.7.egg" />
-    <None Include="lacli\eggs\progressbar-2.3-py2.7.egg" />
-    <None Include="lacli\eggs\pyaml-13.07.1-py2.7.egg" />
-    <None Include="lacli\eggs\pycrypto-2.6-py2.7-win-amd64.egg" />
-    <None Include="lacli\eggs\pyyaml-3.10-py2.7-win-amd64.egg" />
-    <None Include="lacli\eggs\six-1.4.1-py2.7.egg" />
-    <None Include="lacli\eggs\treq-0.2.0-py2.7.egg" />
-    <None Include="lacli\eggs\unidecode-0.04.14-py2.7.egg" />
-    <None Include="lacli\lacli.exe.manifest" />
-    <None Include="lacli\Microsoft.VC90.CRT.manifest" />
-    <None Include="lacli\OpenSSL.crypto.pyd" />
-    <None Include="lacli\OpenSSL.rand.pyd" />
-    <None Include="lacli\OpenSSL.SSL.pyd" />
-    <None Include="lacli\pyexpat.pyd" />
-    <None Include="lacli\select.pyd" />
-    <None Include="lacli\thrift.protocol.fastbinary.pyd" />
-    <None Include="lacli\unicodedata.pyd" />
-    <None Include="lacli\win32api.pyd" />
-    <None Include="lacli\win32event.pyd" />
-    <None Include="lacli\win32evtlog.pyd" />
-    <None Include="lacli\win32file.pyd" />
-    <None Include="lacli\win32gui.pyd" />
-    <None Include="lacli\win32pipe.pyd" />
-    <None Include="lacli\win32process.pyd" />
-    <None Include="lacli\win32security.pyd" />
-    <None Include="lacli\win32wnet.pyd" />
-    <None Include="lacli\zope.interface._zope_interface_coptimizations.pyd" />
-    <None Include="lacli\_ctypes.pyd" />
-    <None Include="lacli\_hashlib.pyd" />
-    <None Include="lacli\_multiprocessing.pyd" />
-    <None Include="lacli\_socket.pyd" />
-    <None Include="lacli\_ssl.pyd" />
-    <None Include="lacli\_win32sysloader.pyd" />
     <None Include="Server.cs" />
     <Compile Include="ServerFactory.cs" />
     <Compile Include="SocketServerFactory.cs" />
@@ -211,7 +133,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="LongAccess.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -249,31 +170,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="944754_185808858261592_622057659_n %281%29.ico" />
-    <Content Include="bin\Debug\lacli\include\pyconfig.h" />
-    <Content Include="bin\Debug\lacli\lacli.exe" />
-    <Content Include="bin\Debug\lacli\LIBEAY32.dll" />
-    <Content Include="bin\Debug\lacli\msvcm90.dll" />
-    <Content Include="bin\Debug\lacli\msvcp90.dll" />
-    <Content Include="bin\Debug\lacli\msvcr90.dll" />
-    <Content Include="bin\Debug\lacli\python27.dll" />
-    <Content Include="bin\Debug\lacli\pythoncom27.dll" />
-    <Content Include="bin\Debug\lacli\pywintypes27.dll" />
-    <Content Include="bin\Debug\lacli\SSLEAY32.dll" />
+    <Content Include="icons\longaccess.ico" />
     <Content Include="icons\pause.png" />
     <Content Include="icons\play.png" />
     <Content Include="icons\stop.png" />
-    <Content Include="Longaccess-0.1b1-thrift-Windows7-64-bit.exe" />
-    <Content Include="lacli\include\pyconfig.h" />
-    <Content Include="lacli\lacli.exe" />
-    <Content Include="lacli\LIBEAY32.dll" />
-    <Content Include="lacli\msvcm90.dll" />
-    <Content Include="lacli\msvcp90.dll" />
-    <Content Include="lacli\msvcr90.dll" />
-    <Content Include="lacli\python27.dll" />
-    <Content Include="lacli\pythoncom27.dll" />
-    <Content Include="lacli\pywintypes27.dll" />
-    <Content Include="lacli\SSLEAY32.dll" />
     <Content Include="Notes.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
