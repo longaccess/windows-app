@@ -23,6 +23,8 @@ namespace GuiClient
         public ProxyToBackEnd(string BackendPath)
         {
             this.BackendPath = BackendPath;
+
+
         }
         private string GetArguments(int port)
         {
@@ -107,7 +109,8 @@ namespace GuiClient
                 try
                 {
                     transport.Open();
-                    return cli.PingCLI();
+                    var res = cli.PingCLI();
+                    return res;
                 }
                 catch (Exception e)
                 {
@@ -149,8 +152,9 @@ namespace GuiClient
             Logger.WriteLine("Started new process. " + RunningProcs.Length + " running procs were found");
             return tempCliProc;
         }
-        private void StartNewBackEnd(Stopwatch stopWatch)
+        private void StartNewBackEnd(long Timeout)
         {
+            SaveToLog("Starting new Process");
             if (!System.IO.Directory.Exists(AppDataPath))
             {
                 System.IO.Directory.CreateDirectory(AppDataPath);
@@ -160,6 +164,7 @@ namespace GuiClient
             Exception ex = null;
             int counter = 0;
             CLI.Iface tempCli = null;
+            var sw = Stopwatch.StartNew();
             do
             {
                 try
@@ -190,13 +195,12 @@ namespace GuiClient
                     ex = e;
                 }
                 counter++;
-            } while (!backendInitialized && stopWatch.ElapsedMilliseconds < TotalTimeLimit & counter < AvailablePorts.Length - 1);
+            } while (!backendInitialized && sw.ElapsedMilliseconds < Timeout & counter < AvailablePorts.Length - 1);
             if (!backendInitialized)
             {
                 throw new Exception("Unable to start the back-end application and communicate with it", ex);
             }
-
-
+            SaveToLog("Started new Process");
         }
 
 
@@ -213,7 +217,7 @@ namespace GuiClient
             {
                 if (!backendInitialized)
                 {
-                    StartNewBackEnd(stopWatch);
+                    StartNewBackEnd(TotalTimeLimit-stopWatch.ElapsedMilliseconds);
                 }
             }
             do
@@ -228,17 +232,24 @@ namespace GuiClient
                         Calls++;
                         returnValue = func();
                         sw.Stop();
-                        SaveToLog(name + " returned " + returnValue.ToString() + " after " + sw.ElapsedMilliseconds);
+                        SaveToLog(name + " returned " + returnValue.ToString() + ", after " + sw.ElapsedMilliseconds);
                         return returnValue;
                     }
                     catch (Exception e)
                     {
                         sw.Stop();
-                        SaveToLog(name + " throwed " + e.Message + " after " + sw.ElapsedMilliseconds);
+
                         ex = e;
                         if (e.GetType() == typeof(ThriftInterface.InvalidOperation))
                         {
+
+                            var thriftex = (InvalidOperation)e;
+                            SaveToLog(name + " throwed thrift ex \"" + thriftex.What + ", " + thriftex.Why + "\", after " + sw.ElapsedMilliseconds);
                             throw;
+                        }
+                        else
+                        {
+                            SaveToLog(name + " throwed \"" + e.Message + "\", after " + sw.ElapsedMilliseconds);
                         }
 
                         //Wait a little before trying again.
@@ -250,7 +261,7 @@ namespace GuiClient
                 } while (stopWatch.ElapsedMilliseconds < TotalTimeLimit && Calls <= NumberOfTrials);
                 lock (Locker)
                 {
-                    StartNewBackEnd(stopWatch);
+                    StartNewBackEnd(TotalTimeLimit - stopWatch.ElapsedMilliseconds);
                 }
             } while (stopWatch.ElapsedMilliseconds < TotalTimeLimit);
             throw new Exception("Unable to communicate with the back-end application", ex);
@@ -269,7 +280,13 @@ namespace GuiClient
         }
         private void SaveToLog(string Name)
         {
-            Logger.WriteLine(Name);
+            Logger.WriteLine(Name + ", at thread " + Thread.CurrentThread.ManagedThreadId);
+        }
+        public void InitializeBackend()
+        {
+            var temp = PingTimeOut;
+            PingTimeOut = 30000;
+            StartNewBackEnd(90000);
         }
         #region ThriftCalls
 
