@@ -206,5 +206,16 @@ namespace ThriftInterface
         {
             //nothing here
         }
+
+
+        VersionInfo CLI.Iface.GetLatestVersion()
+        {
+            throw new NotImplementedException();
+        }
+
+        VersionInfo CLI.Iface.GetVersion()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

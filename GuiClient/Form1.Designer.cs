@@ -97,7 +97,6 @@
             this.label18 = new System.Windows.Forms.Label();
             this.tbpgUploads = new System.Windows.Forms.TabPage();
             this.lblUploadStatus = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.pbUpload = new System.Windows.Forms.ProgressBar();
             this.lblUploadETA = new System.Windows.Forms.Label();
             this.btnCancelUpload = new System.Windows.Forms.Button();
@@ -118,6 +117,8 @@
             this.bgwCreateArchive = new System.ComponentModel.BackgroundWorker();
             this.dlgSelectArchive = new System.Windows.Forms.OpenFileDialog();
             this.dlgSelectUploadFiles = new System.Windows.Forms.FolderBrowserDialog();
+            this.label23 = new System.Windows.Forms.Label();
+            this.lblVersion = new System.Windows.Forms.Label();
             this.tabPageContainer.SuspendLayout();
             this.tbpgLogin.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -316,19 +317,22 @@
             this.tbpgUpload.Text = "Upload";
             // 
             // btnReloadCapsules
-            //
-            this.btnReloadCapsules.Location = new System.Drawing.Point(447, 351);
+            // 
+            this.btnReloadCapsules.Enabled = false;
+            this.btnReloadCapsules.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.btnReloadCapsules.Location = new System.Drawing.Point(441, 378);
+            this.btnReloadCapsules.Margin = new System.Windows.Forms.Padding(7);
             this.btnReloadCapsules.Name = "btnReloadCapsules";
-            this.btnReloadCapsules.Size = new System.Drawing.Size(54, 29);
+            this.btnReloadCapsules.Size = new System.Drawing.Size(60, 29);
             this.btnReloadCapsules.TabIndex = 24;
-            this.btnReloadCapsules.Text = "reload";
+            this.btnReloadCapsules.Text = "Reload";
             this.btnReloadCapsules.UseVisualStyleBackColor = true;
             this.btnReloadCapsules.Click += new System.EventHandler(this.btnReloadCapsules_Click);
-            //
+            // 
             // lblReportSelFiles
             // 
             this.lblReportSelFiles.AutoSize = true;
-            this.lblReportSelFiles.Location = new System.Drawing.Point(247, 62);
+            this.lblReportSelFiles.Location = new System.Drawing.Point(103, 86);
             this.lblReportSelFiles.Name = "lblReportSelFiles";
             this.lblReportSelFiles.Size = new System.Drawing.Size(0, 17);
             this.lblReportSelFiles.TabIndex = 23;
@@ -337,7 +341,7 @@
             // 
             this.btnUpload.Enabled = false;
             this.btnUpload.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.btnUpload.Location = new System.Drawing.Point(175, 428);
+            this.btnUpload.Location = new System.Drawing.Point(175, 455);
             this.btnUpload.Margin = new System.Windows.Forms.Padding(7);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(189, 39);
@@ -360,7 +364,7 @@
             // 
             // txtDescr
             // 
-            this.txtDescr.Location = new System.Drawing.Point(102, 199);
+            this.txtDescr.Location = new System.Drawing.Point(102, 226);
             this.txtDescr.Name = "txtDescr";
             this.txtDescr.Size = new System.Drawing.Size(335, 118);
             this.txtDescr.TabIndex = 20;
@@ -371,7 +375,7 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label15.Location = new System.Drawing.Point(102, 168);
+            this.label15.Location = new System.Drawing.Point(102, 195);
             this.label15.Margin = new System.Windows.Forms.Padding(7);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(171, 21);
@@ -383,7 +387,7 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label16.Location = new System.Drawing.Point(62, 325);
+            this.label16.Location = new System.Drawing.Point(62, 352);
             this.label16.Margin = new System.Windows.Forms.Padding(7);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(28, 25);
@@ -393,7 +397,7 @@
             // txtTitle
             // 
             this.txtTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtTitle.Location = new System.Drawing.Point(102, 124);
+            this.txtTitle.Location = new System.Drawing.Point(102, 151);
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(335, 29);
             this.txtTitle.TabIndex = 17;
@@ -403,7 +407,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label14.Location = new System.Drawing.Point(102, 93);
+            this.label14.Location = new System.Drawing.Point(102, 120);
             this.label14.Margin = new System.Windows.Forms.Padding(7);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(121, 21);
@@ -415,7 +419,7 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label13.Location = new System.Drawing.Point(62, 165);
+            this.label13.Location = new System.Drawing.Point(62, 192);
             this.label13.Margin = new System.Windows.Forms.Padding(7);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(28, 25);
@@ -427,7 +431,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label12.Location = new System.Drawing.Point(62, 90);
+            this.label12.Location = new System.Drawing.Point(62, 117);
             this.label12.Margin = new System.Windows.Forms.Padding(7);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(28, 25);
@@ -463,7 +467,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label10.Location = new System.Drawing.Point(98, 328);
+            this.label10.Location = new System.Drawing.Point(98, 355);
             this.label10.Margin = new System.Windows.Forms.Padding(7);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(110, 21);
@@ -474,7 +478,7 @@
             // 
             this.cmbCapsules.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.cmbCapsules.FormattingEnabled = true;
-            this.cmbCapsules.Location = new System.Drawing.Point(102, 351);
+            this.cmbCapsules.Location = new System.Drawing.Point(102, 378);
             this.cmbCapsules.Margin = new System.Windows.Forms.Padding(7);
             this.cmbCapsules.Name = "cmbCapsules";
             this.cmbCapsules.Size = new System.Drawing.Size(335, 29);
@@ -921,7 +925,6 @@
             // 
             this.tbpgUploads.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.tbpgUploads.Controls.Add(this.lblUploadStatus);
-            this.tbpgUploads.Controls.Add(this.button1);
             this.tbpgUploads.Controls.Add(this.pbUpload);
             this.tbpgUploads.Controls.Add(this.lblUploadETA);
             this.tbpgUploads.Controls.Add(this.btnCancelUpload);
@@ -944,16 +947,6 @@
             this.lblUploadStatus.Size = new System.Drawing.Size(50, 17);
             this.lblUploadStatus.TabIndex = 8;
             this.lblUploadStatus.Text = "Status: ";
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.button1.Location = new System.Drawing.Point(360, 366);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(160, 39);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Remove Completed";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // pbUpload
             // 
@@ -1101,12 +1094,31 @@
             this.dlgSelectArchive.AddExtension = false;
             this.dlgSelectArchive.Title = "Select the archive to extract";
             // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(1, 659);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(55, 17);
+            this.label23.TabIndex = 25;
+            this.label23.Text = "Version:";
+            // 
+            // lblVersion
+            // 
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Location = new System.Drawing.Point(57, 659);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(0, 17);
+            this.lblVersion.TabIndex = 26;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.ClientSize = new System.Drawing.Size(546, 661);
+            this.ClientSize = new System.Drawing.Size(546, 685);
+            this.Controls.Add(this.lblVersion);
+            this.Controls.Add(this.label23);
             this.Controls.Add(this.tabPageContainer);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
@@ -1212,7 +1224,6 @@
         private System.Windows.Forms.ProgressBar pbUpload;
         private System.Windows.Forms.Label lblUploadETA;
         private System.Windows.Forms.Button btnExportCert;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem MenuCerts;
         private System.Windows.Forms.ToolStripMenuItem menuUploads;
         private System.Windows.Forms.Timer tmrProgress;
@@ -1231,6 +1242,8 @@
         private System.Windows.Forms.Label lblUploadStatus;
         private System.Windows.Forms.FolderBrowserDialog dlgSelectUploadFiles;
         private System.Windows.Forms.Button btnReloadCapsules;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label lblVersion;
     }
 }
 

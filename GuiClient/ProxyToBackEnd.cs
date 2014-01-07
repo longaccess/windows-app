@@ -185,6 +185,7 @@ namespace GuiClient
                     TTransport transport = new TFramedTransport(new TSocket("localhost", port));
                     TProtocol protocol = new TBinaryProtocol(transport);
                     tempCli = new CLI.Client(protocol);
+                    
 
                     backendInitialized = TryOpenAndPingUntilTimeOut(tempCli, transport, PingTimeOut);
                     Wrapped = tempCli;
@@ -230,7 +231,10 @@ namespace GuiClient
                     try
                     {
                         Calls++;
-                        returnValue = func();
+                        lock (Locker)
+                        {
+                            returnValue = func();
+                        }                        
                         sw.Stop();
                         SaveToLog(name + " returned " + returnValue.ToString() + ", after " + sw.ElapsedMilliseconds);
                         return returnValue;
@@ -259,10 +263,10 @@ namespace GuiClient
                         }
                     }
                 } while (stopWatch.ElapsedMilliseconds < TotalTimeLimit && Calls <= NumberOfTrials);
-                lock (Locker)
-                {
-                    StartNewBackEnd(TotalTimeLimit - stopWatch.ElapsedMilliseconds);
-                }
+                //lock (Locker)
+                //{
+                //    StartNewBackEnd(TotalTimeLimit - stopWatch.ElapsedMilliseconds);
+                //}
             } while (stopWatch.ElapsedMilliseconds < TotalTimeLimit);
             throw new Exception("Unable to communicate with the back-end application", ex);
         }
@@ -289,8 +293,7 @@ namespace GuiClient
             StartNewBackEnd(90000);
         }
         #region ThriftCalls
-
-
+        
         bool CLI.Iface.PingCLI()
         {
             return Wrapper(() => Wrapped.PingCLI(), "PingCLI");
@@ -383,6 +386,17 @@ namespace GuiClient
         {
             Wrapper(() => { Wrapped.SetSettings(settings); return VoidStruct.Empty(); }, "SetSettings");
         }
+        public VersionInfo GetLatestVersion()
+        {
+            return Wrapper(() => Wrapped.GetLatestVersion(), "GetLatestVersion");
+        }
+
+        public VersionInfo GetVersion()
+        {
+           return Wrapper(() => Wrapped.GetVersion(), "GetVersion");
+        }
         #endregion
+
+       
     }
 }

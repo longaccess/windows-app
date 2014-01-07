@@ -144,7 +144,7 @@ namespace GuiClient
         }
         private void OnPageShown(TabPages page)
         {
-            tmrProgress.Stop();//To stop the timer
+            tmrProgress.Stop();//To stop the background querying
             switch (page)
             {
                 case TabPages.Signin:
@@ -154,7 +154,7 @@ namespace GuiClient
                         clearSigninPage();
                     break;
                 case TabPages.Upload:
-                    ResetUploadScreen();
+                    //ResetUploadScreen(); dont reset it, ay loose an upload
                     break;
                 case TabPages.Decrypt:
                     ResetDecryptScreen();
@@ -176,7 +176,7 @@ namespace GuiClient
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
             tabPageContainer.ItemSize = new Size(0, 1);
             tabPageContainer.SizeMode = TabSizeMode.Fixed;
             OnPageLoaded();
@@ -190,9 +190,9 @@ namespace GuiClient
         {
             Application.ThreadException += Application_ThreadException;
             Application.ApplicationExit += Application_ApplicationExit;
-            ShowPage(TabPages.Navigation);            
+            ShowPage(TabPages.Navigation);
             ForcedUpdate();
-            RunAsync(() => proxy.InitializeBackend(), () => { });
+            lblVersion.Text = Cli.GetVersion().Version;
         }
 
         private void ForcedUpdate()
@@ -364,19 +364,22 @@ namespace GuiClient
 
         private void ResetUploadScreen()
         {
+            lblReportSelFiles.Text = "";
+            txtTitle.Text = "";
+            txtDescr.Text = "";
             btnUpload.Enabled = false;
             LoadCapsulesToControl(0);
             ArchiveToUpload = null;
         }
         private void btnReloadCapsules_Click(object sender, EventArgs e)
         {
-            if (ArchiveToUpload == null)
+            if (ArchiveToUpload != null)
             {
-                LoadCapsulesToControl(0);
+                LoadCapsulesToControl(ArchiveToUpload.Info.SizeInBytes);
             }
             else
             {
-                LoadCapsulesToControl(ArchiveToUpload.Info.SizeInBytes);
+                LoadCapsulesToControl(0);
             }
         }
         private string SelectedCapsuleID;
@@ -400,11 +403,27 @@ namespace GuiClient
                 SelectedFiles = new List<string>();
                 SelectedFiles.Add(dlgSelectUploadFiles.SelectedPath);
                 var allFiles = System.IO.Directory.GetFiles(dlgSelectUploadFiles.SelectedPath, "*.*", System.IO.SearchOption.AllDirectories);
-                lblReportSelFiles.Text = allFiles.Length + " files selected";
+                lblReportSelFiles.Text = allFiles.Length + " files selected. Compressing them for upload...";
+                bool creationFailed =false;
                 RunAsync(
-                    () => Cli.CreateArchive(SelectedFiles),
+                    () => 
+                        {
+                            try
+                            {
+                              return  Cli.CreateArchive(SelectedFiles);
+                            }
+                            catch (Exception)
+                            {
+                                creationFailed = true;
+                                throw;
+                            }                           
+                        },
                     (archive) =>
                     {
+                        if (creationFailed)
+                            lblReportSelFiles.Text = "Archive creation failed, please try again.";
+                        else
+                            lblReportSelFiles.Text = "Compression completed!";
                         ArchiveToUpload = archive;
                         LoadCapsulesToControl(ArchiveToUpload.Info.SizeInBytes);
                         btnUpload.Enabled = true;
@@ -417,6 +436,7 @@ namespace GuiClient
             {
                 Cli.UploadToCapsule(ArchiveToUpload.LocalID, SelectedCapsuleID,
               txtTitle.Text, txtDescr.Text);
+                ResetUploadScreen();
                 ShowPage(TabPages.Uploads);
             }
             catch (Exception)
@@ -553,7 +573,7 @@ namespace GuiClient
                     }
 
                     lblUploadETA.Text = "ETA: " + status.ETA;
-                    lblUploadStatus.Text = "Status: " + RecievedArchive.Status.ToString();
+                    lblUploadStatus.Text = "Status: " + status.Status.ToString();
                 });
         }
         private void btnResumeUpload_Click(object sender, EventArgs e)
@@ -584,6 +604,8 @@ namespace GuiClient
         {
 
         }
+
+        
 
 
 

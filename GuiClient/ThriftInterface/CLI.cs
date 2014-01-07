@@ -109,6 +109,16 @@ namespace ThriftInterface
       IAsyncResult Begin_SetSettings(AsyncCallback callback, object state, Settings settings);
       void End_SetSettings(IAsyncResult asyncResult);
       #endif
+      VersionInfo GetLatestVersion();
+      #if SILVERLIGHT
+      IAsyncResult Begin_GetLatestVersion(AsyncCallback callback, object state, );
+      VersionInfo End_GetLatestVersion(IAsyncResult asyncResult);
+      #endif
+      VersionInfo GetVersion();
+      #if SILVERLIGHT
+      IAsyncResult Begin_GetVersion(AsyncCallback callback, object state, );
+      VersionInfo End_GetVersion(IAsyncResult asyncResult);
+      #endif
     }
 
     public class Client : Iface {
@@ -1264,6 +1274,128 @@ namespace ThriftInterface
         return;
       }
 
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_GetLatestVersion(AsyncCallback callback, object state, )
+      {
+        return send_GetLatestVersion(callback, state);
+      }
+
+      public VersionInfo End_GetLatestVersion(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_GetLatestVersion();
+      }
+
+      #endif
+
+      public VersionInfo GetLatestVersion()
+      {
+        #if !SILVERLIGHT
+        send_GetLatestVersion();
+        return recv_GetLatestVersion();
+
+        #else
+        var asyncResult = Begin_GetLatestVersion(null, null, );
+        return End_GetLatestVersion(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_GetLatestVersion(AsyncCallback callback, object state, )
+      #else
+      public void send_GetLatestVersion()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("GetLatestVersion", TMessageType.Call, seqid_));
+        GetLatestVersion_args args = new GetLatestVersion_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public VersionInfo recv_GetLatestVersion()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        GetLatestVersion_result result = new GetLatestVersion_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetLatestVersion failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_GetVersion(AsyncCallback callback, object state, )
+      {
+        return send_GetVersion(callback, state);
+      }
+
+      public VersionInfo End_GetVersion(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_GetVersion();
+      }
+
+      #endif
+
+      public VersionInfo GetVersion()
+      {
+        #if !SILVERLIGHT
+        send_GetVersion();
+        return recv_GetVersion();
+
+        #else
+        var asyncResult = Begin_GetVersion(null, null, );
+        return End_GetVersion(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_GetVersion(AsyncCallback callback, object state, )
+      #else
+      public void send_GetVersion()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("GetVersion", TMessageType.Call, seqid_));
+        GetVersion_args args = new GetVersion_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public VersionInfo recv_GetVersion()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        GetVersion_result result = new GetVersion_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetVersion failed: unknown result");
+      }
+
     }
     public class Processor : TProcessor {
       public Processor(Iface iface)
@@ -1287,6 +1419,8 @@ namespace ThriftInterface
         processMap_["Decrypt"] = Decrypt_Process;
         processMap_["GetSettings"] = GetSettings_Process;
         processMap_["SetSettings"] = SetSettings_Process;
+        processMap_["GetLatestVersion"] = GetLatestVersion_Process;
+        processMap_["GetVersion"] = GetVersion_Process;
       }
 
       protected delegate void ProcessFunction(int seqid, TProtocol iprot, TProtocol oprot);
@@ -1592,6 +1726,32 @@ namespace ThriftInterface
         SetSettings_result result = new SetSettings_result();
         iface_.SetSettings(args.Settings);
         oprot.WriteMessageBegin(new TMessage("SetSettings", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void GetLatestVersion_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        GetLatestVersion_args args = new GetLatestVersion_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        GetLatestVersion_result result = new GetLatestVersion_result();
+        result.Success = iface_.GetLatestVersion();
+        oprot.WriteMessageBegin(new TMessage("GetLatestVersion", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void GetVersion_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        GetVersion_args args = new GetVersion_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        GetVersion_result result = new GetVersion_result();
+        result.Success = iface_.GetVersion();
+        oprot.WriteMessageBegin(new TMessage("GetVersion", TMessageType.Reply, seqid)); 
         result.Write(oprot);
         oprot.WriteMessageEnd();
         oprot.Transport.Flush();
@@ -4901,6 +5061,280 @@ namespace ThriftInterface
 
       public override string ToString() {
         StringBuilder sb = new StringBuilder("SetSettings_result(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetLatestVersion_args : TBase
+    {
+
+      public GetLatestVersion_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetLatestVersion_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetLatestVersion_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetLatestVersion_result : TBase
+    {
+      private VersionInfo _success;
+
+      public VersionInfo Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public GetLatestVersion_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.Struct) {
+                Success = new VersionInfo();
+                Success.Read(iprot);
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetLatestVersion_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          if (Success != null) {
+            field.Name = "Success";
+            field.Type = TType.Struct;
+            field.ID = 0;
+            oprot.WriteFieldBegin(field);
+            Success.Write(oprot);
+            oprot.WriteFieldEnd();
+          }
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetLatestVersion_result(");
+        sb.Append("Success: ");
+        sb.Append(Success== null ? "<null>" : Success.ToString());
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetVersion_args : TBase
+    {
+
+      public GetVersion_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetVersion_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetVersion_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetVersion_result : TBase
+    {
+      private VersionInfo _success;
+
+      public VersionInfo Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public GetVersion_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.Struct) {
+                Success = new VersionInfo();
+                Success.Read(iprot);
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetVersion_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          if (Success != null) {
+            field.Name = "Success";
+            field.Type = TType.Struct;
+            field.ID = 0;
+            oprot.WriteFieldBegin(field);
+            Success.Write(oprot);
+            oprot.WriteFieldEnd();
+          }
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetVersion_result(");
+        sb.Append("Success: ");
+        sb.Append(Success== null ? "<null>" : Success.ToString());
         sb.Append(")");
         return sb.ToString();
       }

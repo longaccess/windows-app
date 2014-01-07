@@ -27,6 +27,7 @@ namespace ThriftInterface
     private string _ETA;
     private long _RemainingBytes;
     private double _Progress;
+    private ArchiveStatus _Status;
 
     public string StatusDescription
     {
@@ -80,6 +81,23 @@ namespace ThriftInterface
       }
     }
 
+    /// <summary>
+    /// 
+    /// <seealso cref="ArchiveStatus"/>
+    /// </summary>
+    public ArchiveStatus Status
+    {
+      get
+      {
+        return _Status;
+      }
+      set
+      {
+        __isset.Status = true;
+        this._Status = value;
+      }
+    }
+
 
     public Isset __isset;
     #if !SILVERLIGHT
@@ -90,6 +108,7 @@ namespace ThriftInterface
       public bool ETA;
       public bool RemainingBytes;
       public bool Progress;
+      public bool Status;
     }
 
     public TransferStatus() {
@@ -131,6 +150,13 @@ namespace ThriftInterface
           case 4:
             if (field.Type == TType.Double) {
               Progress = iprot.ReadDouble();
+            } else { 
+              TProtocolUtil.Skip(iprot, field.Type);
+            }
+            break;
+          case 5:
+            if (field.Type == TType.I32) {
+              Status = (ArchiveStatus)iprot.ReadI32();
             } else { 
               TProtocolUtil.Skip(iprot, field.Type);
             }
@@ -180,6 +206,14 @@ namespace ThriftInterface
         oprot.WriteDouble(Progress);
         oprot.WriteFieldEnd();
       }
+      if (__isset.Status) {
+        field.Name = "Status";
+        field.Type = TType.I32;
+        field.ID = 5;
+        oprot.WriteFieldBegin(field);
+        oprot.WriteI32((int)Status);
+        oprot.WriteFieldEnd();
+      }
       oprot.WriteFieldStop();
       oprot.WriteStructEnd();
     }
@@ -194,6 +228,8 @@ namespace ThriftInterface
       sb.Append(RemainingBytes);
       sb.Append(",Progress: ");
       sb.Append(Progress);
+      sb.Append(",Status: ");
+      sb.Append(Status);
       sb.Append(")");
       return sb.ToString();
     }
