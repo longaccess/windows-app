@@ -18,7 +18,7 @@ namespace GuiClient
         private int TotalTimeLimit = 60000;
         private int NumberOfTrials = 3;
         private int DelayBetweenFailedCalls = 500;
-        private int PingTimeOut = 12000;
+        private int PingTimeOut = 4000;
         private string BackendPath;
         public ProxyToBackEnd(string BackendPath)
         {
@@ -32,7 +32,13 @@ namespace GuiClient
                   "\"" + AppDataPath + "\"" +
                    " server --port " + port.ToString();
         }
-
+        public void InitializeBackend()
+        {
+            int temp = PingTimeOut;
+            PingTimeOut = 150000;
+            StartNewBackEnd(50000);
+            PingTimeOut = 150000;
+        }
         //- StartNewBackEnd
         //  - Do
         //    - Find available port.
