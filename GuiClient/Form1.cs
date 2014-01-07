@@ -192,6 +192,7 @@ namespace GuiClient
             Application.ApplicationExit += Application_ApplicationExit;
             ShowPage(TabPages.Navigation);            
             ForcedUpdate();
+            RunAsync(() => proxy.InitializeBackend(), () => { });
         }
 
         private void ForcedUpdate()
@@ -365,13 +366,25 @@ namespace GuiClient
         {
             btnUpload.Enabled = false;
             LoadCapsulesToControl(0);
+            ArchiveToUpload = null;
         }
-
+        private void btnReloadCapsules_Click(object sender, EventArgs e)
+        {
+            if (ArchiveToUpload == null)
+            {
+                LoadCapsulesToControl(0);
+            }
+            else
+            {
+                LoadCapsulesToControl(ArchiveToUpload.Info.SizeInBytes);
+            }
+        }
         private string SelectedCapsuleID;
         private void LoadCapsulesToControl(long ArchiveSizeInBytes)
         {
             RunAsync(
-                () => Cli.GetCapsules().Where(cap => cap.AvailableSizeInBytes > ArchiveSizeInBytes).ToList(),
+                () => Cli.GetCapsules().Where(cap => cap.AvailableSizeInBytes > ArchiveSizeInBytes)
+                    .OrderByDescending(cap=>cap.AvailableSizeInBytes).ToList(),
                 (AllCapsules) =>
                 {
                     BindData(AllCapsules, bsCapsules, cmbCapsules, c => c.DisplayProp,
@@ -518,13 +531,19 @@ namespace GuiClient
         }
         private void UpdateUploadStatus(Archive archive)
         {
+            TransferStatus status = null; ;
+            Archive RecievedArchive = null ;
             RunAsync(
-                () => Cli.QueryArchiveStatus(archive.LocalID),
-                (status) =>
+                () =>
+                    {
+                       status= Cli.QueryArchiveStatus(archive.LocalID);
+                       RecievedArchive = Cli.GetUploads().FirstOrDefault(ar => ar.LocalID == archive.LocalID);
+                    },
+                () =>
                 {
                     double progress = status.Progress / (double)(status.Progress + status.RemainingBytes + 1);
                     //progress = Math.Min(1, progress);
-                    try
+                     try
                     {
                         pbUpload.Value = (int)(progress * 100);
                     }
@@ -534,7 +553,7 @@ namespace GuiClient
                     }
 
                     lblUploadETA.Text = "ETA: " + status.ETA;
-                    lblUploadStatus.Text = "Status: " + archive.Status.ToString();
+                    lblUploadStatus.Text = "Status: " + RecievedArchive.Status.ToString();
                 });
         }
         private void btnResumeUpload_Click(object sender, EventArgs e)
@@ -565,6 +584,8 @@ namespace GuiClient
         {
 
         }
+
+
 
 
     }
