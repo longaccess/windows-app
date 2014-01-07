@@ -355,7 +355,7 @@ namespace GuiClient
                 AppSettings.DefaultExtractionFolder = dlgSelectExtractionFolder.SelectedPath;
                 AppSettings.Save();
                 var folder = dlgSelectExtractionFolder.SelectedPath;
-                Cli.Decrypt(txtArchivePath.Text, key, folder);
+                RunAsync(() => Cli.Decrypt(txtArchivePath.Text, key, folder), () => { });                
             }
         }
         #endregion DecryptScreen
