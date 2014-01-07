@@ -269,10 +269,6 @@ namespace GuiClient
                         }
                     }
                 } while (stopWatch.ElapsedMilliseconds < TotalTimeLimit && Calls <= NumberOfTrials);
-                //lock (Locker)
-                //{
-                //    StartNewBackEnd(TotalTimeLimit - stopWatch.ElapsedMilliseconds);
-                //}
             } while (stopWatch.ElapsedMilliseconds < TotalTimeLimit);
             throw new Exception("Unable to communicate with the back-end application", ex);
         }
