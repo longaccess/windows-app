@@ -292,12 +292,7 @@ namespace GuiClient
         {
             Logger.WriteLine(Name + ", at thread " + Thread.CurrentThread.ManagedThreadId);
         }
-        public void InitializeBackend()
-        {
-            var temp = PingTimeOut;
-            PingTimeOut = 30000;
-            StartNewBackEnd(90000);
-        }
+       
         #region ThriftCalls
         
         bool CLI.Iface.PingCLI()
