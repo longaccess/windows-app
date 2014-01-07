@@ -345,7 +345,7 @@ namespace GuiClient
         private void btnExtractArchive_Click(object sender, EventArgs e)
         {
             string key = txtKeyB.Text + txtKeyC.Text + txtKeyD.Text + txtKeyE.Text;
-            key = key.Replace(" ", "").Replace(".", "");
+            key = key.Replace(" ", "").Replace(".", "").Replace(",", "");
             if (System.IO.Directory.Exists(AppSettings.DefaultExtractionFolder))
             {
                 dlgSelectExtractionFolder.SelectedPath = AppSettings.DefaultExtractionFolder;
@@ -438,6 +438,7 @@ namespace GuiClient
               txtTitle.Text, txtDescr.Text);
                 ResetUploadScreen();
                 ShowPage(TabPages.Uploads);
+                
             }
             catch (Exception)
             {
@@ -588,6 +589,10 @@ namespace GuiClient
         {
             Cli.CancelUpload(SelectedArchive.LocalID);
         }
+        private void btnRemoveUploads_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion UploadManager
 
         private static long GetFilesTotalSizeinKb(List<string> files)
@@ -600,10 +605,8 @@ namespace GuiClient
             return sum;
         }
 
-        private void dlgSelectFiles_FileOk(object sender, CancelEventArgs e)
-        {
-
-        }
+        
+        
 
         
 

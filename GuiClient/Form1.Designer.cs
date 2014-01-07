@@ -119,6 +119,7 @@
             this.dlgSelectUploadFiles = new System.Windows.Forms.FolderBrowserDialog();
             this.label23 = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
+            this.btnRemoveUploads = new System.Windows.Forms.Button();
             this.tabPageContainer.SuspendLayout();
             this.tbpgLogin.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -558,7 +559,7 @@
             this.txtKeyB.Name = "txtKeyB";
             this.txtKeyB.Size = new System.Drawing.Size(271, 35);
             this.txtKeyB.TabIndex = 14;
-            this.txtKeyB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtKeyB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;            
             this.txtKeyB.TextChanged += new System.EventHandler(this.txtKeyB_TextChanged);
             // 
             // label9
@@ -657,7 +658,7 @@
             this.tbpgNav.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbpgNav.Name = "tbpgNav";
             this.tbpgNav.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbpgNav.Size = new System.Drawing.Size(538, 597);
+            this.tbpgNav.Size = new System.Drawing.Size(541, 597);
             this.tbpgNav.TabIndex = 3;
             this.tbpgNav.Text = "Navigation";
             // 
@@ -785,7 +786,7 @@
             this.tbpgCerts.Location = new System.Drawing.Point(4, 29);
             this.tbpgCerts.Name = "tbpgCerts";
             this.tbpgCerts.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgCerts.Size = new System.Drawing.Size(538, 597);
+            this.tbpgCerts.Size = new System.Drawing.Size(541, 597);
             this.tbpgCerts.TabIndex = 4;
             this.tbpgCerts.Text = "Certificates";
             // 
@@ -924,6 +925,7 @@
             // tbpgUploads
             // 
             this.tbpgUploads.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.tbpgUploads.Controls.Add(this.btnRemoveUploads);
             this.tbpgUploads.Controls.Add(this.lblUploadStatus);
             this.tbpgUploads.Controls.Add(this.pbUpload);
             this.tbpgUploads.Controls.Add(this.lblUploadETA);
@@ -1111,6 +1113,16 @@
             this.lblVersion.Size = new System.Drawing.Size(0, 17);
             this.lblVersion.TabIndex = 26;
             // 
+            // btnRemoveUploads
+            // 
+            this.btnRemoveUploads.Location = new System.Drawing.Point(335, 366);
+            this.btnRemoveUploads.Name = "btnRemoveUploads";
+            this.btnRemoveUploads.Size = new System.Drawing.Size(185, 35);
+            this.btnRemoveUploads.TabIndex = 9;
+            this.btnRemoveUploads.Text = "Remove completed or failed";
+            this.btnRemoveUploads.UseVisualStyleBackColor = true;
+            this.btnRemoveUploads.Click += new System.EventHandler(this.btnRemoveUploads_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -1244,6 +1256,7 @@
         private System.Windows.Forms.Button btnReloadCapsules;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.Button btnRemoveUploads;
     }
 }
 
