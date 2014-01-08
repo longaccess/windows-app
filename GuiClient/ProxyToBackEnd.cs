@@ -183,8 +183,10 @@ namespace GuiClient
                         proc.Process.Kill();
                     }
                     //    - start new process. Log it.
-                    ProcessStartInfo ProcInfo = new ProcessStartInfo(BackendPath, GetArguments(port));
-                    Process tempCliProc = new Process();
+                    ProcessStartInfo ProcInfo = new ProcessStartInfo(BackendPath, GetArguments(port));                    
+                    ProcInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                    ProcInfo.CreateNoWindow = true;
+                    Process tempCliProc = new Process();                    
                     tempCliProc.StartInfo = ProcInfo;
                     tempCliProc.Start();
 

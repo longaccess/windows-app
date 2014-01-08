@@ -80,7 +80,7 @@ namespace GuiClient
                 }
             }
         }
-        public void RunAsync<TResult>(Func<TResult> AsyncWork, Action<TResult> CallingWork)
+        public void RunAsync<TResult>(Func<TResult> AsyncWork, Action<TResult> CallingWork, Action IfFailed = null)
         {
             //CallingWork(AsyncWork());
             //return;
@@ -91,14 +91,25 @@ namespace GuiClient
 
                 CallingThreadContext.Post(o =>
                 {
-                    TResult result = target.EndInvoke(cookie);
-                    CallingWork(result);
+                    try
+                    {
+                        TResult result = target.EndInvoke(cookie);
+                        CallingWork(result);
+                    }
+                    catch
+                    {
+                        if (IfFailed != null)
+                        {
+                            IfFailed();
+                        }
+                        throw;
+                    }
                 }, null);
             };
             AsyncWork.BeginInvoke(Callback, AsyncWork);
         }
 
-        public void RunAsync(Action AsyncWork, Action CallingWork)
+        public void RunAsync(Action AsyncWork, Action CallingWork, Action IfFailed = null)
         {
             //AsyncWork();
             //CallingWork();
@@ -110,8 +121,19 @@ namespace GuiClient
 
                 CallingThreadContext.Post(o =>
                 {
-                    target.EndInvoke(cookie);
-                    CallingWork();
+                    try
+                    {
+                        target.EndInvoke(cookie);
+                        CallingWork();
+                    }
+                    catch
+                    {
+                        if (IfFailed != null)
+                        {
+                            IfFailed();
+                        }
+                        throw;
+                    }
                 }, null);
             };
             AsyncWork.BeginInvoke(Callback, AsyncWork);
@@ -184,8 +206,7 @@ namespace GuiClient
 
         void Application_ApplicationExit(object sender, EventArgs e)
         {
-            SetControlsStateBasedOnStatus(SelectedArchive.Status);
-            UpdateUploadStatus(SelectedArchive);
+            Cli.CloseWhenPossible();
         }
         private void OnPageLoaded()
         {
@@ -404,29 +425,19 @@ namespace GuiClient
                 SelectedFiles.Add(dlgSelectUploadFiles.SelectedPath);
                 var allFiles = System.IO.Directory.GetFiles(dlgSelectUploadFiles.SelectedPath, "*.*", System.IO.SearchOption.AllDirectories);
                 lblReportSelFiles.Text = allFiles.Length + " files selected. Compressing them for upload...";
-                bool creationFailed = false;
+
                 RunAsync(
-                    () =>
-                    {
-                        try
-                        {
-                            return Cli.CreateArchive(SelectedFiles);
-                        }
-                        catch (Exception)
-                        {
-                            creationFailed = true;
-                            throw;
-                        }
-                    },
+                    () => Cli.CreateArchive(SelectedFiles),
                     (archive) =>
                     {
-                        if (creationFailed)
-                            lblReportSelFiles.Text = "Archive creation failed, please try again.";
-                        else
-                            lblReportSelFiles.Text = "Compression completed!";
+                        lblReportSelFiles.Text = "Compression completed!";
                         ArchiveToUpload = archive;
                         LoadCapsulesToControl(ArchiveToUpload.Info.SizeInBytes);
                         btnUpload.Enabled = true;
+                    },
+                    () =>
+                    {
+                        lblReportSelFiles.Text = "Archive creation failed, please try again.";
                     });
             }
         }
@@ -435,16 +446,14 @@ namespace GuiClient
             try
             {
                 Cli.UploadToCapsule(ArchiveToUpload.LocalID, SelectedCapsuleID,
-              txtTitle.Text, txtDescr.Text);
+                    txtTitle.Text, txtDescr.Text);
                 ResetUploadScreen();
                 ShowPage(TabPages.Uploads);
-
             }
             catch (Exception)
             {
                 throw;
             }
-
         }
         #endregion UploadScreen
 
@@ -512,12 +521,12 @@ namespace GuiClient
             {
                 BindData(Uploads, bsArchives, lbUploads, c => c.DisplayProp,
                         () =>
-                        {                            
+                        {
                             SelectedArchive = (Archive)bsArchives.Current;
                             SetControlsStateBasedOnStatus(SelectedArchive.Status);
                             UpdateUploadStatus(SelectedArchive);
                         });
-                
+
             });
         }
         private void tmrProgress_Tick(object sender, EventArgs e)
@@ -564,20 +573,17 @@ namespace GuiClient
                 default:
                     break;
             }
-           
+
 
         }
         private void UpdateUploadStatus(Archive archive)
         {
-            TransferStatus status = null; ;
-            Archive RecievedArchive = null;
+
+
             RunAsync(
                 () =>
-                {
-                    status = Cli.QueryArchiveStatus(archive.LocalID);
-                    RecievedArchive = Cli.GetUploads().FirstOrDefault(ar => ar.LocalID == archive.LocalID);
-                },
-                () =>
+                Cli.QueryArchiveStatus(archive.LocalID),
+                (status) =>
                 {
                     double progress = status.Progress / (double)(status.Progress + status.RemainingBytes + 1);
                     //progress = Math.Min(1, progress);
@@ -589,9 +595,16 @@ namespace GuiClient
                     {
                         throw new Exception("Error in progress bar: value= " + (int)(progress * 100), e);
                     }
-
                     lblUploadETA.Text = "ETA: " + status.ETA;
                     lblUploadStatus.Text = "Status: " + status.Status.ToString();
+                    SetControlsStateBasedOnStatus(status.Status);
+                },
+                () =>
+                {
+                    pbUpload.Value = 0;
+                    lblUploadETA.Text = "ETA: ";
+                    lblUploadStatus.Text = "Status: ";
+                    SetControlsStateBasedOnStatus(ArchiveStatus.Failed);
                 });
         }
         private void btnResumeUpload_Click(object sender, EventArgs e)
