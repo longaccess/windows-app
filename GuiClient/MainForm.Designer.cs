@@ -96,6 +96,7 @@
             this.txtCertFolder = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.tbpgUploads = new System.Windows.Forms.TabPage();
+            this.btnRemoveUploads = new System.Windows.Forms.Button();
             this.lblUploadStatus = new System.Windows.Forms.Label();
             this.pbUpload = new System.Windows.Forms.ProgressBar();
             this.lblUploadETA = new System.Windows.Forms.Label();
@@ -924,6 +925,7 @@
             // tbpgUploads
             // 
             this.tbpgUploads.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.tbpgUploads.Controls.Add(this.btnRemoveUploads);
             this.tbpgUploads.Controls.Add(this.lblUploadStatus);
             this.tbpgUploads.Controls.Add(this.pbUpload);
             this.tbpgUploads.Controls.Add(this.lblUploadETA);
@@ -938,6 +940,17 @@
             this.tbpgUploads.Size = new System.Drawing.Size(538, 597);
             this.tbpgUploads.TabIndex = 5;
             this.tbpgUploads.Text = "Uploads";
+            // 
+            // btnRemoveUploads
+            // 
+            this.btnRemoveUploads.Location = new System.Drawing.Point(335, 366);
+            this.btnRemoveUploads.Name = "btnRemoveUploads";
+            this.btnRemoveUploads.Size = new System.Drawing.Size(185, 35);
+            this.btnRemoveUploads.TabIndex = 9;
+            this.btnRemoveUploads.Text = "Remove completed or failed";
+            this.btnRemoveUploads.UseVisualStyleBackColor = true;
+            this.btnRemoveUploads.Visible = false;
+            this.btnRemoveUploads.Click += new System.EventHandler(this.btnRemoveUploads_Click);
             // 
             // lblUploadStatus
             // 
@@ -1244,6 +1257,7 @@
         private System.Windows.Forms.Button btnReloadCapsules;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.Button btnRemoveUploads;
     }
 }
 

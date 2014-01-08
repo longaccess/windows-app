@@ -80,7 +80,7 @@ namespace GuiClient
                 }
             }
         }
-        public void RunAsync<TResult>(Func<TResult> AsyncWork, Action<TResult> CallingWork)
+        public void RunAsync<TResult>(Func<TResult> AsyncWork, Action<TResult> CallingWork, Action IfFailed = null)
         {
             //CallingWork(AsyncWork());
             //return;
@@ -91,14 +91,25 @@ namespace GuiClient
 
                 CallingThreadContext.Post(o =>
                 {
-                    TResult result = target.EndInvoke(cookie);
-                    CallingWork(result);
+                    try
+                    {
+                        TResult result = target.EndInvoke(cookie);
+                        CallingWork(result);
+                    }
+                    catch
+                    {
+                        if (IfFailed != null)
+                        {
+                            IfFailed();
+                        }
+                        throw;
+                    }
                 }, null);
             };
             AsyncWork.BeginInvoke(Callback, AsyncWork);
         }
 
-        public void RunAsync(Action AsyncWork, Action CallingWork)
+        public void RunAsync(Action AsyncWork, Action CallingWork, Action IfFailed = null)
         {
             //AsyncWork();
             //CallingWork();
@@ -110,8 +121,19 @@ namespace GuiClient
 
                 CallingThreadContext.Post(o =>
                 {
-                    target.EndInvoke(cookie);
-                    CallingWork();
+                    try
+                    {
+                        target.EndInvoke(cookie);
+                        CallingWork();
+                    }
+                    catch
+                    {
+                        if (IfFailed != null)
+                        {
+                            IfFailed();
+                        }
+                        throw;
+                    }
                 }, null);
             };
             AsyncWork.BeginInvoke(Callback, AsyncWork);
@@ -165,7 +187,7 @@ namespace GuiClient
                     LoadCertificates();
                     break;
                 case TabPages.Uploads:
-                    SetUploadsButtonsEnabledState(false);
+                    SetControlsStateBasedOnStatus(ArchiveStatus.Failed);
                     LoadArchives();
                     break;
                 default:
@@ -281,7 +303,6 @@ namespace GuiClient
         {
             var resp = Cli.LoginUser(txtEmail.Text, txtPassword.Text, cbRemember.Checked);
             ShowPage(LoginCallerPage);
-
         }
         private void btnGoToDecrypt_Click(object sender, EventArgs e)
         {
@@ -345,7 +366,7 @@ namespace GuiClient
         private void btnExtractArchive_Click(object sender, EventArgs e)
         {
             string key = txtKeyB.Text + txtKeyC.Text + txtKeyD.Text + txtKeyE.Text;
-            key = key.Replace(" ", "").Replace(".", "");
+            key = key.Replace(" ", "").Replace(".", "").Replace(",", "");
             if (System.IO.Directory.Exists(AppSettings.DefaultExtractionFolder))
             {
                 dlgSelectExtractionFolder.SelectedPath = AppSettings.DefaultExtractionFolder;
@@ -355,7 +376,7 @@ namespace GuiClient
                 AppSettings.DefaultExtractionFolder = dlgSelectExtractionFolder.SelectedPath;
                 AppSettings.Save();
                 var folder = dlgSelectExtractionFolder.SelectedPath;
-                Cli.Decrypt(txtArchivePath.Text, key, folder);
+                RunAsync(() => Cli.Decrypt(txtArchivePath.Text, key, folder), () => MessageBox.Show("Decryption completed."));
             }
         }
         #endregion DecryptScreen
@@ -387,7 +408,7 @@ namespace GuiClient
         {
             RunAsync(
                 () => Cli.GetCapsules().Where(cap => cap.AvailableSizeInBytes > ArchiveSizeInBytes)
-                    .OrderByDescending(cap=>cap.AvailableSizeInBytes).ToList(),
+                    .OrderByDescending(cap => cap.AvailableSizeInBytes).ToList(),
                 (AllCapsules) =>
                 {
                     BindData(AllCapsules, bsCapsules, cmbCapsules, c => c.DisplayProp,
@@ -404,29 +425,19 @@ namespace GuiClient
                 SelectedFiles.Add(dlgSelectUploadFiles.SelectedPath);
                 var allFiles = System.IO.Directory.GetFiles(dlgSelectUploadFiles.SelectedPath, "*.*", System.IO.SearchOption.AllDirectories);
                 lblReportSelFiles.Text = allFiles.Length + " files selected. Compressing them for upload...";
-                bool creationFailed =false;
+
                 RunAsync(
-                    () => 
-                        {
-                            try
-                            {
-                              return  Cli.CreateArchive(SelectedFiles);
-                            }
-                            catch (Exception)
-                            {
-                                creationFailed = true;
-                                throw;
-                            }                           
-                        },
+                    () => Cli.CreateArchive(SelectedFiles),
                     (archive) =>
                     {
-                        if (creationFailed)
-                            lblReportSelFiles.Text = "Archive creation failed, please try again.";
-                        else
-                            lblReportSelFiles.Text = "Compression completed!";
+                        lblReportSelFiles.Text = "Compression completed!";
                         ArchiveToUpload = archive;
                         LoadCapsulesToControl(ArchiveToUpload.Info.SizeInBytes);
                         btnUpload.Enabled = true;
+                    },
+                    () =>
+                    {
+                        lblReportSelFiles.Text = "Archive creation failed, please try again.";
                     });
             }
         }
@@ -435,7 +446,7 @@ namespace GuiClient
             try
             {
                 Cli.UploadToCapsule(ArchiveToUpload.LocalID, SelectedCapsuleID,
-              txtTitle.Text, txtDescr.Text);
+                    txtTitle.Text, txtDescr.Text);
                 ResetUploadScreen();
                 ShowPage(TabPages.Uploads);
             }
@@ -443,7 +454,6 @@ namespace GuiClient
             {
                 throw;
             }
-
         }
         #endregion UploadScreen
 
@@ -513,57 +523,71 @@ namespace GuiClient
                         () =>
                         {
                             SelectedArchive = (Archive)bsArchives.Current;
-                            if ((SelectedArchive.Status == ArchiveStatus.InProgress) |
-                                (SelectedArchive.Status == ArchiveStatus.Local) |
-                                (SelectedArchive.Status == ArchiveStatus.Paused))
-                            {
-                                SetUploadsButtonsEnabledState(true);
-                            }
-                            else
-                            {
-                                SetUploadsButtonsEnabledState(false);
-                            }
+                            SetControlsStateBasedOnStatus(SelectedArchive.Status);
                             UpdateUploadStatus(SelectedArchive);
                         });
-                SetUploadsButtonsEnabledState(false);
+
             });
         }
         private void tmrProgress_Tick(object sender, EventArgs e)
         {
             UpdateUploadStatus(SelectedArchive);
         }
-        private void SetUploadsButtonsEnabledState(bool state)
+        private void SetControlsStateBasedOnStatus(ArchiveStatus status)
         {
-            btnResumeUpload.Enabled = state;
-            btnCancelUpload.Enabled = state;
-            btnPauseUpload.Enabled = state;
-            if (state == true)
+            switch (status)
             {
-                tmrProgress.Start();
+                case ArchiveStatus.Completed:
+                    btnResumeUpload.Enabled = false;
+                    btnPauseUpload.Enabled = false;
+                    btnCancelUpload.Enabled = false;
+                    tmrProgress.Enabled = false;
+                    break;
+                case ArchiveStatus.InProgress:
+                    btnResumeUpload.Enabled = false;
+                    btnPauseUpload.Enabled = true;
+                    btnCancelUpload.Enabled = true;
+                    tmrProgress.Enabled = true;
+                    break;
+                case ArchiveStatus.Paused:
+                    btnResumeUpload.Enabled = true;
+                    btnPauseUpload.Enabled = false;
+                    btnCancelUpload.Enabled = true;
+                    tmrProgress.Enabled = true;
+                    break;
+                case ArchiveStatus.Stopped:
+
+                    break;
+                case ArchiveStatus.Failed:
+                    btnResumeUpload.Enabled = false;
+                    btnPauseUpload.Enabled = false;
+                    btnCancelUpload.Enabled = true;
+                    tmrProgress.Enabled = false;
+                    break;
+                case ArchiveStatus.Local:
+                    btnResumeUpload.Enabled = true;
+                    btnPauseUpload.Enabled = false;
+                    btnCancelUpload.Enabled = true;
+                    tmrProgress.Enabled = true;
+                    break;
+                default:
+                    break;
             }
-            else
-            {
-                tmrProgress.Stop();
-                lblUploadETA.ResetText();
-                lblUploadStatus.ResetText();
-                pbUpload.Value = 0;
-            }
+
+
         }
         private void UpdateUploadStatus(Archive archive)
         {
-            TransferStatus status = null; ;
-            Archive RecievedArchive = null ;
+
+
             RunAsync(
                 () =>
-                    {
-                       status= Cli.QueryArchiveStatus(archive.LocalID);
-                       RecievedArchive = Cli.GetUploads().FirstOrDefault(ar => ar.LocalID == archive.LocalID);
-                    },
-                () =>
+                Cli.QueryArchiveStatus(archive.LocalID),
+                (status) =>
                 {
                     double progress = status.Progress / (double)(status.Progress + status.RemainingBytes + 1);
                     //progress = Math.Min(1, progress);
-                     try
+                    try
                     {
                         pbUpload.Value = (int)(progress * 100);
                     }
@@ -571,9 +595,16 @@ namespace GuiClient
                     {
                         throw new Exception("Error in progress bar: value= " + (int)(progress * 100), e);
                     }
-
                     lblUploadETA.Text = "ETA: " + status.ETA;
                     lblUploadStatus.Text = "Status: " + status.Status.ToString();
+                    SetControlsStateBasedOnStatus(status.Status);
+                },
+                () =>
+                {
+                    pbUpload.Value = 0;
+                    lblUploadETA.Text = "ETA: ";
+                    lblUploadStatus.Text = "Status: ";
+                    SetControlsStateBasedOnStatus(ArchiveStatus.Failed);
                 });
         }
         private void btnResumeUpload_Click(object sender, EventArgs e)
@@ -588,6 +619,10 @@ namespace GuiClient
         {
             Cli.CancelUpload(SelectedArchive.LocalID);
         }
+        private void btnRemoveUploads_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion UploadManager
 
         private static long GetFilesTotalSizeinKb(List<string> files)
@@ -600,12 +635,10 @@ namespace GuiClient
             return sum;
         }
 
-        private void dlgSelectFiles_FileOk(object sender, CancelEventArgs e)
-        {
 
-        }
 
-        
+
+
 
 
 
