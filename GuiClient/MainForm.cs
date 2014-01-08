@@ -146,6 +146,7 @@ namespace GuiClient
 
         public MainForm()
         {
+
             InitializeComponent();
         }
         private TabPages LoginCallerPage;
@@ -207,9 +208,15 @@ namespace GuiClient
         void Application_ApplicationExit(object sender, EventArgs e)
         {
             Cli.CloseWhenPossible();
-        }
+        }       
         private void OnPageLoaded()
         {
+            string AppDataPath = System.IO.Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "LongAccess");
+            if (!System.IO.Directory.Exists(AppDataPath))
+            {
+                System.IO.Directory.CreateDirectory(AppDataPath);
+            }
             Application.ThreadException += Application_ThreadException;
             Application.ApplicationExit += Application_ApplicationExit;
             ShowPage(TabPages.Navigation);
