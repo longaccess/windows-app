@@ -448,12 +448,12 @@ namespace GuiClient
                     });
             }
         }
-        
+
         private void btnUpload_Click(object sender, EventArgs e)
         {
-            if (txtTitle.Text.Trim().Length ==0)
+            if (txtTitle.Text.Trim().Length == 0)
             {
-                MessageBox.Show("Set a descriptive title for the upload first","",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("Set a descriptive title for the upload first", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             try
@@ -461,7 +461,8 @@ namespace GuiClient
                 Cli.UploadToCapsule(ArchiveToUpload.LocalID, SelectedCapsuleID,
                     txtTitle.Text, txtDescr.Text);
                 ShowPage(TabPages.Uploads);
-                ResetUploadScreen();                
+                bsArchives.Position = bsArchives.IndexOf(ArchiveToUpload);
+                ResetUploadScreen();
             }
             catch (Exception)
             {
