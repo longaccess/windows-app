@@ -177,7 +177,7 @@ namespace GuiClient
                         clearSigninPage();
                     break;
                 case TabPages.Upload:
-                    //ResetUploadScreen(); dont reset it, ay loose an upload
+                    //ResetUploadScreen(); dont reset it, may loose an arcive
                     break;
                 case TabPages.Decrypt:
                     ResetDecryptScreen();
@@ -208,7 +208,7 @@ namespace GuiClient
         void Application_ApplicationExit(object sender, EventArgs e)
         {
             Cli.CloseWhenPossible();
-        }       
+        }
         private void OnPageLoaded()
         {
             string AppDataPath = System.IO.Path.Combine(
@@ -448,14 +448,20 @@ namespace GuiClient
                     });
             }
         }
+        
         private void btnUpload_Click(object sender, EventArgs e)
         {
+            if (txtTitle.Text.Trim().Length ==0)
+            {
+                MessageBox.Show("Set a descriptive title for the upload first","",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                return;
+            }
             try
             {
                 Cli.UploadToCapsule(ArchiveToUpload.LocalID, SelectedCapsuleID,
                     txtTitle.Text, txtDescr.Text);
-                ResetUploadScreen();
                 ShowPage(TabPages.Uploads);
+                ResetUploadScreen();                
             }
             catch (Exception)
             {

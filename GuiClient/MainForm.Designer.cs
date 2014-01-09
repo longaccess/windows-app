@@ -319,7 +319,6 @@
             // 
             // btnReloadCapsules
             // 
-            this.btnReloadCapsules.Enabled = false;
             this.btnReloadCapsules.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.btnReloadCapsules.Location = new System.Drawing.Point(441, 378);
             this.btnReloadCapsules.Margin = new System.Windows.Forms.Padding(7);
@@ -1137,7 +1136,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MainForm";
-            this.Text = "Long Access";
+            this.Text = "LongAccess";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabPageContainer.ResumeLayout(false);
             this.tbpgLogin.ResumeLayout(false);
