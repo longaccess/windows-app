@@ -311,6 +311,14 @@ namespace GuiClient
             var resp = Cli.LoginUser(txtEmail.Text, txtPassword.Text, cbRemember.Checked);
             ShowPage(LoginCallerPage);
         }
+        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                e.Handled = true;
+                button1_Click(sender, null);
+            }
+        }
         private void btnGoToDecrypt_Click(object sender, EventArgs e)
         {
             ShowPage(TabPages.Decrypt);
@@ -648,6 +656,8 @@ namespace GuiClient
             }
             return sum;
         }
+
+        
 
 
 
