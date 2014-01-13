@@ -461,7 +461,7 @@ namespace GuiClient
         {
             if (txtTitle.Text.Trim().Length == 0)
             {
-                MessageBox.Show("Set a descriptive title for the upload first", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Set a descriptive title for the upload before uploading it.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             try
@@ -643,7 +643,15 @@ namespace GuiClient
         }
         private void btnRemoveUploads_Click(object sender, EventArgs e)
         {
-
+            var uploads = Cli.GetUploads();
+            foreach (var item in uploads)
+            {
+                if (item.Status == ArchiveStatus.Completed)
+                {
+                    Cli.CancelUpload(item.LocalID);
+                }
+            }
+            LoadArchives();
         }
         #endregion UploadManager
 
