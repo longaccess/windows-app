@@ -404,8 +404,7 @@ namespace GuiClient
             txtTitle.Text = "";
             txtDescr.Text = "";
             btnUpload.Enabled = false;
-            LoadCapsulesToControl(0);
-            ArchiveToUpload = null;
+            LoadCapsulesToControl(0);            
         }
         private void btnReloadCapsules_Click(object sender, EventArgs e)
         {
@@ -468,8 +467,7 @@ namespace GuiClient
             {
                 Cli.UploadToCapsule(ArchiveToUpload.LocalID, SelectedCapsuleID,
                     txtTitle.Text, txtDescr.Text);
-                ShowPage(TabPages.Uploads);
-                bsArchives.Position = bsArchives.IndexOf(ArchiveToUpload);
+                ShowPage(TabPages.Uploads); 
                 ResetUploadScreen();
             }
             catch (Exception)
@@ -538,9 +536,9 @@ namespace GuiClient
         private void LoadArchives()
         {
             RunAsync(
-                () => Cli.GetUploads(),
+                () => Cli.GetUploads().OrderByDescending(arch => arch.Info.CreatedDate.ToDateTime()).ToList(),
             (Uploads) =>
-            {
+            {                
                 BindData(Uploads, bsArchives, lbUploads, c => c.DisplayProp,
                         () =>
                         {
@@ -548,7 +546,11 @@ namespace GuiClient
                             SetControlsStateBasedOnStatus(SelectedArchive.Status);
                             UpdateUploadStatus(SelectedArchive);
                         });
-
+                if (ArchiveToUpload!= null)
+                {
+                    int archIndex = Uploads.FindIndex(arch => arch.LocalID == ArchiveToUpload.LocalID);
+                    bsArchives.Position = archIndex;
+                }
             });
         }
         private void tmrProgress_Tick(object sender, EventArgs e)
@@ -600,8 +602,6 @@ namespace GuiClient
         }
         private void UpdateUploadStatus(Archive archive)
         {
-
-
             RunAsync(
                 () =>
                 Cli.QueryArchiveStatus(archive.LocalID),
