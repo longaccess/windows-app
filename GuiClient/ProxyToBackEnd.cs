@@ -353,12 +353,12 @@ namespace GuiClient
 
         void CLI.Iface.PauseUpload(string ArchiveLocalID)
         {
-            Wrapper(() => { Wrapped.ResumeUpload(ArchiveLocalID); return VoidStruct.Empty(); }, "PauseUpload");
+            Wrapper(() => { Wrapped.PauseUpload(ArchiveLocalID); return VoidStruct.Empty(); }, "PauseUpload");
         }
 
         void CLI.Iface.CancelUpload(string ArchiveLocalID)
         {
-            Wrapper(() => { Wrapped.ResumeUpload(ArchiveLocalID); return VoidStruct.Empty(); }, "CancelUpload");
+            Wrapper(() => { Wrapped.CancelUpload(ArchiveLocalID); return VoidStruct.Empty(); }, "CancelUpload");
         }
 
         List<Certificate> CLI.Iface.GetCertificates()
