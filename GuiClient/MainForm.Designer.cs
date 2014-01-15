@@ -121,6 +121,7 @@
             this.label23 = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.tmrCertificateReminder = new System.Windows.Forms.Timer(this.components);
             this.tabPageContainer.SuspendLayout();
             this.tbpgLogin.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -1129,6 +1130,12 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // tmrCertificateReminder
+            // 
+            this.tmrCertificateReminder.Enabled = true;
+            this.tmrCertificateReminder.Interval = 5000;
+            this.tmrCertificateReminder.Tick += new System.EventHandler(this.tmrCertificateReminder_Tick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -1266,6 +1273,7 @@
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Button btnRemoveUploads;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Timer tmrCertificateReminder;
     }
 }
 

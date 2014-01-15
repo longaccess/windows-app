@@ -228,10 +228,10 @@ namespace GuiClient
             this.txtKeyE.KeyPress += HexInput_KeyDown;
         }
 
-        
+
         void HexInput_KeyDown(object sender, KeyPressEventArgs e)
         {
-           
+
             MaskedTextBox txtbox = (MaskedTextBox)sender;
             char c = e.KeyChar;
             if (c == (char)Keys.Return)
@@ -251,7 +251,7 @@ namespace GuiClient
                 txtbox.BackColor = System.Drawing.SystemColors.Window;
             }
         }
-        
+
         private void ForcedUpdate()
         {
             if (DateTime.Today > new DateTime(2014, 1, 30))
@@ -334,7 +334,7 @@ namespace GuiClient
         }
         #endregion NavigationMenu
         #region LoginScreen
-       
+
         private bool IsPrintableCharacter(char candidate)
         {
             return !(candidate < 32 || candidate > 127);
@@ -537,7 +537,7 @@ namespace GuiClient
         private void LoadCertificates()
         {
             RunAsync(
-                () => Cli.GetCertificates(),
+                () => Cli.GetCertificates().OrderByDescending((cert)=>cert.RelatedArchive.CreatedDate.ToDateTime()),
                 (AllCertificates) =>
                 {
                     btnExportCert.Enabled = AllCertificates.FirstOrDefault() != null;
@@ -715,6 +715,39 @@ namespace GuiClient
                 sum += (long)(new System.IO.FileInfo(file).Length / 1024f);
             }
             return sum;
+        }
+        private Dictionary<string, Archive> UploadsDict;
+        private void tmrCertificateReminder_Tick(object sender, EventArgs e)
+        {
+            if (UploadsDict == null)
+            {
+                var uploads = Cli.GetUploads();
+                UploadsDict = Cli.GetUploads().ToDictionary((up) => up.LocalID, (up) => up);
+                return;
+            }
+            var newList = Cli.GetUploads();
+            foreach (var updatedUpload in newList)
+            {
+                if (UploadsDict.ContainsKey(updatedUpload.LocalID))
+                {
+                    var match = UploadsDict[updatedUpload.LocalID];
+                    UploadsDict[match.LocalID] = updatedUpload;
+                    if (updatedUpload.Status == ArchiveStatus.Completed && match.Status != ArchiveStatus.Completed)
+                    {                        
+                        RemindToPrintCertificate(updatedUpload);
+                    }
+                }
+                else
+                {
+                    UploadsDict.Add(updatedUpload.LocalID, updatedUpload);
+                }
+            }
+        }
+        private void RemindToPrintCertificate(Archive archive)
+        {
+            MessageBox.Show("Uploading of \"" + archive.Info.Title + "\" completed! We strongly recomend to save and print the related certificate.",
+                "Print the certificate.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            ShowPage(TabPages.Certificates);
         }
     }
 }
