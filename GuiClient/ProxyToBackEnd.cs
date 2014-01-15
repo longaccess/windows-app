@@ -161,10 +161,7 @@ namespace GuiClient
         private void StartNewBackEnd(long Timeout)
         {
             SaveToLog("Starting new Process");
-            if (!System.IO.Directory.Exists(AppDataPath))
-            {
-                System.IO.Directory.CreateDirectory(AppDataPath);
-            }
+            
 
             backendInitialized = false;
             Exception ex = null;

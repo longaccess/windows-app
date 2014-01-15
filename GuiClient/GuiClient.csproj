@@ -70,7 +70,7 @@
     <AssemblyOriginatorKeyFile>LongAccess.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>icons\longaccess.ico</ApplicationIcon>
+    <ApplicationIcon>longaccess.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
@@ -172,6 +172,7 @@
     <Content Include="icons\pause.png" />
     <Content Include="icons\play.png" />
     <Content Include="icons\stop.png" />
+    <Content Include="longaccess.ico" />
     <Content Include="Notes.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

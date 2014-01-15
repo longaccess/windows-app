@@ -146,6 +146,7 @@ namespace GuiClient
 
         public MainForm()
         {
+
             InitializeComponent();
         }
         private TabPages LoginCallerPage;
@@ -176,7 +177,7 @@ namespace GuiClient
                         clearSigninPage();
                     break;
                 case TabPages.Upload:
-                    //ResetUploadScreen(); dont reset it, ay loose an upload
+                    //ResetUploadScreen(); dont reset it, may loose an arcive
                     break;
                 case TabPages.Decrypt:
                     ResetDecryptScreen();
@@ -210,6 +211,12 @@ namespace GuiClient
         }
         private void OnPageLoaded()
         {
+            string AppDataPath = System.IO.Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "LongAccess");
+            if (!System.IO.Directory.Exists(AppDataPath))
+            {
+                System.IO.Directory.CreateDirectory(AppDataPath);
+            }
             Application.ThreadException += Application_ThreadException;
             Application.ApplicationExit += Application_ApplicationExit;
             ShowPage(TabPages.Navigation);
@@ -304,6 +311,14 @@ namespace GuiClient
             var resp = Cli.LoginUser(txtEmail.Text, txtPassword.Text, cbRemember.Checked);
             ShowPage(LoginCallerPage);
         }
+        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                e.Handled = true;
+                button1_Click(sender, null);
+            }
+        }
         private void btnGoToDecrypt_Click(object sender, EventArgs e)
         {
             ShowPage(TabPages.Decrypt);
@@ -389,8 +404,7 @@ namespace GuiClient
             txtTitle.Text = "";
             txtDescr.Text = "";
             btnUpload.Enabled = false;
-            LoadCapsulesToControl(0);
-            ArchiveToUpload = null;
+            LoadCapsulesToControl(0);            
         }
         private void btnReloadCapsules_Click(object sender, EventArgs e)
         {
@@ -441,14 +455,20 @@ namespace GuiClient
                     });
             }
         }
+
         private void btnUpload_Click(object sender, EventArgs e)
         {
+            if (txtTitle.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Set a descriptive title for the upload before uploading it.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             try
             {
                 Cli.UploadToCapsule(ArchiveToUpload.LocalID, SelectedCapsuleID,
                     txtTitle.Text, txtDescr.Text);
+                ShowPage(TabPages.Uploads); 
                 ResetUploadScreen();
-                ShowPage(TabPages.Uploads);
             }
             catch (Exception)
             {
@@ -516,9 +536,9 @@ namespace GuiClient
         private void LoadArchives()
         {
             RunAsync(
-                () => Cli.GetUploads(),
+                () => Cli.GetUploads().OrderByDescending(arch => arch.Info.CreatedDate.ToDateTime()).ToList(),
             (Uploads) =>
-            {
+            {                
                 BindData(Uploads, bsArchives, lbUploads, c => c.DisplayProp,
                         () =>
                         {
@@ -526,7 +546,11 @@ namespace GuiClient
                             SetControlsStateBasedOnStatus(SelectedArchive.Status);
                             UpdateUploadStatus(SelectedArchive);
                         });
-
+                if (ArchiveToUpload!= null)
+                {
+                    int archIndex = Uploads.FindIndex(arch => arch.LocalID == ArchiveToUpload.LocalID);
+                    bsArchives.Position = archIndex;
+                }
             });
         }
         private void tmrProgress_Tick(object sender, EventArgs e)
@@ -578,8 +602,6 @@ namespace GuiClient
         }
         private void UpdateUploadStatus(Archive archive)
         {
-
-
             RunAsync(
                 () =>
                 Cli.QueryArchiveStatus(archive.LocalID),
@@ -621,7 +643,15 @@ namespace GuiClient
         }
         private void btnRemoveUploads_Click(object sender, EventArgs e)
         {
-
+            var uploads = Cli.GetUploads();
+            foreach (var item in uploads)
+            {
+                if (item.Status == ArchiveStatus.Completed)
+                {
+                    Cli.CancelUpload(item.LocalID);
+                }
+            }
+            LoadArchives();
         }
         #endregion UploadManager
 
@@ -634,6 +664,8 @@ namespace GuiClient
             }
             return sum;
         }
+
+        
 
 
 
