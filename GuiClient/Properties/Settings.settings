@@ -14,5 +14,8 @@
     <Setting Name="DownloadUrl" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://the.longaccess.com/downloads/</Value>
     </Setting>
+    <Setting Name="GetCapsulesUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://www.longaccess.com/c/new/</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

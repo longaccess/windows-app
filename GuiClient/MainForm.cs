@@ -404,7 +404,7 @@ namespace GuiClient
             txtTitle.Text = "";
             txtDescr.Text = "";
             btnUpload.Enabled = false;
-            LoadCapsulesToControl(0);            
+            LoadCapsulesToControl(0);
         }
         private void btnReloadCapsules_Click(object sender, EventArgs e)
         {
@@ -421,12 +421,31 @@ namespace GuiClient
         private void LoadCapsulesToControl(long ArchiveSizeInBytes)
         {
             RunAsync(
-                () => Cli.GetCapsules().Where(cap => cap.AvailableSizeInBytes > ArchiveSizeInBytes)
-                    .OrderByDescending(cap => cap.AvailableSizeInBytes).ToList(),
+                () => Cli.GetCapsules(),
                 (AllCapsules) =>
                 {
-                    BindData(AllCapsules, bsCapsules, cmbCapsules, c => c.DisplayProp,
-                        () => SelectedCapsuleID = ((Capsule)bsCapsules.Current).ID);
+                    var validCapsules = AllCapsules.Where(cap => cap.AvailableSizeInBytes > ArchiveSizeInBytes)
+                     .OrderByDescending(cap => cap.AvailableSizeInBytes).ToList();
+                    if (validCapsules.Count == 0)
+                    {
+                        if (AllCapsules.Count > 0)
+                        {
+                            MessageBox.Show("There is not enough space in any of your capsules. Go to our website to get more space!", "More space needed",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("You don't have any capsules. Go to our website to get one!", "More space needed",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        System.Diagnostics.Process.Start(AppSettings.GetCapsulesUrl);
+                    }
+                    else
+                    {
+                        BindData(validCapsules, bsCapsules, cmbCapsules, c => c.DisplayProp,
+                                                () => SelectedCapsuleID = ((Capsule)bsCapsules.Current).ID);
+                    }
+
                 });
         }
         private Archive ArchiveToUpload;
@@ -444,7 +463,8 @@ namespace GuiClient
                     () => Cli.CreateArchive(SelectedFiles),
                     (archive) =>
                     {
-                        lblReportSelFiles.Text = "Compression completed!";
+                        lblReportSelFiles.Text = "Compression completed! Final size is " +
+                            Utilities.ToMb(ArchiveToUpload.Info.SizeInBytes) + " Mb.";
                         ArchiveToUpload = archive;
                         LoadCapsulesToControl(ArchiveToUpload.Info.SizeInBytes);
                         btnUpload.Enabled = true;
@@ -467,7 +487,7 @@ namespace GuiClient
             {
                 Cli.UploadToCapsule(ArchiveToUpload.LocalID, SelectedCapsuleID,
                     txtTitle.Text, txtDescr.Text);
-                ShowPage(TabPages.Uploads); 
+                ShowPage(TabPages.Uploads);
                 ResetUploadScreen();
             }
             catch (Exception)
@@ -538,7 +558,7 @@ namespace GuiClient
             RunAsync(
                 () => Cli.GetUploads().OrderByDescending(arch => arch.Info.CreatedDate.ToDateTime()).ToList(),
             (Uploads) =>
-            {                
+            {
                 BindData(Uploads, bsArchives, lbUploads, c => c.DisplayProp,
                         () =>
                         {
@@ -546,7 +566,7 @@ namespace GuiClient
                             SetControlsStateBasedOnStatus(SelectedArchive.Status);
                             UpdateUploadStatus(SelectedArchive);
                         });
-                if (ArchiveToUpload!= null)
+                if (ArchiveToUpload != null)
                 {
                     int archIndex = Uploads.FindIndex(arch => arch.LocalID == ArchiveToUpload.LocalID);
                     bsArchives.Position = archIndex;
@@ -665,7 +685,7 @@ namespace GuiClient
             return sum;
         }
 
-        
+
 
 
 

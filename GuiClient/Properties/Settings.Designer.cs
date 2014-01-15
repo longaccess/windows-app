@@ -70,5 +70,17 @@ namespace GuiClient.Properties {
                 this["DownloadUrl"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://www.longaccess.com/c/new/")]
+        public string GetCapsulesUrl {
+            get {
+                return ((string)(this["GetCapsulesUrl"]));
+            }
+            set {
+                this["GetCapsulesUrl"] = value;
+            }
+        }
     }
 }

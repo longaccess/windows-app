@@ -28,8 +28,8 @@ namespace ThriftInterface
         {
             get
             {
-                return this.Title + " (" + Utils.ToGb(this.AvailableSizeInBytes)
-                    + "/" + Utils.ToGb(this.TotalSizeInBytes) + ") GB";
+                return this.Title + " (" + Utilities.ToGb(this.AvailableSizeInBytes)
+                    + "/" + Utilities.ToGb(this.TotalSizeInBytes) + ") GB";
             }
         }
     }
@@ -42,7 +42,7 @@ namespace ThriftInterface
         public string DisplayProp { get { return this.RelatedArchive.Title; } }
     }
     
-    static class Utils
+    static class Utilities
     {
         const int decimals = 2;
         private static int bytesInMb = 1024 * 1024;
