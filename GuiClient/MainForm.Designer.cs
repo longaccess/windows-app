@@ -120,6 +120,7 @@
             this.dlgSelectUploadFiles = new System.Windows.Forms.FolderBrowserDialog();
             this.label23 = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabPageContainer.SuspendLayout();
             this.tbpgLogin.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -134,6 +135,7 @@
             this.groupBox1.SuspendLayout();
             this.tbpgUploads.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabPageContainer
@@ -949,7 +951,6 @@
             this.btnRemoveUploads.TabIndex = 9;
             this.btnRemoveUploads.Text = "Remove completed or failed";
             this.btnRemoveUploads.UseVisualStyleBackColor = true;
-            this.btnRemoveUploads.Visible = false;
             this.btnRemoveUploads.Click += new System.EventHandler(this.btnRemoveUploads_Click);
             // 
             // lblUploadStatus
@@ -1124,6 +1125,10 @@
             this.lblVersion.Size = new System.Drawing.Size(0, 17);
             this.lblVersion.TabIndex = 26;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -1162,6 +1167,7 @@
             this.tbpgUploads.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1259,6 +1265,7 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Button btnRemoveUploads;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
 
