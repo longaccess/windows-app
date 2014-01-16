@@ -188,16 +188,14 @@ namespace GuiClient
                     LoadCertificates();
                     break;
                 case TabPages.Uploads:
-                    btnResumeUpload.Enabled = false;
-                    btnPauseUpload.Enabled = false;
-                    btnCancelUpload.Enabled = false;
-                    tmrProgress.Enabled = false;
+                    ResetUploadManagerPage();
                     LoadArchives();
                     break;
                 default:
                     break;
             }
         }
+
 
 
         private void Form1_Load(object sender, EventArgs e)
@@ -698,19 +696,21 @@ namespace GuiClient
                 },
                 () =>
                 {
-                    pbUpload.Value = 0;
-                    lblUploadETA.Text = "ETA: ";
-                    lblUploadStatus.Text = "Status: ";
-                    SetControlsStateBasedOnStatus(ArchiveStatus.Failed);
+                    ResetUploadManagerPage();
                 });
         }
         private void btnResumeUpload_Click(object sender, EventArgs e)
         {
             Cli.ResumeUpload(SelectedArchive.LocalID);
+            UpdateUploadStatus(SelectedArchive);
         }
         private void btnPauseUpload_Click(object sender, EventArgs e)
         {
             Cli.PauseUpload(SelectedArchive.LocalID);
+            var res = Cli.QueryArchiveStatus(SelectedArchive.LocalID);
+            UpdateUploadStatus(SelectedArchive);
+            
+           
         }
         private void btnCancelUpload_Click(object sender, EventArgs e)
         {
@@ -718,9 +718,8 @@ namespace GuiClient
             {
                 Cli.CancelUpload(SelectedArchive.LocalID);
             }
-            tmrProgress.Stop();
-            LoadArchives();
-            tmrProgress.Start();
+            
+            LoadArchives();            
         }
         private void btnRemoveUploads_Click(object sender, EventArgs e)
         {
@@ -732,9 +731,18 @@ namespace GuiClient
                     Cli.CancelUpload(item.LocalID);
                 }
             }
-            tmrProgress.Stop();
-            LoadArchives();
-            tmrProgress.Start();
+            ResetUploadManagerPage();
+            LoadArchives();            
+        }
+        private void ResetUploadManagerPage()
+        {
+            pbUpload.Value = 0;
+            lblUploadETA.Text = "ETA: ";
+            lblUploadStatus.Text = "Status: ";
+            btnResumeUpload.Enabled = false;
+            btnPauseUpload.Enabled = false;
+            btnCancelUpload.Enabled = false;
+            tmrProgress.Enabled = false;
         }
         #endregion UploadManager
 
@@ -747,6 +755,7 @@ namespace GuiClient
             }
             return sum;
         }
+
         private Dictionary<string, Archive> UploadsDict;
         private void tmrCertificateReminder_Tick(object sender, EventArgs e)
         {
