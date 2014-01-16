@@ -711,14 +711,16 @@ namespace GuiClient
             {
                 Cli.CancelUpload(SelectedArchive.LocalID);
             }
+            tmrProgress.Stop();
             LoadArchives();
+            tmrProgress.Start();
         }
         private void btnRemoveUploads_Click(object sender, EventArgs e)
         {
             var uploads = Cli.GetUploads();
             foreach (var item in uploads)
             {
-                if (item.Status == ArchiveStatus.Completed)
+                if (item.Status == ArchiveStatus.Completed || item.Status==ArchiveStatus.Failed)
                 {
                     Cli.CancelUpload(item.LocalID);
                 }
