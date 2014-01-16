@@ -492,9 +492,9 @@ namespace GuiClient
                     () => Cli.CreateArchive(SelectedFiles),
                     (archive) =>
                     {
-                        lblReportSelFiles.Text = "Compression completed! Final size is " +
-                            Utilities.ToMb(ArchiveToUpload.Info.SizeInBytes) + " Mb.";
                         ArchiveToUpload = archive;
+                        lblReportSelFiles.Text = "Compression completed! Final size is " +
+                            Utilities.ToMb(ArchiveToUpload.Info.SizeInBytes) + " Mb.";                        
                         LoadCapsulesToControl(ArchiveToUpload.Info.SizeInBytes);
                         btnUpload.Enabled = true;
                     },
