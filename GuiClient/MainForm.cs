@@ -188,7 +188,10 @@ namespace GuiClient
                     LoadCertificates();
                     break;
                 case TabPages.Uploads:
-                    SetControlsStateBasedOnStatus(ArchiveStatus.Failed);
+                    btnResumeUpload.Enabled = false;
+                    btnPauseUpload.Enabled = false;
+                    btnCancelUpload.Enabled = false;
+                    tmrProgress.Enabled = false;
                     LoadArchives();
                     break;
                 default:
@@ -663,7 +666,11 @@ namespace GuiClient
                     tmrProgress.Enabled = true;
                     break;
                 default:
-                    break;
+                    btnResumeUpload.Enabled = false;
+                    btnPauseUpload.Enabled = false;
+                    btnCancelUpload.Enabled = false;
+                    tmrProgress.Enabled = false;
+                    break;                    
             }
 
 

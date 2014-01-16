@@ -983,6 +983,7 @@
             // 
             this.btnCancelUpload.BackgroundImage = global::GuiClient.Properties.Resources.stop;
             this.btnCancelUpload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnCancelUpload.Enabled = false;
             this.btnCancelUpload.Location = new System.Drawing.Point(96, 21);
             this.btnCancelUpload.Name = "btnCancelUpload";
             this.btnCancelUpload.Size = new System.Drawing.Size(33, 33);
@@ -995,6 +996,7 @@
             // 
             this.btnPauseUpload.BackgroundImage = global::GuiClient.Properties.Resources.pause;
             this.btnPauseUpload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnPauseUpload.Enabled = false;
             this.btnPauseUpload.Location = new System.Drawing.Point(57, 21);
             this.btnPauseUpload.Name = "btnPauseUpload";
             this.btnPauseUpload.Size = new System.Drawing.Size(33, 33);
@@ -1025,6 +1027,7 @@
             // 
             this.btnResumeUpload.BackgroundImage = global::GuiClient.Properties.Resources.play;
             this.btnResumeUpload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnResumeUpload.Enabled = false;
             this.btnResumeUpload.Location = new System.Drawing.Point(18, 21);
             this.btnResumeUpload.Name = "btnResumeUpload";
             this.btnResumeUpload.Size = new System.Drawing.Size(33, 33);
