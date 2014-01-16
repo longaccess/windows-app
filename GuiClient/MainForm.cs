@@ -226,32 +226,11 @@ namespace GuiClient
             this.txtKeyC.KeyPress += HexInput_KeyDown;
             this.txtKeyD.KeyPress += HexInput_KeyDown;
             this.txtKeyE.KeyPress += HexInput_KeyDown;
+            this.txtKeyB.TextChanged += KeyInput_TextChanged;
+            this.txtKeyC.TextChanged += KeyInput_TextChanged;
+            this.txtKeyD.TextChanged += KeyInput_TextChanged;
+            this.txtKeyE.TextChanged += KeyInput_TextChanged;
         }
-
-
-        void HexInput_KeyDown(object sender, KeyPressEventArgs e)
-        {
-
-            MaskedTextBox txtbox = (MaskedTextBox)sender;
-            char c = e.KeyChar;
-            if (c == (char)Keys.Return)
-            {
-                txtbox.Parent.SelectNextControl(ActiveControl, true, true, true, true);
-                e.Handled = true;
-                return;
-            }
-            if (IsPrintableCharacter(c) & !IsHexChar(c) & !txtbox.MaskCompleted)
-            {
-                e.Handled = true;
-                e.KeyChar = (char)0;
-                txtbox.BackColor = Color.FromArgb(255, 202, 184);
-            }
-            else
-            {
-                txtbox.BackColor = System.Drawing.SystemColors.Window;
-            }
-        }
-
         private void ForcedUpdate()
         {
             if (DateTime.Today > new DateTime(2014, 1, 30))
@@ -380,10 +359,49 @@ namespace GuiClient
         #endregion LoginScreen
 
         #region DecryptScreen
-        private void txtKeyB_TextChanged(object sender, EventArgs e)
+        private void txtArchivePath_TextChanged(object sender, EventArgs e)
         {
-            var textbox = (MaskedTextBox)sender;
-            var valid = IsHexString(textbox.Text);
+            SetDecryptButtonState();
+        }
+        void KeyInput_TextChanged(object sender, EventArgs e)
+        {
+            var txtbox = (MaskedTextBox)sender;
+            SetDecryptButtonState();
+        }
+
+        void HexInput_KeyDown(object sender, KeyPressEventArgs e)
+        {
+            MaskedTextBox txtbox = (MaskedTextBox)sender;
+            char c = e.KeyChar;
+            if (c == (char)Keys.Return)
+            {
+                txtbox.Parent.SelectNextControl(ActiveControl, true, true, true, true);
+                e.Handled = true;
+                return;
+            }
+            if (IsPrintableCharacter(c) & !IsHexChar(c) & !txtbox.MaskCompleted)
+            {
+                e.Handled = true;
+                e.KeyChar = (char)0;
+                txtbox.BackColor = Color.FromArgb(255, 202, 184);
+            }
+            else
+            {
+                txtbox.BackColor = System.Drawing.SystemColors.Window;
+            }
+        }
+        private void SetDecryptButtonState()
+        {
+            if (txtKeyB.MaskCompleted & txtKeyC.MaskCompleted &
+                txtKeyD.MaskCompleted & txtKeyE.MaskCompleted
+                & System.IO.File.Exists(txtArchivePath.Text))
+            {
+                btnExtractArchive.Enabled = true;
+            }
+            else
+            {
+                btnExtractArchive.Enabled = false;
+            }
         }
         private bool IsHexString(string str)
         {
@@ -399,12 +417,13 @@ namespace GuiClient
         {
             btnExtractArchive.Enabled = false;
         }
+
         private void btnSelectArchive_Click(object sender, EventArgs e)
         {
             if (dlgSelectArchive.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 txtArchivePath.Text = dlgSelectArchive.FileName;
-                btnExtractArchive.Enabled = true;
+                SetDecryptButtonState();
             }
         }
         private void btnExtractArchive_Click(object sender, EventArgs e)
@@ -494,7 +513,7 @@ namespace GuiClient
                     {
                         ArchiveToUpload = archive;
                         lblReportSelFiles.Text = "Compression completed! Final size is " +
-                            Utilities.ToMb(ArchiveToUpload.Info.SizeInBytes) + " Mb.";                        
+                            Utilities.ToMb(ArchiveToUpload.Info.SizeInBytes) + " Mb.";
                         LoadCapsulesToControl(ArchiveToUpload.Info.SizeInBytes);
                         btnUpload.Enabled = true;
                     },
@@ -537,7 +556,7 @@ namespace GuiClient
         private void LoadCertificates()
         {
             RunAsync(
-                () => Cli.GetCertificates().OrderByDescending((cert)=>cert.RelatedArchive.CreatedDate.ToDateTime()),
+                () => Cli.GetCertificates().OrderByDescending((cert) => cert.RelatedArchive.CreatedDate.ToDateTime()),
                 (AllCertificates) =>
                 {
                     btnExportCert.Enabled = AllCertificates.FirstOrDefault() != null;
@@ -737,7 +756,7 @@ namespace GuiClient
                     var match = UploadsDict[updatedUpload.LocalID];
                     UploadsDict[match.LocalID] = updatedUpload;
                     if (updatedUpload.Status == ArchiveStatus.Completed && match.Status != ArchiveStatus.Completed)
-                    {                        
+                    {
                         RemindToPrintCertificate(updatedUpload);
                     }
                 }
@@ -753,5 +772,7 @@ namespace GuiClient
                 "Print the certificate.", MessageBoxButtons.OK, MessageBoxIcon.Information);
             ShowPage(TabPages.Certificates);
         }
+
+        
     }
 }

@@ -563,7 +563,6 @@
             this.txtKeyB.Size = new System.Drawing.Size(271, 35);
             this.txtKeyB.TabIndex = 14;
             this.txtKeyB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtKeyB.TextChanged += new System.EventHandler(this.txtKeyB_TextChanged);
             // 
             // label9
             // 
@@ -628,6 +627,7 @@
             this.txtArchivePath.Name = "txtArchivePath";
             this.txtArchivePath.Size = new System.Drawing.Size(222, 25);
             this.txtArchivePath.TabIndex = 8;
+            this.txtArchivePath.TextChanged += new System.EventHandler(this.txtArchivePath_TextChanged);
             // 
             // btnSelectArchive
             // 
