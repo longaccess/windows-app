@@ -711,7 +711,6 @@ namespace GuiClient
             {
                 Cli.CancelUpload(SelectedArchive.LocalID);
             }
-            Cli.CancelUpload(SelectedArchive.LocalID);
             LoadArchives();
         }
         private void btnRemoveUploads_Click(object sender, EventArgs e)
