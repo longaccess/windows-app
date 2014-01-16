@@ -692,6 +692,8 @@ namespace GuiClient
             {
                 Cli.CancelUpload(SelectedArchive.LocalID);
             }
+            Cli.CancelUpload(SelectedArchive.LocalID);
+            LoadArchives();
         }
         private void btnRemoveUploads_Click(object sender, EventArgs e)
         {
@@ -703,7 +705,9 @@ namespace GuiClient
                     Cli.CancelUpload(item.LocalID);
                 }
             }
+            tmrProgress.Stop();
             LoadArchives();
+            tmrProgress.Start();
         }
         #endregion UploadManager
 
