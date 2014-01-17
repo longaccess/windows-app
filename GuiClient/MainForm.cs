@@ -716,10 +716,9 @@ namespace GuiClient
         {
             if (MessageBox.Show("Permanently cancel this Upload?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Yes)
             {
-                Cli.CancelUpload(SelectedArchive.LocalID);
+                RunAsync(() => Cli.CancelUpload(SelectedArchive.LocalID), () => LoadArchives());
             }
 
-            LoadArchives();
         }
         private void btnRemoveUploads_Click(object sender, EventArgs e)
         {
