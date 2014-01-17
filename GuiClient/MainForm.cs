@@ -668,7 +668,7 @@ namespace GuiClient
                     btnPauseUpload.Enabled = false;
                     btnCancelUpload.Enabled = false;
                     tmrProgress.Enabled = false;
-                    break;                    
+                    break;
             }
 
 
@@ -709,8 +709,8 @@ namespace GuiClient
             Cli.PauseUpload(SelectedArchive.LocalID);
             var res = Cli.QueryArchiveStatus(SelectedArchive.LocalID);
             UpdateUploadStatus(SelectedArchive);
-            
-           
+
+
         }
         private void btnCancelUpload_Click(object sender, EventArgs e)
         {
@@ -718,21 +718,29 @@ namespace GuiClient
             {
                 Cli.CancelUpload(SelectedArchive.LocalID);
             }
-            
-            LoadArchives();            
+
+            LoadArchives();
         }
         private void btnRemoveUploads_Click(object sender, EventArgs e)
         {
-            var uploads = Cli.GetUploads();
-            foreach (var item in uploads)
-            {
-                if (item.Status == ArchiveStatus.Completed || item.Status==ArchiveStatus.Failed)
+            RunAsync(
+                () =>
                 {
-                    Cli.CancelUpload(item.LocalID);
-                }
-            }
-            ResetUploadManagerPage();
-            LoadArchives();            
+                    var uploads = Cli.GetUploads();
+                    foreach (var item in uploads)
+                    {
+                        if (item.Status == ArchiveStatus.Completed || item.Status == ArchiveStatus.Failed)
+                        {
+                            Cli.CancelUpload(item.LocalID);
+                        }
+                    }
+                },
+                () =>
+                {
+                    ResetUploadManagerPage();
+                    LoadArchives();
+                });
+
         }
         private void ResetUploadManagerPage()
         {
@@ -790,6 +798,6 @@ namespace GuiClient
             ShowPage(TabPages.Certificates);
         }
 
-        
+
     }
 }
