@@ -113,7 +113,7 @@
             this.MenuCerts = new System.Windows.Forms.ToolStripMenuItem();
             this.menuUploads = new System.Windows.Forms.ToolStripMenuItem();
             this.dlgSelectExtractionFolder = new System.Windows.Forms.FolderBrowserDialog();
-            this.tmrProgress = new System.Windows.Forms.Timer(this.components);
+            this.tmrQueryUploadStatus = new System.Windows.Forms.Timer(this.components);
             this.dlgSaveCertificate = new System.Windows.Forms.SaveFileDialog();
             this.bgwCreateArchive = new System.ComponentModel.BackgroundWorker();
             this.dlgSelectArchive = new System.Windows.Forms.OpenFileDialog();
@@ -983,6 +983,7 @@
             // 
             this.btnCancelUpload.BackgroundImage = global::GuiClient.Properties.Resources.stop;
             this.btnCancelUpload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnCancelUpload.Enabled = false;
             this.btnCancelUpload.Location = new System.Drawing.Point(96, 21);
             this.btnCancelUpload.Name = "btnCancelUpload";
             this.btnCancelUpload.Size = new System.Drawing.Size(33, 33);
@@ -995,6 +996,7 @@
             // 
             this.btnPauseUpload.BackgroundImage = global::GuiClient.Properties.Resources.pause;
             this.btnPauseUpload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnPauseUpload.Enabled = false;
             this.btnPauseUpload.Location = new System.Drawing.Point(57, 21);
             this.btnPauseUpload.Name = "btnPauseUpload";
             this.btnPauseUpload.Size = new System.Drawing.Size(33, 33);
@@ -1025,6 +1027,7 @@
             // 
             this.btnResumeUpload.BackgroundImage = global::GuiClient.Properties.Resources.play;
             this.btnResumeUpload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnResumeUpload.Enabled = false;
             this.btnResumeUpload.Location = new System.Drawing.Point(18, 21);
             this.btnResumeUpload.Name = "btnResumeUpload";
             this.btnResumeUpload.Size = new System.Drawing.Size(33, 33);
@@ -1099,10 +1102,10 @@
             // 
             this.dlgSelectExtractionFolder.Description = "Select the folder to save the extracted archive";
             // 
-            // tmrProgress
+            // tmrQueryUploadStatus
             // 
-            this.tmrProgress.Interval = 3000;
-            this.tmrProgress.Tick += new System.EventHandler(this.tmrProgress_Tick);
+            this.tmrQueryUploadStatus.Interval = 3000;
+            this.tmrQueryUploadStatus.Tick += new System.EventHandler(this.tmrProgress_Tick);
             // 
             // dlgSelectArchive
             // 
@@ -1253,7 +1256,7 @@
         private System.Windows.Forms.Button btnExportCert;
         private System.Windows.Forms.ToolStripMenuItem MenuCerts;
         private System.Windows.Forms.ToolStripMenuItem menuUploads;
-        private System.Windows.Forms.Timer tmrProgress;
+        private System.Windows.Forms.Timer tmrQueryUploadStatus;
         private System.Windows.Forms.SaveFileDialog dlgSaveCertificate;
         private System.Windows.Forms.CheckBox cbRemember;
         private System.Windows.Forms.Panel panel2;
