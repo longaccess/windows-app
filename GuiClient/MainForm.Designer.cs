@@ -113,7 +113,7 @@
             this.MenuCerts = new System.Windows.Forms.ToolStripMenuItem();
             this.menuUploads = new System.Windows.Forms.ToolStripMenuItem();
             this.dlgSelectExtractionFolder = new System.Windows.Forms.FolderBrowserDialog();
-            this.tmrProgress = new System.Windows.Forms.Timer(this.components);
+            this.tmrQueryUploadStatus = new System.Windows.Forms.Timer(this.components);
             this.dlgSaveCertificate = new System.Windows.Forms.SaveFileDialog();
             this.bgwCreateArchive = new System.ComponentModel.BackgroundWorker();
             this.dlgSelectArchive = new System.Windows.Forms.OpenFileDialog();
@@ -1102,10 +1102,10 @@
             // 
             this.dlgSelectExtractionFolder.Description = "Select the folder to save the extracted archive";
             // 
-            // tmrProgress
+            // tmrQueryUploadStatus
             // 
-            this.tmrProgress.Interval = 3000;
-            this.tmrProgress.Tick += new System.EventHandler(this.tmrProgress_Tick);
+            this.tmrQueryUploadStatus.Interval = 3000;
+            this.tmrQueryUploadStatus.Tick += new System.EventHandler(this.tmrProgress_Tick);
             // 
             // dlgSelectArchive
             // 
@@ -1256,7 +1256,7 @@
         private System.Windows.Forms.Button btnExportCert;
         private System.Windows.Forms.ToolStripMenuItem MenuCerts;
         private System.Windows.Forms.ToolStripMenuItem menuUploads;
-        private System.Windows.Forms.Timer tmrProgress;
+        private System.Windows.Forms.Timer tmrQueryUploadStatus;
         private System.Windows.Forms.SaveFileDialog dlgSaveCertificate;
         private System.Windows.Forms.CheckBox cbRemember;
         private System.Windows.Forms.Panel panel2;

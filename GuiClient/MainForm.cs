@@ -53,9 +53,10 @@ namespace GuiClient
                 return Cli.GetSettings();
             }
         }
-        private void BindData<T>(IEnumerable<T> data, BindingSource bs, ListControl control,
+        private void BindData<T>(IEnumerable<T> data, out BindingSource bs, ListControl control,
            Expression<Func<T, object>> DisplayProp, Action SelectionChangedEvent)
         {
+            bs = new BindingSource();
             bs.DataSource = data;
             if (data.FirstOrDefault() != null)
             {
@@ -167,7 +168,7 @@ namespace GuiClient
         }
         private void OnPageShown(TabPages page)
         {
-            tmrProgress.Stop();//To stop the background querying
+            tmrQueryUploadStatus.Stop();//To stop the background querying
             switch (page)
             {
                 case TabPages.Signin:
@@ -188,7 +189,6 @@ namespace GuiClient
                     LoadCertificates();
                     break;
                 case TabPages.Uploads:
-                    ResetUploadManagerPage();
                     LoadArchives();
                     break;
                 default:
@@ -251,11 +251,10 @@ namespace GuiClient
                     ShowPage(TabPages.Signin);
                 }
                 MessageBox.Show(customEx.Why, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Logger.WriteLine("Thrift exception: " + customEx.What + " " + customEx.Why);
             }
             else
             {
-                Logger.WriteLine("GUI error: " + e.Exception.ToString());
+                Logger.WriteLine("GUI error: " + e.Exception.Message + "\n" + e.Exception.StackTrace);
                 MessageBox.Show(e.Exception.Message);
             }
         }
@@ -445,7 +444,7 @@ namespace GuiClient
         }
         #endregion DecryptScreen
         #region UploadScreen
-        private BindingSource bsCapsules = new BindingSource();
+        private BindingSource bsCapsules;
 
         private void ResetUploadScreen()
         {
@@ -491,7 +490,7 @@ namespace GuiClient
                     }
                     else
                     {
-                        BindData(validCapsules, bsCapsules, cmbCapsules, c => c.DisplayProp,
+                        BindData(validCapsules, out bsCapsules, cmbCapsules, c => c.DisplayProp,
                                                 () => SelectedCapsuleID = ((Capsule)bsCapsules.Current).ID);
                     }
 
@@ -552,7 +551,7 @@ namespace GuiClient
         //    txtCertFolder.Text = CliSettings.CertificatesFolder;
         //    LoadCertificates();
         //}
-        private BindingSource bsCertificates = new BindingSource();
+        private BindingSource bsCertificates;
         private Certificate SelectedCertificate;
         private void LoadCertificates()
         {
@@ -562,7 +561,7 @@ namespace GuiClient
                 {
                     btnExportCert.Enabled = AllCertificates.FirstOrDefault() != null;
                     txtCertFolder.Text = CliSettings.CertificatesFolder;
-                    BindData(AllCertificates, bsCertificates, lbCertificates, c => c.DisplayProp,
+                    BindData(AllCertificates,out bsCertificates, lbCertificates, c => c.DisplayProp,
                         () =>
                         {
                             SelectedCertificate = (Certificate)bsCertificates.Current;
@@ -600,7 +599,7 @@ namespace GuiClient
         }
         #endregion Certificates
         #region UploadManager
-        private BindingSource bsArchives = new BindingSource();
+        private BindingSource bsArchives;
         private Archive SelectedArchive;
         private void LoadArchives()
         {
@@ -608,11 +607,11 @@ namespace GuiClient
                 () => Cli.GetUploads().OrderByDescending(arch => arch.Info.CreatedDate.ToDateTime()).ToList(),
             (Uploads) =>
             {
-                BindData(Uploads, bsArchives, lbUploads, c => c.DisplayProp,
+                ResetUploadManagerPage();
+                BindData(Uploads, out bsArchives, lbUploads, c => c.DisplayProp,
                         () =>
                         {
                             SelectedArchive = (Archive)bsArchives.Current;
-                            SetControlsStateBasedOnStatus(SelectedArchive.Status);
                             UpdateUploadStatus(SelectedArchive);
                         });
                 if (ArchiveToUpload != null)
@@ -634,19 +633,19 @@ namespace GuiClient
                     btnResumeUpload.Enabled = false;
                     btnPauseUpload.Enabled = false;
                     btnCancelUpload.Enabled = false;
-                    tmrProgress.Enabled = false;
+                    tmrQueryUploadStatus.Enabled = false;
                     break;
                 case ArchiveStatus.InProgress:
                     btnResumeUpload.Enabled = false;
                     btnPauseUpload.Enabled = true;
                     btnCancelUpload.Enabled = true;
-                    tmrProgress.Enabled = true;
+                    tmrQueryUploadStatus.Enabled = true;
                     break;
                 case ArchiveStatus.Paused:
                     btnResumeUpload.Enabled = true;
                     btnPauseUpload.Enabled = false;
                     btnCancelUpload.Enabled = true;
-                    tmrProgress.Enabled = true;
+                    tmrQueryUploadStatus.Enabled = true;
                     break;
                 case ArchiveStatus.Stopped:
 
@@ -655,19 +654,19 @@ namespace GuiClient
                     btnResumeUpload.Enabled = false;
                     btnPauseUpload.Enabled = false;
                     btnCancelUpload.Enabled = true;
-                    tmrProgress.Enabled = false;
+                    tmrQueryUploadStatus.Enabled = false;
                     break;
                 case ArchiveStatus.Local:
                     btnResumeUpload.Enabled = true;
                     btnPauseUpload.Enabled = false;
                     btnCancelUpload.Enabled = true;
-                    tmrProgress.Enabled = true;
+                    tmrQueryUploadStatus.Enabled = true;
                     break;
                 default:
                     btnResumeUpload.Enabled = false;
                     btnPauseUpload.Enabled = false;
                     btnCancelUpload.Enabled = false;
-                    tmrProgress.Enabled = false;
+                    tmrQueryUploadStatus.Enabled = false;
                     break;
             }
 
@@ -675,6 +674,10 @@ namespace GuiClient
         }
         private void UpdateUploadStatus(Archive archive)
         {
+            if (archive == null)
+            {
+                throw new Exception();
+            }
             RunAsync(
                 () =>
                 Cli.QueryArchiveStatus(archive.LocalID),
@@ -714,9 +717,16 @@ namespace GuiClient
         }
         private void btnCancelUpload_Click(object sender, EventArgs e)
         {
+            tmrQueryUploadStatus.Stop();
+            //Stops querying timer before canceling to avoid Calling queryArchiveStatus on the deleted archive.
             if (MessageBox.Show("Permanently cancel this Upload?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Yes)
             {
-                RunAsync(() => Cli.CancelUpload(SelectedArchive.LocalID), () => LoadArchives());
+                RunAsync(
+                    () => Cli.CancelUpload(SelectedArchive.LocalID),
+                    () =>
+                    {
+                        LoadArchives();
+                    });
             }
 
         }
@@ -743,13 +753,14 @@ namespace GuiClient
         }
         private void ResetUploadManagerPage()
         {
+            SelectedArchive = null;
             pbUpload.Value = 0;
             lblUploadETA.Text = "ETA: ";
             lblUploadStatus.Text = "Status: ";
             btnResumeUpload.Enabled = false;
             btnPauseUpload.Enabled = false;
             btnCancelUpload.Enabled = false;
-            tmrProgress.Enabled = false;
+            tmrQueryUploadStatus.Enabled = false;
         }
         #endregion UploadManager
 

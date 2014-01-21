@@ -341,19 +341,19 @@
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
 		<row><td>GuiClient.Primary_output</td><td>{AD304ACD-ED8C-41D0-90BA-F2F11BA0F5B7}</td><td>INSTALLDIR</td><td>2</td><td/><td>guiclient.primary_output</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>ISX_DEFAULTCOMPONENT</td><td>{4DA28142-EEEB-459A-B0DE-FFB46C150555}</td><td>LACLI</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{DC243F7B-2AB7-4D05-9F62-F1D2C0D8976C}</td><td>EGGS</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>ISX_DEFAULTCOMPONENT2</td><td>{215F536D-2707-48D3-8B06-ECB29F610F91}</td><td>INCLUDE</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>LIBEAY32.dll</td><td>{79F1955F-C015-4C98-B9DF-1F0C41CEF3AF}</td><td>LACLI</td><td>2</td><td/><td>libeay32.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT</td><td>{D137192D-AC35-4CE5-AB8E-E7F8822E75F8}</td><td>LACLI</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{90C07BD4-6794-40FE-A19A-56248C8C5CEE}</td><td>EGGS</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT2</td><td>{D493F25B-A06D-4FB9-A4A9-35AF836F711F}</td><td>INCLUDE</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>LIBEAY32.dll</td><td>{07B8AD33-163D-4DDE-BD2E-879BA89A2BA9}</td><td>LACLI</td><td>2</td><td/><td>libeay32.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>NewComponent1</td><td>{D241F736-80EC-484E-A83D-4F1C20944E95}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>SSLEAY32.dll</td><td>{F5BC4F43-317A-481D-B90B-0D75F9195C6B}</td><td>LACLI</td><td>2</td><td/><td>ssleay32.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>lacli.exe</td><td>{CA252775-CF7E-4FB9-B402-FD00617F96E6}</td><td>LACLI</td><td>2</td><td/><td>lacli.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>msvcm90.dll</td><td>{6CDE5BA3-F920-45AA-96D8-832252733ACD}</td><td>LACLI</td><td>2</td><td/><td>msvcm90.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>msvcp90.dll</td><td>{B53D84AD-6CDF-4BAA-B314-7FFD8D1BA7CF}</td><td>LACLI</td><td>2</td><td/><td>msvcp90.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>msvcr90.dll</td><td>{C58F5E69-8C7A-422E-A482-070605FA5BBD}</td><td>LACLI</td><td>2</td><td/><td>msvcr90.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>python27.dll</td><td>{54A174C4-C29D-40AA-B2C1-17EE29BDD105}</td><td>LACLI</td><td>2</td><td/><td>python27.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>pythoncom27.dll</td><td>{A07924A9-F719-431A-AA1E-A369213DEF79}</td><td>LACLI</td><td>2</td><td/><td>pythoncom27.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>pywintypes27.dll</td><td>{9A1406F7-70FD-43AD-9218-5865CA67588B}</td><td>LACLI</td><td>2</td><td/><td>pywintypes27.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>SSLEAY32.dll</td><td>{F75C1AE5-3AF7-450C-8949-D5C0C770228C}</td><td>LACLI</td><td>2</td><td/><td>ssleay32.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>lacli.exe</td><td>{9FCD8C44-28F7-4D15-A53E-F3C236027728}</td><td>LACLI</td><td>2</td><td/><td>lacli.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>msvcm90.dll</td><td>{09E6530F-47D4-49CC-8B6C-960AB1ED12FD}</td><td>LACLI</td><td>2</td><td/><td>msvcm90.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>msvcp90.dll</td><td>{FAA84AFA-E65A-4E25-8C32-6D35B08BDEDF}</td><td>LACLI</td><td>2</td><td/><td>msvcp90.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>msvcr90.dll</td><td>{0DD3C41F-BF72-4353-AF80-853C881A1880}</td><td>LACLI</td><td>2</td><td/><td>msvcr90.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>python27.dll</td><td>{07CE8BC9-19D6-4EF5-9325-CA022DD1FD15}</td><td>LACLI</td><td>2</td><td/><td>python27.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>pythoncom27.dll</td><td>{F662B114-D202-4817-9E16-7556652D6A87}</td><td>LACLI</td><td>2</td><td/><td>pythoncom27.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>pywintypes27.dll</td><td>{CA61D54E-DE18-4C6A-92DE-2FABCBC2BB08}</td><td>LACLI</td><td>2</td><td/><td>pywintypes27.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
 	<table name="Condition">
@@ -1916,21 +1916,14 @@
 		<row><td>_socket.pyd</td><td>ISX_DEFAULTCOMPONENT</td><td>_socket.pyd</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\_socket.pyd</td><td>1</td><td/></row>
 		<row><td>_ssl.pyd</td><td>ISX_DEFAULTCOMPONENT</td><td>_ssl.pyd</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\_ssl.pyd</td><td>1</td><td/></row>
 		<row><td>_win32sysloader.pyd</td><td>ISX_DEFAULTCOMPONENT</td><td>_WIN32~1.PYD|_win32sysloader.pyd</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\_win32sysloader.pyd</td><td>1</td><td/></row>
-		<row><td>blessings_1.5.1_py2.7.egg</td><td>ISX_DEFAULTCOMPONENT1</td><td>BLESSI~1.EGG|blessings-1.5.1-py2.7.egg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\eggs\blessings-1.5.1-py2.7.egg</td><td>1</td><td/></row>
 		<row><td>bz2.pyd</td><td>ISX_DEFAULTCOMPONENT</td><td>bz2.pyd</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\bz2.pyd</td><td>1</td><td/></row>
 		<row><td>cacert.pem</td><td>ISX_DEFAULTCOMPONENT</td><td>cacert.pem</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\cacert.pem</td><td>1</td><td/></row>
-		<row><td>crochet_1.0.0_py2.7.egg</td><td>ISX_DEFAULTCOMPONENT1</td><td>CROCHE~1.EGG|crochet-1.0.0-py2.7.egg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\eggs\crochet-1.0.0-py2.7.egg</td><td>1</td><td/></row>
-		<row><td>crypto.cipher._aes.pyd</td><td>ISX_DEFAULTCOMPONENT</td><td>CRYPTO~1.PYD|Crypto.Cipher._AES.pyd</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\Crypto.Cipher._AES.pyd</td><td>1</td><td/></row>
-		<row><td>crypto.cipher._xor.pyd</td><td>ISX_DEFAULTCOMPONENT</td><td>CRYPTO~1.PYD|Crypto.Cipher._XOR.pyd</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\Crypto.Cipher._XOR.pyd</td><td>1</td><td/></row>
-		<row><td>crypto.hash._sha256.pyd</td><td>ISX_DEFAULTCOMPONENT</td><td>CRYPTO~1.PYD|Crypto.Hash._SHA256.pyd</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\Crypto.Hash._SHA256.pyd</td><td>1</td><td/></row>
-		<row><td>crypto.random.osrng.winrando</td><td>ISX_DEFAULTCOMPONENT</td><td>CRYPTO~1.PYD|Crypto.Random.OSRNG.winrandom.pyd</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\Crypto.Random.OSRNG.winrandom.pyd</td><td>1</td><td/></row>
-		<row><td>crypto.util._counter.pyd</td><td>ISX_DEFAULTCOMPONENT</td><td>CRYPTO~1.PYD|Crypto.Util._counter.pyd</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\Crypto.Util._counter.pyd</td><td>1</td><td/></row>
 		<row><td>docopt_0.6.1_py2.7.egg</td><td>ISX_DEFAULTCOMPONENT1</td><td>DOCOPT~1.EGG|docopt-0.6.1-py2.7.egg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\eggs\docopt-0.6.1-py2.7.egg</td><td>1</td><td/></row>
 		<row><td>filechunkio_1.5_py2.7.egg</td><td>ISX_DEFAULTCOMPONENT1</td><td>FILECH~1.EGG|filechunkio-1.5-py2.7.egg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\eggs\filechunkio-1.5-py2.7.egg</td><td>1</td><td/></row>
 		<row><td>guiclient.primary_output</td><td>GuiClient.Primary_output</td><td>GuiClient.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;GuiClient&gt;|Built</td><td>3</td><td/></row>
 		<row><td>lacli.exe</td><td>lacli.exe</td><td>lacli.exe</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\lacli.exe</td><td>1</td><td/></row>
 		<row><td>lacli.exe.manifest</td><td>ISX_DEFAULTCOMPONENT</td><td>LACLIE~1.MAN|lacli.exe.manifest</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\lacli.exe.manifest</td><td>1</td><td/></row>
-		<row><td>lacli_0.1b1.post222_py2.7.eg</td><td>ISX_DEFAULTCOMPONENT1</td><td>LACLI-~1.EGG|lacli-0.1b1.post222-py2.7.egg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\eggs\lacli-0.1b1.post222-py2.7.egg</td><td>1</td><td/></row>
+		<row><td>lacli_0.2_py2.7.egg</td><td>ISX_DEFAULTCOMPONENT1</td><td>LACLI-~1.EGG|lacli-0.2-py2.7.egg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\eggs\lacli-0.2-py2.7.egg</td><td>1</td><td/></row>
 		<row><td>libeay32.dll</td><td>LIBEAY32.dll</td><td>LIBEAY32.dll</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\LIBEAY32.dll</td><td>1</td><td/></row>
 		<row><td>logutils_0.3.3_py2.7.egg</td><td>ISX_DEFAULTCOMPONENT1</td><td>LOGUTI~1.EGG|logutils-0.3.3-py2.7.egg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\eggs\logutils-0.3.3-py2.7.egg</td><td>1</td><td/></row>
 		<row><td>microsoft.vc90.crt.manifest</td><td>ISX_DEFAULTCOMPONENT</td><td>MICROS~1.MAN|Microsoft.VC90.CRT.manifest</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\Microsoft.VC90.CRT.manifest</td><td>1</td><td/></row>
@@ -1940,17 +1933,18 @@
 		<row><td>openssl.crypto.pyd</td><td>ISX_DEFAULTCOMPONENT</td><td>OPENSS~1.PYD|OpenSSL.crypto.pyd</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\OpenSSL.crypto.pyd</td><td>1</td><td/></row>
 		<row><td>openssl.rand.pyd</td><td>ISX_DEFAULTCOMPONENT</td><td>OPENSS~1.PYD|OpenSSL.rand.pyd</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\OpenSSL.rand.pyd</td><td>1</td><td/></row>
 		<row><td>openssl.ssl.pyd</td><td>ISX_DEFAULTCOMPONENT</td><td>OPENSS~1.PYD|OpenSSL.SSL.pyd</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\OpenSSL.SSL.pyd</td><td>1</td><td/></row>
-		<row><td>progressbar_2.2_py2.7.egg</td><td>ISX_DEFAULTCOMPONENT1</td><td>PROGRE~1.EGG|progressbar-2.2-py2.7.egg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\eggs\progressbar-2.2-py2.7.egg</td><td>1</td><td/></row>
-		<row><td>pyaml_13.12.0_py2.7.egg</td><td>ISX_DEFAULTCOMPONENT1</td><td>PYAML-~1.EGG|pyaml-13.12.0-py2.7.egg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\eggs\pyaml-13.12.0-py2.7.egg</td><td>1</td><td/></row>
+		<row><td>pyaml_13.07.1_py2.7.egg</td><td>ISX_DEFAULTCOMPONENT1</td><td>PYAML-~1.EGG|pyaml-13.07.1-py2.7.egg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\eggs\pyaml-13.07.1-py2.7.egg</td><td>1</td><td/></row>
 		<row><td>pyconfig.h</td><td>ISX_DEFAULTCOMPONENT2</td><td>pyconfig.h</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\include\pyconfig.h</td><td>1</td><td/></row>
+		<row><td>pycrypto_2.6_py2.7_win_amd64</td><td>ISX_DEFAULTCOMPONENT1</td><td>PYCRYP~1.EGG|pycrypto-2.6-py2.7-win-amd64.egg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\eggs\pycrypto-2.6-py2.7-win-amd64.egg</td><td>1</td><td/></row>
 		<row><td>pyexpat.pyd</td><td>ISX_DEFAULTCOMPONENT</td><td>pyexpat.pyd</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\pyexpat.pyd</td><td>1</td><td/></row>
 		<row><td>python27.dll</td><td>python27.dll</td><td>python27.dll</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\python27.dll</td><td>1</td><td/></row>
 		<row><td>pythoncom27.dll</td><td>pythoncom27.dll</td><td>PYTHON~1.DLL|pythoncom27.dll</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\pythoncom27.dll</td><td>1</td><td/></row>
 		<row><td>pywintypes27.dll</td><td>pywintypes27.dll</td><td>PYWINT~1.DLL|pywintypes27.dll</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\pywintypes27.dll</td><td>1</td><td/></row>
 		<row><td>pyyaml_3.10_py2.7_win_amd64.</td><td>ISX_DEFAULTCOMPONENT1</td><td>PYYAML~1.EGG|pyyaml-3.10-py2.7-win-amd64.egg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\eggs\pyyaml-3.10-py2.7-win-amd64.egg</td><td>1</td><td/></row>
 		<row><td>select.pyd</td><td>ISX_DEFAULTCOMPONENT</td><td>select.pyd</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\select.pyd</td><td>1</td><td/></row>
+		<row><td>six_1.4.1_py2.7.egg</td><td>ISX_DEFAULTCOMPONENT1</td><td>SIX-14~1.EGG|six-1.4.1-py2.7.egg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\eggs\six-1.4.1-py2.7.egg</td><td>1</td><td/></row>
 		<row><td>ssleay32.dll</td><td>SSLEAY32.dll</td><td>SSLEAY32.dll</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\SSLEAY32.dll</td><td>1</td><td/></row>
-		<row><td>thrift_0.9.1_py2.7.egg</td><td>ISX_DEFAULTCOMPONENT1</td><td>THRIFT~1.EGG|thrift-0.9.1-py2.7.egg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\eggs\thrift-0.9.1-py2.7.egg</td><td>1</td><td/></row>
+		<row><td>thrift.protocol.fastbinary.p</td><td>ISX_DEFAULTCOMPONENT</td><td>THRIFT~1.PYD|thrift.protocol.fastbinary.pyd</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\thrift.protocol.fastbinary.pyd</td><td>1</td><td/></row>
 		<row><td>treq_0.2.0_py2.7.egg</td><td>ISX_DEFAULTCOMPONENT1</td><td>TREQ-0~1.EGG|treq-0.2.0-py2.7.egg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\eggs\treq-0.2.0-py2.7.egg</td><td>1</td><td/></row>
 		<row><td>unicodedata.pyd</td><td>ISX_DEFAULTCOMPONENT</td><td>UNICOD~1.PYD|unicodedata.pyd</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\unicodedata.pyd</td><td>1</td><td/></row>
 		<row><td>unidecode_0.04.14_py2.7.egg</td><td>ISX_DEFAULTCOMPONENT1</td><td>UNIDEC~1.EGG|unidecode-0.04.14-py2.7.egg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\eggs\unidecode-0.04.14-py2.7.egg</td><td>1</td><td/></row>
@@ -1963,6 +1957,7 @@
 		<row><td>win32process.pyd</td><td>ISX_DEFAULTCOMPONENT</td><td>WIN32P~1.PYD|win32process.pyd</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\win32process.pyd</td><td>1</td><td/></row>
 		<row><td>win32security.pyd</td><td>ISX_DEFAULTCOMPONENT</td><td>WIN32S~1.PYD|win32security.pyd</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\win32security.pyd</td><td>1</td><td/></row>
 		<row><td>win32wnet.pyd</td><td>ISX_DEFAULTCOMPONENT</td><td>WIN32W~1.PYD|win32wnet.pyd</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\win32wnet.pyd</td><td>1</td><td/></row>
+		<row><td>zope.interface._zope_interfa</td><td>ISX_DEFAULTCOMPONENT</td><td>ZOPEIN~1.PYD|zope.interface._zope_interface_coptimizations.pyd</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\zope.interface._zope_interface_coptimizations.pyd</td><td>1</td><td/></row>
 	</table>
 
 	<table name="FileSFPCatalog">
@@ -2221,19 +2216,19 @@
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
 		<row><td>GuiClient.Primary_output</td><td/><td/><td>_0C87A0C8_ACED_4DD8_A0ED_90D2EA08901C_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_93D10ABB_9E94_4F6B_A79A_0036D743E85E_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_F51A7644_38C4_4FD5_BE9C_CA1BF0C43AC5_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>ISX_DEFAULTCOMPONENT2</td><td/><td/><td>_C165BE46_D7B4_473D_A57C_0C21D088A52C_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>LIBEAY32.dll</td><td/><td/><td>_8C4C57D2_E283_4F22_98E5_C7EF710DA8C2_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_10A53DF4_A97B_4259_A6AC_DD7D45BE7231_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_9C698D0F_51F6_46D9_9D40_267C840923EA_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT2</td><td/><td/><td>_EF9B719C_5A68_4009_AB0B_DDBC6BC82246_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>LIBEAY32.dll</td><td/><td/><td>_43F55AEE_D318_4199_823B_A0BC17825F38_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>NewComponent1</td><td/><td/><td>_23A7CA13_9BD2_4AE2_B1F4_5C754E318454_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>SSLEAY32.dll</td><td/><td/><td>_80735EA6_E838_4D14_8F0C_B8F549E92329_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>lacli.exe</td><td/><td/><td>_65A24CFA_6CF8_4864_A8AB_6BEFB8D27726_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>msvcm90.dll</td><td/><td/><td>_959EEF8F_6BF9_43F6_AE00_A79FA004708C_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>msvcp90.dll</td><td/><td/><td>_B7AD8917_9BF5_4F5E_8751_7482F617B46D_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>msvcr90.dll</td><td/><td/><td>_32281E49_5841_4161_9872_86325B83CEF8_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>python27.dll</td><td/><td/><td>_5EB45212_AEE7_4D0E_9631_A65BC8AB2586_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>pythoncom27.dll</td><td/><td/><td>_E4CB3267_2812_4F64_8549_32E4702234F1_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>pywintypes27.dll</td><td/><td/><td>_C3573AA0_E8B5_426E_8570_AFDA06CFC0EA_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>SSLEAY32.dll</td><td/><td/><td>_701F26E8_5A9E_4F00_BDBF_56D772B6280A_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>lacli.exe</td><td/><td/><td>_B65354FF_DF91_4BD0_9991_1BC0DD1F4549_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>msvcm90.dll</td><td/><td/><td>_96C0CEB5_53DF_40BF_8A44_1D6CB474E8C8_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>msvcp90.dll</td><td/><td/><td>_6C04E287_BE80_4AB9_A4E1_BD96FB68CEC2_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>msvcr90.dll</td><td/><td/><td>_A19563C6_16F5_423B_AD8B_8C9C1FC0A9B3_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>python27.dll</td><td/><td/><td>_FDDCAD7E_32B6_42B5_8BB4_99614E96636D_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>pythoncom27.dll</td><td/><td/><td>_7D3A4C73_4B0D_4939_A943_A8EFEBE573B9_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>pywintypes27.dll</td><td/><td/><td>_E2EAC2C8_05E2_4259_9258_5E205B05B5C4_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="ISCustomActionReference">
@@ -3676,6 +3671,7 @@
 		<row><td>IDS_PROGMSG_XML_UPDATE_FILE</td><td>1033</td><td>Updating XML file %s...</td><td>0</td><td/><td>-1910406543</td></row>
 		<row><td>IDS_SETUPEXE_EXPIRE_MSG</td><td>1033</td><td>This setup works until %s. The setup will now exit.</td><td>0</td><td/><td>-1910406543</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME1</td><td>1033</td><td>LAUNCH~1.EXE|Launch lacli.exe</td><td>0</td><td/><td>-1910408717</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME10</td><td>1033</td><td>LAUNCH~1.EXE|Launch lacli.exe</td><td>0</td><td/><td>-2136849962</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME2</td><td>1033</td><td>LAUNCH~1.EXE|Launch lacli.exe</td><td>0</td><td/><td>-1910406924</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME3</td><td>1033</td><td>Long Access</td><td>0</td><td/><td>-1776175958</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME4</td><td>1033</td><td>LongAccess</td><td>0</td><td/><td>1352812812</td></row>
@@ -4084,7 +4080,12 @@
 		<col def="I2">ISIconIndex</col>
 		<row><td>ARPPRODUCTICON.exe</td><td/><td>D:\Dropbox\Job\LongAccess\GuiClient\icons\longaccess.ico</td><td>0</td></row>
 		<row><td>UNINST_Uninstall_L_51055F64715444E5892F574DC9BEF755.exe</td><td/><td>C:\Program Files (x86)\InstallShield\2012SpringLE\Redist\Language Independent\OS Independent\uninstall.ico</td><td>0</td></row>
+		<row><td>_269A4A7F1C784A089DC83BE5352E81EA.exe</td><td/><td>D:\Dropbox\Job\LongAccess\GuiClient\obj\Debug\GuiClient.exe</td><td>0</td></row>
+		<row><td>_38178C48C1754FCA86990E1CD2BFC625.exe</td><td/><td>D:\Dropbox\Job\LongAccess\GuiClient\obj\Debug\GuiClient.exe</td><td>0</td></row>
+		<row><td>_E92B2CDD318C43BEBFD8B14BD87AC727.exe</td><td/><td>D:\Dropbox\Job\LongAccess\GuiClient\obj\Debug\GuiClient.exe</td><td>0</td></row>
+		<row><td>_F23DA80466E8496C8D7D7E138D6A1945.exe</td><td/><td>D:\Dropbox\Job\LongAccess\GuiClient\obj\Debug\GuiClient.exe</td><td>0</td></row>
 		<row><td>lacli.exe1_C47CEF71DDB34A84928E0ECEBA925479.exe</td><td/><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\lacli.exe</td><td>0</td></row>
+		<row><td>lacli.exe_33C0640F5310469EB3A213E3FDCF126D.exe</td><td/><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\lacli.exe</td><td>0</td></row>
 		<row><td>lacli.exe_4C8DE9CAD132421EA66C8D4C5DF8DC42.exe</td><td/><td>D:\Dropbox\LongaccessCLI\lacli\lacli.exe</td><td>0</td></row>
 		<row><td>lacli.exe_6D600B86857A4A98B33F98BDCA5690D0.exe</td><td/><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\lacli.exe</td><td>0</td></row>
 		<row><td>lacli.exe_930E1792221D453EAB6DA8B07F128ACB.exe</td><td/><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\lacli.exe</td><td>0</td></row>
@@ -4672,8 +4673,6 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="L255">FileName</col>
 		<col def="s72">DirProperty</col>
 		<col def="i2">InstallMode</col>
-		<row><td>FileKey1</td><td>lacli.exe</td><td/><td>longac_1_longaccess</td><td>2</td></row>
-		<row><td>FileKey2</td><td>lacli.exe</td><td/><td>longac_1_long_access_client1</td><td>2</td></row>
 		<row><td>UNINST_Uninstall_Long_Access_Client</td><td>NewComponent1</td><td/><td>longac_1_long_access_client</td><td>2</td></row>
 		<row><td>_Built</td><td>GuiClient.Primary_output</td><td/><td>longac_1_long_access_client</td><td>2</td></row>
 		<row><td>lacli.exe</td><td>lacli.exe</td><td/><td>longac_1_long_access_client1</td><td>2</td></row>
@@ -4765,7 +4764,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>UNINST_Uninstall_Long_Access_Client</td><td>longac_1_long_access_client</td><td>##IDS_SHORTCUT_DISPLAY_NAME8##</td><td>NewComponent1</td><td>[SystemFolder]msiexec.exe</td><td>/x {73F1BDB7-11E1-11D5-9DC6-00C04F2FC33B}</td><td/><td/><td>UNINST_Uninstall_L_51055F64715444E5892F574DC9BEF755.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>_Built</td><td>longac_1_long_access_client</td><td>##IDS_SHORTCUT_DISPLAY_NAME4##</td><td>GuiClient.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td/><td/><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>_Built1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME4##</td><td>GuiClient.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td/><td/><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>lacli.exe</td><td>longac_1_long_access_client1</td><td>##IDS_SHORTCUT_DISPLAY_NAME9##</td><td>lacli.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>lacli.exe_6D600B86857A4A98B33F98BDCA5690D0.exe</td><td>1</td><td>1</td><td>LACLI</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>lacli.exe</td><td>longac_1_long_access_client1</td><td>##IDS_SHORTCUT_DISPLAY_NAME10##</td><td>lacli.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>lacli.exe_33C0640F5310469EB3A213E3FDCF126D.exe</td><td>1</td><td>1</td><td>LACLI</td><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">
