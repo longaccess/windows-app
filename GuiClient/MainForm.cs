@@ -651,7 +651,7 @@ namespace GuiClient
 
                     break;
                 case ArchiveStatus.Failed:
-                    btnResumeUpload.Enabled = false;
+                    btnResumeUpload.Enabled = true;
                     btnPauseUpload.Enabled = false;
                     btnCancelUpload.Enabled = true;
                     tmrQueryUploadStatus.Enabled = false;
