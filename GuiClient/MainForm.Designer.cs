@@ -1153,7 +1153,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MainForm";
-            this.Text = "LongAccess";
+            this.Text = "Longaccess";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabPageContainer.ResumeLayout(false);
             this.tbpgLogin.ResumeLayout(false);
