@@ -52,7 +52,7 @@
 	<summary>
 		<codepage>1252</codepage>
 		<title>Installation Database</title>
-		<subject>Long Access Client</subject>
+		<subject>Longaccess Client</subject>
 		<author>##ID_STRING2##</author>
 		<keywords>Installer,MSI,Database</keywords>
 		<comments>Contact:  Your local administrator</comments>
@@ -341,19 +341,19 @@
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
 		<row><td>GuiClient.Primary_output</td><td>{AD304ACD-ED8C-41D0-90BA-F2F11BA0F5B7}</td><td>INSTALLDIR</td><td>2</td><td/><td>guiclient.primary_output</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>ISX_DEFAULTCOMPONENT</td><td>{D137192D-AC35-4CE5-AB8E-E7F8822E75F8}</td><td>LACLI</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{90C07BD4-6794-40FE-A19A-56248C8C5CEE}</td><td>EGGS</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>ISX_DEFAULTCOMPONENT2</td><td>{D493F25B-A06D-4FB9-A4A9-35AF836F711F}</td><td>INCLUDE</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>LIBEAY32.dll</td><td>{07B8AD33-163D-4DDE-BD2E-879BA89A2BA9}</td><td>LACLI</td><td>2</td><td/><td>libeay32.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT</td><td>{245519D3-EC9D-4266-95A2-E07EE598F92B}</td><td>LACLI</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{D88A56D3-69C8-4502-B29C-88CCB354EB7D}</td><td>EGGS</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT2</td><td>{BC38D5D7-0284-4E7A-A0EB-A189B8D6F503}</td><td>INCLUDE</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>LIBEAY32.dll</td><td>{7B3D0F7A-E1E4-47AC-AA1A-0E8D285511F5}</td><td>LACLI</td><td>2</td><td/><td>libeay32.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>NewComponent1</td><td>{D241F736-80EC-484E-A83D-4F1C20944E95}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>SSLEAY32.dll</td><td>{F75C1AE5-3AF7-450C-8949-D5C0C770228C}</td><td>LACLI</td><td>2</td><td/><td>ssleay32.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>lacli.exe</td><td>{9FCD8C44-28F7-4D15-A53E-F3C236027728}</td><td>LACLI</td><td>2</td><td/><td>lacli.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>msvcm90.dll</td><td>{09E6530F-47D4-49CC-8B6C-960AB1ED12FD}</td><td>LACLI</td><td>2</td><td/><td>msvcm90.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>msvcp90.dll</td><td>{FAA84AFA-E65A-4E25-8C32-6D35B08BDEDF}</td><td>LACLI</td><td>2</td><td/><td>msvcp90.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>msvcr90.dll</td><td>{0DD3C41F-BF72-4353-AF80-853C881A1880}</td><td>LACLI</td><td>2</td><td/><td>msvcr90.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>python27.dll</td><td>{07CE8BC9-19D6-4EF5-9325-CA022DD1FD15}</td><td>LACLI</td><td>2</td><td/><td>python27.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>pythoncom27.dll</td><td>{F662B114-D202-4817-9E16-7556652D6A87}</td><td>LACLI</td><td>2</td><td/><td>pythoncom27.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>pywintypes27.dll</td><td>{CA61D54E-DE18-4C6A-92DE-2FABCBC2BB08}</td><td>LACLI</td><td>2</td><td/><td>pywintypes27.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>SSLEAY32.dll</td><td>{38238263-582B-42B6-92B5-183FAC748582}</td><td>LACLI</td><td>2</td><td/><td>ssleay32.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>lacli.exe</td><td>{F5BFD553-7B31-429E-9330-FBA38977C907}</td><td>LACLI</td><td>2</td><td/><td>lacli.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>msvcm90.dll</td><td>{287FA5C4-8A86-4233-AFFF-2ACA21A259D9}</td><td>LACLI</td><td>2</td><td/><td>msvcm90.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>msvcp90.dll</td><td>{AE0436B8-50C0-4E25-BA4D-68D376212230}</td><td>LACLI</td><td>2</td><td/><td>msvcp90.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>msvcr90.dll</td><td>{1698F9EE-0FC3-4423-89A0-B90D490E64F5}</td><td>LACLI</td><td>2</td><td/><td>msvcr90.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>python27.dll</td><td>{F37C7179-E098-4F7F-9828-F2177D611376}</td><td>LACLI</td><td>2</td><td/><td>python27.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>pythoncom27.dll</td><td>{F39F8AE9-F00D-493A-AC5E-014CD1DCCD66}</td><td>LACLI</td><td>2</td><td/><td>pythoncom27.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>pywintypes27.dll</td><td>{7302E431-5166-419C-9922-7A9F1B2E8CA1}</td><td>LACLI</td><td>2</td><td/><td>pywintypes27.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
 	<table name="Condition">
@@ -1156,16 +1156,20 @@
 		<row><td>FontsFolder</td><td>TARGETDIR</td><td>.:Fonts</td><td/><td>0</td><td/></row>
 		<row><td>GlobalAssemblyCache</td><td>TARGETDIR</td><td>.:Global~1|GlobalAssemblyCache</td><td/><td>0</td><td/></row>
 		<row><td>INCLUDE</td><td>LACLI</td><td>include</td><td/><td>0</td><td/></row>
-		<row><td>INSTALLDIR</td><td>LONG_ACCESS_CLIENT1</td><td>.</td><td/><td>0</td><td/></row>
+		<row><td>INSTALLDIR</td><td>LONGACCESS_CLIENT1</td><td>.</td><td/><td>0</td><td/></row>
 		<row><td>ISCommonFilesFolder</td><td>CommonFilesFolder</td><td>Instal~1|InstallShield</td><td/><td>0</td><td/></row>
 		<row><td>ISMyCompanyDir</td><td>ProgramFilesFolder</td><td>MYCOMP~1|My Company Name</td><td/><td>0</td><td/></row>
 		<row><td>ISMyProductDir</td><td>ISMyCompanyDir</td><td>MYPROD~1|My Product Name</td><td/><td>0</td><td/></row>
 		<row><td>ISYourDataBaseDir</td><td>INSTALLDIR</td><td>Database</td><td/><td>0</td><td/></row>
 		<row><td>LACLI</td><td>INSTALLDIR</td><td>lacli</td><td/><td>0</td><td/></row>
 		<row><td>LONGACCESS</td><td>ProgramFilesFolder</td><td>LONGAC~1|LongAccess</td><td/><td>0</td><td/></row>
+		<row><td>LONGACCESS_CLIENT</td><td>LONGCCESS</td><td>LONGAC~1|Longaccess Client</td><td/><td>0</td><td/></row>
+		<row><td>LONGACCESS_CLIENT1</td><td>LONGACCESS</td><td>LONGAC~1|Longaccess Client</td><td/><td>0</td><td/></row>
+		<row><td>LONGCCESS</td><td>ProgramFilesFolder</td><td>LONGCC~1|Longccess</td><td/><td>0</td><td/></row>
 		<row><td>LONG_ACCESS</td><td>ProgramFilesFolder</td><td>LONGAC~1|Long Access</td><td/><td>0</td><td/></row>
 		<row><td>LONG_ACCESS_CLIENT</td><td>LONG_ACCESS</td><td>LONGAC~1|Long Access Client</td><td/><td>0</td><td/></row>
 		<row><td>LONG_ACCESS_CLIENT1</td><td>LONGACCESS</td><td>LONGAC~1|Long Access Client</td><td/><td>0</td><td/></row>
+		<row><td>LONG_ACCESS_CLIENT2</td><td>LONGCCESS</td><td>LONGAC~1|Long Access Client</td><td/><td>0</td><td/></row>
 		<row><td>LocalAppDataFolder</td><td>TARGETDIR</td><td>.:LocalA~1|LocalAppData</td><td/><td>0</td><td/></row>
 		<row><td>MY_PRODUCT_NAME</td><td>LONG_ACCESS</td><td>MYPROD~1|My Product Name</td><td/><td>0</td><td/></row>
 		<row><td>MyPicturesFolder</td><td>TARGETDIR</td><td>.:MyPict~1|MyPictures</td><td/><td>0</td><td/></row>
@@ -1923,7 +1927,7 @@
 		<row><td>guiclient.primary_output</td><td>GuiClient.Primary_output</td><td>GuiClient.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;GuiClient&gt;|Built</td><td>3</td><td/></row>
 		<row><td>lacli.exe</td><td>lacli.exe</td><td>lacli.exe</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\lacli.exe</td><td>1</td><td/></row>
 		<row><td>lacli.exe.manifest</td><td>ISX_DEFAULTCOMPONENT</td><td>LACLIE~1.MAN|lacli.exe.manifest</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\lacli.exe.manifest</td><td>1</td><td/></row>
-		<row><td>lacli_0.2_py2.7.egg</td><td>ISX_DEFAULTCOMPONENT1</td><td>LACLI-~1.EGG|lacli-0.2-py2.7.egg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\eggs\lacli-0.2-py2.7.egg</td><td>1</td><td/></row>
+		<row><td>lacli_0.2.1_py2.7.egg</td><td>ISX_DEFAULTCOMPONENT1</td><td>LACLI-~1.EGG|lacli-0.2.1-py2.7.egg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\eggs\lacli-0.2.1-py2.7.egg</td><td>1</td><td/></row>
 		<row><td>libeay32.dll</td><td>LIBEAY32.dll</td><td>LIBEAY32.dll</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\LIBEAY32.dll</td><td>1</td><td/></row>
 		<row><td>logutils_0.3.3_py2.7.egg</td><td>ISX_DEFAULTCOMPONENT1</td><td>LOGUTI~1.EGG|logutils-0.3.3-py2.7.egg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\eggs\logutils-0.3.3-py2.7.egg</td><td>1</td><td/></row>
 		<row><td>microsoft.vc90.crt.manifest</td><td>ISX_DEFAULTCOMPONENT</td><td>MICROS~1.MAN|Microsoft.VC90.CRT.manifest</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\Microsoft.VC90.CRT.manifest</td><td>1</td><td/></row>
@@ -1933,6 +1937,7 @@
 		<row><td>openssl.crypto.pyd</td><td>ISX_DEFAULTCOMPONENT</td><td>OPENSS~1.PYD|OpenSSL.crypto.pyd</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\OpenSSL.crypto.pyd</td><td>1</td><td/></row>
 		<row><td>openssl.rand.pyd</td><td>ISX_DEFAULTCOMPONENT</td><td>OPENSS~1.PYD|OpenSSL.rand.pyd</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\OpenSSL.rand.pyd</td><td>1</td><td/></row>
 		<row><td>openssl.ssl.pyd</td><td>ISX_DEFAULTCOMPONENT</td><td>OPENSS~1.PYD|OpenSSL.SSL.pyd</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\OpenSSL.SSL.pyd</td><td>1</td><td/></row>
+		<row><td>progressbar_2.3_py2.7.egg</td><td>ISX_DEFAULTCOMPONENT1</td><td>PROGRE~1.EGG|progressbar-2.3-py2.7.egg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\eggs\progressbar-2.3-py2.7.egg</td><td>1</td><td/></row>
 		<row><td>pyaml_13.07.1_py2.7.egg</td><td>ISX_DEFAULTCOMPONENT1</td><td>PYAML-~1.EGG|pyaml-13.07.1-py2.7.egg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\eggs\pyaml-13.07.1-py2.7.egg</td><td>1</td><td/></row>
 		<row><td>pyconfig.h</td><td>ISX_DEFAULTCOMPONENT2</td><td>pyconfig.h</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\include\pyconfig.h</td><td>1</td><td/></row>
 		<row><td>pycrypto_2.6_py2.7_win_amd64</td><td>ISX_DEFAULTCOMPONENT1</td><td>PYCRYP~1.EGG|pycrypto-2.6-py2.7-win-amd64.egg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\eggs\pycrypto-2.6-py2.7-win-amd64.egg</td><td>1</td><td/></row>
@@ -2216,19 +2221,19 @@
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
 		<row><td>GuiClient.Primary_output</td><td/><td/><td>_0C87A0C8_ACED_4DD8_A0ED_90D2EA08901C_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_10A53DF4_A97B_4259_A6AC_DD7D45BE7231_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_9C698D0F_51F6_46D9_9D40_267C840923EA_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>ISX_DEFAULTCOMPONENT2</td><td/><td/><td>_EF9B719C_5A68_4009_AB0B_DDBC6BC82246_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>LIBEAY32.dll</td><td/><td/><td>_43F55AEE_D318_4199_823B_A0BC17825F38_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_1E62AA0F_2A61_41C1_BB00_33EE0624D5B8_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_555BB320_CA18_4082_BF8C_7137CF2CA078_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT2</td><td/><td/><td>_66D1AFF0_1C85_4D50_B18B_9326CEEAC62B_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>LIBEAY32.dll</td><td/><td/><td>_F0AEB8D7_5757_4054_ADA7_97DA851BEEB5_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>NewComponent1</td><td/><td/><td>_23A7CA13_9BD2_4AE2_B1F4_5C754E318454_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>SSLEAY32.dll</td><td/><td/><td>_701F26E8_5A9E_4F00_BDBF_56D772B6280A_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>lacli.exe</td><td/><td/><td>_B65354FF_DF91_4BD0_9991_1BC0DD1F4549_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>msvcm90.dll</td><td/><td/><td>_96C0CEB5_53DF_40BF_8A44_1D6CB474E8C8_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>msvcp90.dll</td><td/><td/><td>_6C04E287_BE80_4AB9_A4E1_BD96FB68CEC2_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>msvcr90.dll</td><td/><td/><td>_A19563C6_16F5_423B_AD8B_8C9C1FC0A9B3_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>python27.dll</td><td/><td/><td>_FDDCAD7E_32B6_42B5_8BB4_99614E96636D_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>pythoncom27.dll</td><td/><td/><td>_7D3A4C73_4B0D_4939_A943_A8EFEBE573B9_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>pywintypes27.dll</td><td/><td/><td>_E2EAC2C8_05E2_4259_9258_5E205B05B5C4_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>SSLEAY32.dll</td><td/><td/><td>_ED8BE5A1_8D68_42C6_9388_F1E0916FC3A1_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>lacli.exe</td><td/><td/><td>_8BA6C0E4_B4E2_40C4_8618_9A1ED8B8EAF1_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>msvcm90.dll</td><td/><td/><td>_A60E91D6_5045_4FA0_AFC8_DE3238D65973_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>msvcp90.dll</td><td/><td/><td>_6E086622_D7E5_4ACB_AF9D_07705CCCF595_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>msvcr90.dll</td><td/><td/><td>_C29D6FEA_55C7_4F96_BABC_3A398DA15DB7_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>python27.dll</td><td/><td/><td>_2C71EC6F_C56F_4598_B4A0_C2EADAE9562A_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>pythoncom27.dll</td><td/><td/><td>_FB815906_B6E8_4067_9448_55F79FC4D760_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>pywintypes27.dll</td><td/><td/><td>_8563EDA3_2E38_4029_A8CF_130B59DC9006_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="ISCustomActionReference">
@@ -2859,7 +2864,7 @@
 		<col def="I2">Encoded</col>
 		<col def="S0">Comment</col>
 		<col def="I4">TimeStamp</col>
-		<row><td>COMPANY_NAME</td><td>1033</td><td>LongAccess</td><td>0</td><td/><td>1352802572</td></row>
+		<row><td>COMPANY_NAME</td><td>1033</td><td>Longaccess</td><td>0</td><td/><td>-1331532684</td></row>
 		<row><td>DN_AlwaysInstall</td><td>1033</td><td>Always Install</td><td>0</td><td/><td>-1910406543</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>1033</td><td>The color settings of your system are not adequate for running [ProductName].</td><td>0</td><td/><td>-1910406543</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_OS</td><td>1033</td><td>The operating system is not adequate for running [ProductName].</td><td>0</td><td/><td>-1910406543</td></row>
@@ -3672,13 +3677,14 @@
 		<row><td>IDS_SETUPEXE_EXPIRE_MSG</td><td>1033</td><td>This setup works until %s. The setup will now exit.</td><td>0</td><td/><td>-1910406543</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME1</td><td>1033</td><td>LAUNCH~1.EXE|Launch lacli.exe</td><td>0</td><td/><td>-1910408717</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME10</td><td>1033</td><td>LAUNCH~1.EXE|Launch lacli.exe</td><td>0</td><td/><td>-2136849962</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME11</td><td>1033</td><td>LAUNCH~1.EXE|Launch lacli.exe</td><td>0</td><td/><td>-1331543596</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME2</td><td>1033</td><td>LAUNCH~1.EXE|Launch lacli.exe</td><td>0</td><td/><td>-1910406924</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME3</td><td>1033</td><td>Long Access</td><td>0</td><td/><td>-1776175958</td></row>
-		<row><td>IDS_SHORTCUT_DISPLAY_NAME4</td><td>1033</td><td>LongAccess</td><td>0</td><td/><td>1352812812</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME4</td><td>1033</td><td>Longaccess</td><td>0</td><td/><td>-1331501964</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME5</td><td>1033</td><td>LAUNCH~1.EXE|Launch lacli.exe</td><td>0</td><td/><td>-1641960461</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME6</td><td>1033</td><td>LAUNCH~1.EXE|Launch lacli.exe</td><td>0</td><td/><td>950189614</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME7</td><td>1033</td><td>LAUNCH~1.EXE|Launch lacli.exe</td><td>0</td><td/><td>950173262</td></row>
-		<row><td>IDS_SHORTCUT_DISPLAY_NAME8</td><td>1033</td><td>Uninstall LongAccess Client</td><td>0</td><td/><td>1352818956</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME8</td><td>1033</td><td>Uninstall Longaccess Client</td><td>0</td><td/><td>-1331553132</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME9</td><td>1033</td><td>LAUNCH~1.EXE|Launch lacli.exe</td><td>0</td><td/><td>1889717620</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO</td><td>1033</td><td>From the list of servers below, select the database server you would like to target.</td><td>0</td><td/><td>-1910406543</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_DB</td><td>1033</td><td>From the list of catalog names below, select the database catalog you would like to target.</td><td>0</td><td/><td>-1910406543</td></row>
@@ -3968,8 +3974,8 @@
 		<row><td>IDS__TargetReq_DESC_PROCESSOR</td><td>1033</td><td>The processor is not adequate for running [ProductName].</td><td>0</td><td/><td>-1910406543</td></row>
 		<row><td>IDS__TargetReq_DESC_RAM</td><td>1033</td><td>The amount of RAM is not adequate for running [ProductName].</td><td>0</td><td/><td>-1910406543</td></row>
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>1033</td><td>The screen resolution is not adequate for running [ProductName].</td><td>0</td><td/><td>-1910406543</td></row>
-		<row><td>ID_STRING1</td><td>1033</td><td>http://www.LongAccess.com</td><td>0</td><td/><td>1352802572</td></row>
-		<row><td>ID_STRING2</td><td>1033</td><td>LongAccess</td><td>0</td><td/><td>1352802572</td></row>
+		<row><td>ID_STRING1</td><td>1033</td><td>http://www.Longaccess.com</td><td>0</td><td/><td>-1331530636</td></row>
+		<row><td>ID_STRING2</td><td>1033</td><td>Longaccess</td><td>0</td><td/><td>-1331532684</td></row>
 		<row><td>ID_STRING3</td><td>1033</td><td>Launch |Built</td><td>0</td><td/><td>-1776194390</td></row>
 		<row><td>ID_STRING4</td><td>1033</td><td>Long Access</td><td>0</td><td/><td>-1776182481</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>-1910406543</td></row>
@@ -4082,9 +4088,14 @@
 		<row><td>UNINST_Uninstall_L_51055F64715444E5892F574DC9BEF755.exe</td><td/><td>C:\Program Files (x86)\InstallShield\2012SpringLE\Redist\Language Independent\OS Independent\uninstall.ico</td><td>0</td></row>
 		<row><td>_269A4A7F1C784A089DC83BE5352E81EA.exe</td><td/><td>D:\Dropbox\Job\LongAccess\GuiClient\obj\Debug\GuiClient.exe</td><td>0</td></row>
 		<row><td>_38178C48C1754FCA86990E1CD2BFC625.exe</td><td/><td>D:\Dropbox\Job\LongAccess\GuiClient\obj\Debug\GuiClient.exe</td><td>0</td></row>
+		<row><td>_7F42BC6FD3004077951F66DA0918C4F3.exe</td><td/><td>D:\Dropbox\Job\LongAccess\GuiClient\obj\Debug\GuiClient.exe</td><td>0</td></row>
+		<row><td>_802E92AF70A549B48CA5809DDB14A276.exe</td><td/><td>D:\Dropbox\Job\LongAccess\GuiClient\obj\Debug\GuiClient.exe</td><td>0</td></row>
+		<row><td>_D02891E266EA4FC18D4ADDF55349FF5D.exe</td><td/><td>D:\Dropbox\Job\LongAccess\GuiClient\obj\Debug\GuiClient.exe</td><td>0</td></row>
+		<row><td>_E5C5215C26B248A8A12ECD095E2BDEBE.exe</td><td/><td>D:\Dropbox\Job\LongAccess\GuiClient\obj\Debug\GuiClient.exe</td><td>0</td></row>
 		<row><td>_E92B2CDD318C43BEBFD8B14BD87AC727.exe</td><td/><td>D:\Dropbox\Job\LongAccess\GuiClient\obj\Debug\GuiClient.exe</td><td>0</td></row>
 		<row><td>_F23DA80466E8496C8D7D7E138D6A1945.exe</td><td/><td>D:\Dropbox\Job\LongAccess\GuiClient\obj\Debug\GuiClient.exe</td><td>0</td></row>
 		<row><td>lacli.exe1_C47CEF71DDB34A84928E0ECEBA925479.exe</td><td/><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\lacli.exe</td><td>0</td></row>
+		<row><td>lacli.exe_212D4FE58138445685F364C713783B6A.exe</td><td/><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\lacli.exe</td><td>0</td></row>
 		<row><td>lacli.exe_33C0640F5310469EB3A213E3FDCF126D.exe</td><td/><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\lacli.exe</td><td>0</td></row>
 		<row><td>lacli.exe_4C8DE9CAD132421EA66C8D4C5DF8DC42.exe</td><td/><td>D:\Dropbox\LongaccessCLI\lacli\lacli.exe</td><td>0</td></row>
 		<row><td>lacli.exe_6D600B86857A4A98B33F98BDCA5690D0.exe</td><td/><td>D:\Dropbox\Job\LongAccess\GuiClient\bin\Debug\lacli\lacli.exe</td><td>0</td></row>
@@ -4596,7 +4607,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
 		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]GuiClient.Primary output</td><td/></row>
 		<row><td>ProductCode</td><td>{73F1BDB7-11E1-11D5-9DC6-00C04F2FC33B}</td><td/></row>
-		<row><td>ProductName</td><td>Long Access Client</td><td/></row>
+		<row><td>ProductName</td><td>Longaccess Client</td><td/></row>
 		<row><td>ProductVersion</td><td>1.00.0000</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
@@ -4764,7 +4775,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>UNINST_Uninstall_Long_Access_Client</td><td>longac_1_long_access_client</td><td>##IDS_SHORTCUT_DISPLAY_NAME8##</td><td>NewComponent1</td><td>[SystemFolder]msiexec.exe</td><td>/x {73F1BDB7-11E1-11D5-9DC6-00C04F2FC33B}</td><td/><td/><td>UNINST_Uninstall_L_51055F64715444E5892F574DC9BEF755.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>_Built</td><td>longac_1_long_access_client</td><td>##IDS_SHORTCUT_DISPLAY_NAME4##</td><td>GuiClient.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td/><td/><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>_Built1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME4##</td><td>GuiClient.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td/><td/><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>lacli.exe</td><td>longac_1_long_access_client1</td><td>##IDS_SHORTCUT_DISPLAY_NAME10##</td><td>lacli.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>lacli.exe_33C0640F5310469EB3A213E3FDCF126D.exe</td><td>1</td><td>1</td><td>LACLI</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>lacli.exe</td><td>longac_1_long_access_client1</td><td>##IDS_SHORTCUT_DISPLAY_NAME11##</td><td>lacli.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>lacli.exe_212D4FE58138445685F364C713783B6A.exe</td><td>1</td><td>1</td><td>LACLI</td><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">
