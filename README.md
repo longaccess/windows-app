@@ -6,12 +6,12 @@ This is an app for interacting with the [Longaccess service][la]. It is is a gra
 Installation
 ------------
 
-Currently the binaries are built using Visual Studio 2012 on 64-bit Windows. Other platforms may work as well. For access to precompiled packages and installers check the [Longaccess downloads page][lad].
+Currently the binaries are built using Visual Studio 2013 on 64-bit Windows 8 Pro. Other platforms may work as well. For access to precompiled packages and installers check the [Longaccess downloads page][lad].
 
 Dependencies
 ------------
 
-The app requires .NET framework 3.5, and the user will be prompted to install it if it isn't available on the system.
+The app requires .NET framework 4.0, and the user will be prompted to install it if it isn't available on the system.
 
 Secure removal
 --------------
