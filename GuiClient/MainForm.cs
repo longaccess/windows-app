@@ -234,7 +234,7 @@ namespace GuiClient
         }
         private void ForcedUpdate()
         {
-            if (DateTime.Today > new DateTime(2014, 1, 30))
+            if (DateTime.Today > new DateTime(2014, 2, 28))
             {
                 MessageBox.Show("This version of the application will no longer work. Please download the latest version");
                 System.Diagnostics.Process.Start(AppSettings.DownloadUrl);
