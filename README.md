@@ -11,7 +11,7 @@ Currently the binaries are built using Visual Studio 2013 on 64-bit Windows 8 Pr
 Dependencies
 ------------
 
-The app requires .NET framework 4.0, and the user will be prompted to install it if it isn't available on the system.
+The app requires .NET framework 4.0, but the nsis installer doesn't include this functionality in its current version. This will be included in the next versions. The user has to install it after downloading the [.NET 4 Web Installer][].
 
 Secure removal
 --------------
@@ -28,3 +28,4 @@ When removing archives and certificates from the disk the app supports [secure d
 [sd]: https://ssd.eff.org/tech/deletion "Secure deletion - EFF"
 [sdelete]: http://technet.microsoft.com/en-us/sysinternals/bb897443.aspx "SDelete - Windows sysinternals"
 [Eraser]: http://eraser.heidi.ie/ "Eraser"
+[.NET 4 web installer]: http://www.microsoft.com/en-us/download/details.aspx?id=17851 ".NET 4 Web Installer"
