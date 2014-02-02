@@ -6,7 +6,6 @@
 !include x64.nsh
 !include MUI2.nsh
 !include FileFunc.nsh
-!include DotNetChecker.nsh
 
 ;----------------------------------------------
 ;General
@@ -141,7 +140,7 @@ Section "Install" SecInstall
 	SetOutPath "$INSTDIR"
 	
 	;Check if .NET 4 Full is installed
-	!insertmacro CheckNetFramework 40Full
+	;!insertmacro CheckNetFramework 40Full
 	
 	;specify files to go in output path
 	File /r "lacli"
