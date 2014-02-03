@@ -1,20 +1,18 @@
-Guide to run the nsis installer script.
+Compile the lawapp_installer.nsi script with NSIS to build the Longaccess windows client installer.
 
-Simple Way
-Unzip the la_gui_installer_build_and_files.zip and compile the lawapp_installer.nsi with nsis-3.0a2 after you install it using the included setup.
+The installer script uses the open source NSIS [NsisDotNetChecker][] plugin.
 
-Manual Way
-1) Download the lawapp_installer.nsi script and license.txt file. Save them in the same folder.
+You need to build the source from that repo before you include it in your NSIS installation.
 
-2) Build the GuiClient (solution configuration should be Release and not Debug)
+The header DotNetChecker.nsh goes in the Include folder and the library DotNetChecker.dll
+goes in the Plugins folder. These folders can be found in your local NSIS installation.
 
-3) Copy the next files from the bin\Release folder in the same folder you saved the lawapp_installer.nsi script.
-	- GuiClient.exe
-	- GuiClient.exe.config
-	- Thrift.dll
+Caution 1: If you use NSIS v3.0 and above, the dll goes in the "Plugins\x86-ansi" folder 
+of your local installation.
 
-4) Download the lacli folder and copy it as a whole in the same folder as before.
+Caution 2: You can try using the already built dll found in that repo, but it may not work.
+		   To be safe, just compile the source from the NsisDotNetChecker repo.
+		   You need at least Visual Studio 2010. Newer versions can import the solution with no problems.
 
-5) Download and run the nsis-3.0a2-setup.exe.
+[NsisDotNetChecker]: https://github.com/ProjectHuman/NsisDotNetChecker "NsisDotNetChecker".
 
-6) Compile the lawapp_installer.nsi with the MakeNSISW compiler.
