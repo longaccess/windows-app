@@ -141,12 +141,12 @@ Section "Install" SecInstall
 	
 	;Check if .NET 4 Full is installed
 	;!insertmacro CheckNetFramework 40Full
-	
+
 	;specify files to go in output path
-	File /r "lacli"
-	File "GuiClient.exe"
-	File "GuiClient.exe.config"
-	File "Thrift.dll"
+	File /r lacli
+	File /oname=GuiClient.exe Release\GuiClient.exe
+	File /oname=GuiClient.exe.config Release\GuiClient.exe.config
+	File /oname=Thrift.dll Release\Thrift.dll
 	
 	;Get total installation size in KB
 	${GetSize} "$INSTDIR" "/S=0K" $0 $1 $2
