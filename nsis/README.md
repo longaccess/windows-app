@@ -14,5 +14,5 @@ Caution 2: You can try using the already built dll found in that repo, but it ma
 		   To be safe, just compile the source from the NsisDotNetChecker repo.
 		   You need at least Visual Studio 2010. Newer versions can import the solution with no problems.
 
-[NsisDotNetChecker]: https://github.com/ProjectHuman/NsisDotNetChecker "NsisDotNetChecker".
+[NsisDotNetChecker]: https://github.com/ProjectHuman/NsisDotNetChecker "NsisDotNetChecker"
 
