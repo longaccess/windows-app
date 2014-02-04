@@ -43,7 +43,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\nsis\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -176,6 +176,11 @@
     <Content Include="Notes.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup><NuGetExe Condition="$(NuGetExe) == ''">nuget.exe</NuGetExe></PropertyGroup>
+  <Target Name="BeforeBuild">
+    <ItemGroup><NuGetPackageConfigs Include="packages.config"/></ItemGroup>
+    <Exec Command="$(NuGetExe) restore $(NuGetPackageConfigs) -o ..\packages"/>
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
