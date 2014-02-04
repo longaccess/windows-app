@@ -11,7 +11,8 @@ Currently the binaries are built using Visual Studio 2013 on 64-bit Windows 8 Pr
 Dependencies
 ------------
 
-The app requires .NET framework 4.0, but the nsis installer doesn't include this functionality in its current version. This will be included in the next versions. The user has to install it after downloading the [.NET 4 Web Installer][].
+The app requires .NET framework 4.0 Full to work. The installer will prompt the user to download the required version, if the installed version is older.
+If for any reason this fails, the user has to install it manually after downloading the [.NET 4 Web Installer][].
 
 Secure removal
 --------------

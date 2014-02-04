@@ -1,4 +1,4 @@
-;NSIS LongAccess Windows Application Installer
+﻿;NSIS LongAccess Windows Application Installer
 ;Languages Supported: English, Greek
 
 ;----------------------------------------------
@@ -6,6 +6,8 @@
 !include x64.nsh
 !include MUI2.nsh
 !include FileFunc.nsh
+!include DotNetChecker.nsh
+!include Sections.nsh
 
 ;----------------------------------------------
 ;General
@@ -21,7 +23,7 @@
 	InstallDirRegKey HKCU "Software\Longaccess" ""
 
 	;Request application privileges for Windows Vista+
-	RequestExecutionLevel admin
+	RequestExecutionLevel user
 
 ;----------------------------------------------
 ;Interface Settings
@@ -44,7 +46,7 @@
 
 	!insertmacro MUI_PAGE_WELCOME
 	!insertmacro MUI_PAGE_LICENSE "License.txt"
-	;!insertmacro MUI_PAGE_COMPONENTS
+	!insertmacro MUI_PAGE_COMPONENTS
 	;!insertmacro MUI_PAGE_DIRECTORY
 	!insertmacro MUI_PAGE_INSTFILES
 
@@ -123,9 +125,14 @@
 
 ;----------------------------------------------
 ;Installer Functions
-
 Function .onInit
-
+	
+	${If} ${RunningX64}
+	${Else}
+		MessageBox MB_OK "The Longaccess Client works only on 64-bit Windows."
+		Abort
+	${EndIf}
+	
 	!insertmacro MUI_LANGDLL_DISPLAY
 	
 FunctionEnd
@@ -133,14 +140,20 @@ FunctionEnd
 ;----------------------------------------------
 ;Installer Section
 
-Section "Install" SecInstall
+Section "Core Installation" SecInstall
 	SetRegView 64
+	
+	;Make this component section mandatory in the components selection page.
+	SectionIn RO
 	
 	;define the output path for the files
 	SetOutPath "$INSTDIR"
 	
-	;Check if .NET 4 Full is installed
-	;!insertmacro CheckNetFramework 40Full
+	;Check if .NET 4 Full is installed. This uses the macro writtin in the included DotNetChecker.nsh.
+	;DotNetChecker.nsh needs to be placed in the "Include" folder of your nsis installation.
+	;The macro makes the call DotNetChecker::IsDotNet${FrameworkVersion}Installed from the DotNetChecker.dll,
+	;which has to be in the plugins folder of your nsis installation.
+	!insertmacro CheckNetFramework 40Full
 
 	;specify files to go in output path
 	File /r lacli
@@ -191,10 +204,14 @@ SectionEnd
 
 	;USE A LANGUAGE STRING IF YOU WANT YOUR DESCRIPTIONS TO BE LANGAUGE SPECIFIC
 
+	;Define language strings for showing the right description in the components page.
+	LangString DESC_SecInstall ${LANG_ENGLISH} "Installs all required components. This action also includes checking for the minimum required .NET Framework version (v4 Full) that needs to be installed in your system."
+	LangString DESC_SecInstall ${LANG_GREEK} "Εγκατάσταση των απαραίτητων αρχείων. Η ενέργεια αυτή συμπεριλαμβάνει και τον έλεγχο της ελάχιστης απαιτούμενης έκδοσης του .NET Framework (v4 Full) που είναι εγκατεστημένο στο σύστημά σας."
+	
 	;Assign descriptions to sections
-	;!insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
-		;!insertmacro MUI_DESCRIPTION_TEXT ${SecDummy} "A test section."
-	;!insertmacro MUI_FUNCTION_DESCRIPTION_END
+	!insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
+		!insertmacro MUI_DESCRIPTION_TEXT ${SecInstall} $(DESC_SecInstall)
+	!insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 ;----------------------------------------------
 ;Uninstaller Section
