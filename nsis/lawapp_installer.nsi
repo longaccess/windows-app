@@ -125,9 +125,14 @@
 
 ;----------------------------------------------
 ;Installer Functions
-
 Function .onInit
-
+	
+	${If} ${RunningX64}
+	${Else}
+		MessageBox MB_OK "The Longaccess Client works only on 64-bit Windows."
+		Abort
+	${EndIf}
+	
 	!insertmacro MUI_LANGDLL_DISPLAY
 	
 FunctionEnd
