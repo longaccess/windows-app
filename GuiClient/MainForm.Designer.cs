@@ -622,17 +622,17 @@
             // txtArchivePath
             // 
             this.txtArchivePath.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtArchivePath.Location = new System.Drawing.Point(221, 115);
+            this.txtArchivePath.Location = new System.Drawing.Point(136, 115);
             this.txtArchivePath.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtArchivePath.Name = "txtArchivePath";
-            this.txtArchivePath.Size = new System.Drawing.Size(222, 25);
+            this.txtArchivePath.Size = new System.Drawing.Size(394, 25);
             this.txtArchivePath.TabIndex = 8;
             this.txtArchivePath.TextChanged += new System.EventHandler(this.txtArchivePath_TextChanged);
             // 
             // btnSelectArchive
             // 
             this.btnSelectArchive.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.btnSelectArchive.Location = new System.Drawing.Point(96, 108);
+            this.btnSelectArchive.Location = new System.Drawing.Point(11, 107);
             this.btnSelectArchive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSelectArchive.Name = "btnSelectArchive";
             this.btnSelectArchive.Size = new System.Drawing.Size(119, 37);
