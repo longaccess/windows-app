@@ -176,6 +176,32 @@ Function .onInit
 	
 	!insertmacro MUI_LANGDLL_DISPLAY
 	
+	ReadRegStr $R0 HKCU \
+		"Software\Microsoft\Windows\CurrentVersion\Uninstall\Longaccess" \
+		"UninstallString"
+	StrCmp $R0 "" done
+ 
+	MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION \
+	"Longaccess is already installed. $\n$\nClick `OK` to remove the \
+	previous version or `Cancel` to cancel this installation." \
+	IDOK uninst
+	Abort
+	
+	;Run the uninstaller
+	uninst:
+		ClearErrors
+		ExecWait '$R0 _?=$INSTDIR' ;Do not copy the uninstaller to a temp file. Also need this so the executed installers waits for the exec of the uninstaller
+		
+		IfErrors no_remove_uninstaller
+
+		IfFileExists "$INSTDIR\Uninstall.exe" 0 no_remove_uninstaller
+			Delete "$INSTDIR\Uninstall.exe"
+			RMDir $INSTDIR
+
+		no_remove_uninstaller:
+		
+	done:
+	
 FunctionEnd
 
 ;----------------------------------------------
