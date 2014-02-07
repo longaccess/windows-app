@@ -24,6 +24,37 @@
 
 	;Request application privileges for Windows Vista+
 	RequestExecutionLevel user
+	
+	BrandingText "The Longaccess Company"
+
+;----------------------------------------------
+;Some Functions
+Var Extension
+Var ExtCmd
+
+Function setExtensionVars
+
+	StrCpy $Extension ".longaccess"
+	StrCpy $ExtCmd '"$INSTDIR\GuiClient.exe" '
+	
+FunctionEnd
+
+Var Version
+
+Function setVersion
+	
+	nsExec::ExecToStack '"$INSTDIR\lacli\lacli.exe" --version'
+	Pop $0 ; exit status
+	Pop $1 ; output
+	StrCpy $Version $1 "" 6
+
+FunctionEnd
+
+Function LaunchLink
+
+    ExecShell "" "$DESKTOP\Longaccess.lnk"
+
+FunctionEnd
 
 ;----------------------------------------------
 ;Interface Settings
@@ -49,6 +80,16 @@
 	!insertmacro MUI_PAGE_COMPONENTS
 	;!insertmacro MUI_PAGE_DIRECTORY
 	!insertmacro MUI_PAGE_INSTFILES
+	
+	# These indented statements modify settings for MUI_PAGE_FINISH
+    !define MUI_FINISHPAGE_NOAUTOCLOSE
+	
+	
+	!define MUI_FINISHPAGE_LINK $(LINK_INFO)
+	!define MUI_FINISHPAGE_LINK_LOCATION "http://longaccess.com"
+    !define MUI_FINISHPAGE_RUN
+    !define MUI_FINISHPAGE_RUN_FUNCTION "LaunchLink"
+	!insertmacro MUI_PAGE_FINISH
 
 	!insertmacro MUI_UNPAGE_CONFIRM
 	!insertmacro MUI_UNPAGE_INSTFILES
@@ -135,6 +176,32 @@ Function .onInit
 	
 	!insertmacro MUI_LANGDLL_DISPLAY
 	
+	ReadRegStr $R0 HKCU \
+		"Software\Microsoft\Windows\CurrentVersion\Uninstall\Longaccess" \
+		"UninstallString"
+	StrCmp $R0 "" done
+ 
+	MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION \
+	"Longaccess is already installed. $\n$\nClick `OK` to remove the \
+	previous version or `Cancel` to cancel this installation." \
+	IDOK uninst
+	Abort
+	
+	;Run the uninstaller
+	uninst:
+		ClearErrors
+		ExecWait '$R0 _?=$INSTDIR' ;Do not copy the uninstaller to a temp file. Also need this so the executed installers waits for the exec of the uninstaller
+		
+		IfErrors no_remove_uninstaller
+
+		IfFileExists "$INSTDIR\Uninstall.exe" 0 no_remove_uninstaller
+			Delete "$INSTDIR\Uninstall.exe"
+			RMDir $INSTDIR
+
+		no_remove_uninstaller:
+		
+	done:
+	
 FunctionEnd
 
 ;----------------------------------------------
@@ -161,6 +228,9 @@ Section "Core Installation" SecInstall
 	File /oname=GuiClient.exe.config Release\GuiClient.exe.config
 	File /oname=Thrift.dll Release\Thrift.dll
 	
+	Call setVersion
+	Call setExtensionVars
+	
 	;Get total installation size in KB
 	${GetSize} "$INSTDIR" "/S=0K" $0 $1 $2
 	IntFmt $0 "0x%08X" $0
@@ -174,7 +244,7 @@ Section "Core Installation" SecInstall
 	WriteRegStr HKCU "${REG_UNINSTALL}" "DisplayName" "Longaccess"
 	WriteRegStr HKCU "${REG_UNINSTALL}" "DisplayIcon" "$\"$INSTDIR\GuiClient.exe$\""
 	WriteRegStr HKCU "${REG_UNINSTALL}" "Publisher" "The Longaccess Company"
-	WriteRegStr HKCU "${REG_UNINSTALL}" "DisplayVersion" "0.2.1"
+	WriteRegStr HKCU "${REG_UNINSTALL}" "DisplayVersion" "$Version"
 	WriteRegDWord HKCU "${REG_UNINSTALL}" "EstimatedSize" "$0"
 	WriteRegStr HKCU "${REG_UNINSTALL}" "HelpLink" "${WEBSITE_LINK}"
 	WriteRegStr HKCU "${REG_UNINSTALL}" "URLInfoAbout" "${WEBSITE_LINK}"
@@ -188,13 +258,32 @@ Section "Core Installation" SecInstall
 	;Store installation folder
 	WriteRegStr HKCU "Software\Longaccess" "" $INSTDIR
 	
+	;Store keys to handle the file association and the shell commands
+	WriteRegStr HKCU "Software\Classes\longaccess\DefaultIcon" "" "$INSTDIR\GuiClient.exe"
+	WriteRegStr HKCU "Software\Classes\longaccess\shell\open" "" "Open with Longaccess"
+	WriteRegStr HKCU "Software\Classes\longaccess\shell\open\command" "" '$ExtCmd "%1"'
+
+	;Set application capabilities settings
+	WriteRegStr HKCU "Software\Longaccess\Capabilities" "ApplicationDescription" "The Longaccess Windows Client"
+	WriteRegStr HKCU "Software\Longaccess\Capabilities" "ApplicationName" "longaccess"
+	WriteRegStr HKCU "Software\Longaccess\Capabilities\FileAssociations" $Extension "longaccess"
+
+	;Set longaccess as a registered applicaition
+	WriteRegStr HKCU "Software\RegisteredApplications" "longaccess" "Software\LongaccessCLI\Capabilities"
+
+	;Set .longaccess to longaccess class as defined above
+	WriteRegStr HKCU "Software\Classes\.longaccess\OpenWithProgids" "longaccess" ""
+	
+	;Notify the system that there is a change in file assosiations, so the windows explorer updates accordingly.
+	System::Call 'shell32.dll::SHChangeNotify(i, i, i, i) v (0x08000000, 0, 0, 0)'
+	
 	;Create uninstaller
 	WriteUninstaller "$INSTDIR\${UNINSTALLER_NAME}"
 
 	;Create shortcuts
 	CreateDirectory $SMPROGRAMS\Longaccess
-	CreateShortCut "$DESKTOP\Longaccess.lnk" "$INSTDIR\GuiClient.exe" "-i" ; use defaults for parameters, icon, etc.
-	CreateShortCut "$SMPROGRAMS\Longaccess\Longaccess.lnk" "$INSTDIR\GuiClient.exe" "-i" ; use defaults for parameters, icon, etc.
+	CreateShortCut "$DESKTOP\Longaccess.lnk" "$INSTDIR\GuiClient.exe" ;"-i" ; use defaults for parameters, icon, etc.
+	CreateShortCut "$SMPROGRAMS\Longaccess\Longaccess.lnk" "$INSTDIR\GuiClient.exe" ;"-i" ; use defaults for parameters, icon, etc.
 	CreateShortCut "$SMPROGRAMS\Longaccess\Uninstall Longaccess.lnk" "$INSTDIR\${UNINSTALLER_NAME}" ; use defaults for parameters, icon, etc.
 	
 SectionEnd
@@ -203,7 +292,10 @@ SectionEnd
 ;Descriptions
 
 	;USE A LANGUAGE STRING IF YOU WANT YOUR DESCRIPTIONS TO BE LANGAUGE SPECIFIC
-
+	
+	LangString LINK_INFO ${LANG_ENGLISH} "Visit the Longaccess site."
+	LangString LINK_INFO ${LANG_GREEK} "Επισκεφθείτε τον ιστότοπο της Longaccess."
+	
 	;Define language strings for showing the right description in the components page.
 	LangString DESC_SecInstall ${LANG_ENGLISH} "Installs all required components. This action also includes checking for the minimum required .NET Framework version (v4 Full) that needs to be installed in your system."
 	LangString DESC_SecInstall ${LANG_GREEK} "Εγκατάσταση των απαραίτητων αρχείων. Η ενέργεια αυτή συμπεριλαμβάνει και τον έλεγχο της ελάχιστης απαιτούμενης έκδοσης του .NET Framework (v4 Full) που είναι εγκατεστημένο στο σύστημά σας."
@@ -236,6 +328,14 @@ Section "Uninstall"
 	RMDir "$INSTDIR"
 	
 	;Delete registry entries
+	DeleteRegKey HKCU "Software\Classes\longaccess"
+	DeleteRegValue HKCU "Software\RegisteredApplications" "longaccess"
+	;DeleteRegValue HKCU "Software\Classes\.longaccess\OpenWithProgids" "longaccess"
+	DeleteRegKey HKCU "Software\Classes\.longaccess"
+	
+	;Notify the system that there is a change in file assosiations, so the windows explorer updates accordingly.
+	System::Call 'shell32.dll::SHChangeNotify(i, i, i, i) v (0x08000000, 0, 0, 0)'
+	
 	DeleteRegKey HKCU "Software\Longaccess"
 	DeleteRegKey HKCU "Software\Longaccess\Longaccess Installer Language"
 	DeleteRegKey HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\Longaccess"

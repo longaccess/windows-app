@@ -58,7 +58,7 @@
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
@@ -71,6 +71,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>longaccess.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>GuiClient.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
@@ -176,10 +179,14 @@
     <Content Include="Notes.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup><NuGetExe Condition="$(NuGetExe) == ''">nuget.exe</NuGetExe></PropertyGroup>
+  <PropertyGroup>
+    <NuGetExe Condition="$(NuGetExe) == ''">nuget.exe</NuGetExe>
+  </PropertyGroup>
   <Target Name="BeforeBuild">
-    <ItemGroup><NuGetPackageConfigs Include="packages.config"/></ItemGroup>
-    <Exec Command="$(NuGetExe) restore $(NuGetPackageConfigs) -o ..\packages"/>
+    <ItemGroup>
+      <NuGetPackageConfigs Include="packages.config" />
+    </ItemGroup>
+    <Exec Command="$(NuGetExe) restore $(NuGetPackageConfigs) -o ..\packages" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

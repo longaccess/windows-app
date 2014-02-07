@@ -53,6 +53,7 @@ namespace GuiClient
                 return Cli.GetSettings();
             }
         }
+        private string _filePathArgument = String.Empty;
         private void BindData<T>(IEnumerable<T> data, out BindingSource bs, ListControl control,
            Expression<Func<T, object>> DisplayProp, Action SelectionChangedEvent)
         {
@@ -147,9 +148,15 @@ namespace GuiClient
 
         public MainForm()
         {
-
             InitializeComponent();
         }
+
+        public MainForm(string filePathArg)
+        {
+            _filePathArgument = filePathArg;
+            InitializeComponent();
+        }
+
         private TabPages LoginCallerPage;
         private void ShowPage(TabPages Page)
         {
@@ -220,7 +227,29 @@ namespace GuiClient
             }
             Application.ThreadException += Application_ThreadException;
             Application.ApplicationExit += Application_ApplicationExit;
-            ShowPage(TabPages.Navigation);
+
+            // we have to check if the user executed the program by clicking a file
+            // and if that's the case, then we have to check if the given file's name and path really exists.
+            if (_filePathArgument.Equals(String.Empty))
+            {
+                ShowPage(TabPages.Navigation);
+            }
+            else if (!System.IO.File.Exists(_filePathArgument) || !_filePathArgument.EndsWith(".longaccess", StringComparison.OrdinalIgnoreCase))
+            {
+                ShowPage(TabPages.Navigation);
+                MessageBox.Show("There was an error loading the file you clicked because of one or more of the following reasons:\n\n" +
+                                "- The file does not exist.\n" +
+                                "- The file is not a .longaccess archive file type.\n" +
+                                " -You don't have enough permissions to open the file.\n\n" +
+                                "The Longaccess Client will now ingore the file and load normally.", 
+                                "Longaccess Client Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                txtArchivePath.Text = _filePathArgument;
+                ShowPage(TabPages.Decrypt);
+            }
+
             ForcedUpdate();
             lblVersion.Text = Cli.GetVersion().Version;
             this.txtKeyB.KeyPress += HexInput_KeyDown;
