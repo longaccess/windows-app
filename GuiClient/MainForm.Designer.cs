@@ -122,6 +122,7 @@
             this.lblVersion = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tmrCertificateReminder = new System.Windows.Forms.Timer(this.components);
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.tabPageContainer.SuspendLayout();
             this.tbpgLogin.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -1139,12 +1140,24 @@
             this.tmrCertificateReminder.Interval = 5000;
             this.tmrCertificateReminder.Tick += new System.EventHandler(this.tmrCertificateReminder_Tick);
             // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(137, 653);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(75, 29);
+            this.btnUpdate.TabIndex = 27;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Visible = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.ClientSize = new System.Drawing.Size(546, 685);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.label23);
             this.Controls.Add(this.tabPageContainer);
@@ -1277,6 +1290,7 @@
         private System.Windows.Forms.Button btnRemoveUploads;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Timer tmrCertificateReminder;
+        private System.Windows.Forms.Button btnUpdate;
     }
 }
 
