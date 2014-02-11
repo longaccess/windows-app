@@ -250,8 +250,10 @@ namespace GuiClient
                 ShowPage(TabPages.Decrypt);
             }
 
-            ForcedUpdate();
+            //ForcedUpdate();
             lblVersion.Text = Cli.GetVersion().Version;
+            CheckForUpdate(lblVersion.Text);
+
             this.txtKeyB.KeyPress += HexInput_KeyDown;
             this.txtKeyC.KeyPress += HexInput_KeyDown;
             this.txtKeyD.KeyPress += HexInput_KeyDown;
@@ -270,6 +272,97 @@ namespace GuiClient
                 Application.Exit();
             }
         }
+
+        private int CheckForUpdate()
+        {
+            string version = Cli.GetVersion().Version;
+            return CheckForUpdate(version);
+        }
+        private int CheckForUpdate(string version)
+        {
+            string latestVersion = Cli.GetLatestVersion().Version;
+            string[] currentVersionArray = version.Split(new Char[] { '-' });
+            string[] latestVersionArray = latestVersion.Split(new Char[] { '-' });
+
+            int updateFound = 0;
+
+            try
+            {
+                int strcompResultNormal = String.Compare(currentVersionArray[0], latestVersionArray[0]);
+
+                if (strcompResultNormal < 0)
+                {
+                    // Immediately inform for latest version.
+                    updateFound = 1;
+                }
+                else if (strcompResultNormal > 0)
+                {
+                    // Something's wrong.
+                    updateFound = -1;
+                }
+                else if (strcompResultNormal == 0)
+                {
+                    if (currentVersionArray.Length == 1 && latestVersionArray.Length == 1)
+                    {
+                        updateFound = 0;
+                    }
+                    else if (currentVersionArray.Length == 2 && latestVersionArray.Length == 1)
+                    {
+                        updateFound = 1;
+                    }
+                    else if (currentVersionArray.Length == 1 && latestVersionArray.Length == 2)
+                    {
+                        // same normal release, but latest is beta, something's wrong
+                        updateFound = -1;
+                    }
+                    else if (currentVersionArray.Length == 2 && latestVersionArray.Length == 2)
+                    {
+                        int strcompResultPreRelease = String.Compare(currentVersionArray[1], latestVersionArray[1]);
+
+                        if (strcompResultPreRelease < 0)
+                            updateFound = 1;
+                        else if (strcompResultPreRelease == 0)
+                            updateFound = 0;
+                        else if (strcompResultPreRelease > 0)
+                            updateFound = -1; // same normal release, but latest beta is older than current beta.
+                    }
+                }
+                
+                if (updateFound == 1)
+                {
+                    lblVersion.Text = version + " - A newer version of Longaccess (" + latestVersion + ") is available!";
+                    btnUpdate.Text = "Update";
+                    btnUpdate.SetBounds(lblVersion.Location.X + lblVersion.Width + 10, btnUpdate.Location.Y, btnUpdate.Width, btnUpdate.Height);
+                    btnUpdate.Visible = true;
+                }
+                else if (updateFound == 0)
+                {
+                    lblVersion.Text = version + " - Longaccess is up to date.";
+                    btnUpdate.Text = "Check";
+                    btnUpdate.SetBounds(lblVersion.Location.X + lblVersion.Width + 10, btnUpdate.Location.Y, btnUpdate.Width, btnUpdate.Height);
+                    btnUpdate.Visible = true;
+                }
+                else if (updateFound == -1)
+                {
+                    lblVersion.Text = version + " - There was an error checking for updates.";
+                    btnUpdate.Text = "Check";
+                    btnUpdate.SetBounds(lblVersion.Location.X + lblVersion.Width + 10, btnUpdate.Location.Y, btnUpdate.Width, btnUpdate.Height);
+                    btnUpdate.Visible = true;
+                }
+            }
+            catch(Exception)
+            {
+                updateFound = -1;
+                lblVersion.Text = version + " - There was an error checking for updates.";
+                btnUpdate.Text = "Check";
+                btnUpdate.SetBounds(lblVersion.Location.X + lblVersion.Width + 10, btnUpdate.Location.Y, btnUpdate.Width, btnUpdate.Height);
+                btnUpdate.Visible = true;
+                throw;
+            }
+
+            return updateFound;
+        }
+
         void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
             if (e.Exception.GetType() == typeof(ThriftInterface.InvalidOperation))
@@ -835,6 +928,43 @@ namespace GuiClient
             MessageBox.Show("Uploading of \"" + archive.Info.Title + "\" completed! We strongly recomend to save and print the related certificate.",
                 "Print the certificate.", MessageBoxButtons.OK, MessageBoxIcon.Information);
             ShowPage(TabPages.Certificates);
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+
+            switch (btn.Text)
+            {
+                case "Check":
+                    int updateFound = CheckForUpdate();
+                    if (updateFound == 0)
+                    {
+                        MessageBox.Show("No updates found for Longaccess.", "Longaccess - Check for Updates");
+                    }
+                    else if (updateFound == 1)
+                    {
+                        MessageBox.Show("A newer version of Longaccess is available!", "Longaccess - Check for Updates");
+                    }
+                    else if (updateFound == -1)
+                    {
+                        MessageBox.Show("Check for updates failed. Try again later.", "Longaccess - Check for Updates", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    break;
+                case "Update":
+                    DialogResult result = MessageBox.Show("Press Yes to exit Longaccess and visit the update's download page or No to cancel this action.\n\n" +
+                                    "Important: You can install the newer version of Longaccess anytime you want by executing the downloaded executable. " +
+                                    "You will be automatically notified to uninstall any existing version of Longaccess.\n\n" +
+                                    "Do you want to continue and download the Longaccess update?", "Longaccess - Update Information",
+                                    MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        System.Diagnostics.Process.Start(Cli.GetLatestVersion().Uri);
+                        Application.Exit();
+                    }
+                    else if (result == DialogResult.No) { }
+                    break;
+            }
         }
 
 
