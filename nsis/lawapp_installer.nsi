@@ -26,10 +26,14 @@
 	
 	BrandingText "The Longaccess Company"
 
+!ifndef PLATFORM
+!define PLATFORM Windows
+!endif
+
 !ifdef VERSION
-OutFile "Longaccess-${VERSION}.exe"
+OutFile "Longaccess-${VERSION}-${PLATFORM}.exe"
 !else
-OutFile "Longaccess-unknown-Windows.exe"
+OutFile "Longaccess-unknown-${PLATFORM}.exe"
 !endif
 
 !ifndef LACLI
