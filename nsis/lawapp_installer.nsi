@@ -26,6 +26,12 @@
 	
 	BrandingText "The Longaccess Company"
 
+!ifdef VERSION
+OutFile "Longaccess-${VERSION}.exe"
+!else
+OutFile "Longaccess-unknown-Windows.exe"
+!endif
+
 !ifndef LACLI
 !define LACLI lacli
 !endif
