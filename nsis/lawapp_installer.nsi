@@ -26,6 +26,10 @@
 	
 	BrandingText "The Longaccess Company"
 
+!ifndef LACLI
+!define LACLI lacli
+!endif
+
 ;----------------------------------------------
 ;Some Functions
 Var Extension
@@ -222,7 +226,7 @@ Section "Core Installation" SecInstall
 	!insertmacro CheckNetFramework 40Full
 
 	;specify files to go in output path
-	File /r lacli
+	File /r "${LACLI}"
 	File /oname=GuiClient.exe Release\GuiClient.exe
 	File /oname=GuiClient.exe.config Release\GuiClient.exe.config
 	File /oname=Thrift.dll Release\Thrift.dll
