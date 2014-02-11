@@ -14,7 +14,6 @@
 
 	;Name and file
 	Name "Longaccess"
-	OutFile "Longaccess-0.2.1-Windows7-64-bit.exe"
 	
 	;Default Installation Folder
 	InstallDir "$LOCALAPPDATA\Longaccess Client"
