@@ -26,19 +26,21 @@
 	
 	BrandingText "The Longaccess Company"
 
-!ifndef PLATFORM
-!define PLATFORM Windows
-!endif
+	; the filename of the uninstaller
+	!define UNINSTALLER_NAME "Uninstall.exe"
+	
+	; the platform description (appears in installer filename)
+	!ifndef PLATFORM
+	!define PLATFORM Windows
+	!endif
 
-!ifdef VERSION
-OutFile "Longaccess-${VERSION}-${PLATFORM}.exe"
-!else
-OutFile "Longaccess-unknown-${PLATFORM}.exe"
-!endif
+	; the application name that appears in files (like the installer)
+	!define NAME Longaccess
 
-!ifndef LACLI
-!define LACLI lacli
-!endif
+    ; the location of the backend files	
+	!ifndef LACLI
+	!define LACLI lacli
+	!endif
 
 ;----------------------------------------------
 ;Some Functions
@@ -179,8 +181,23 @@ FunctionEnd
 
 ;----------------------------------------------
 ;Installer Functions
+
 Function .onInit
-	
+  !ifdef SIGN
+	!ifdef INNER
+ 
+	  ; If INNER is defined and signing is happening, then we aren't supposed 
+	  ; to do anything except write out the installer.  This is better than 
+	  ; processing a command line option as it means this entire code path
+	  ; is not present in the final (real) installer.
+ 
+      !echo "Inner invocation writing uninstaller"                  ; just to see what's going on
+	  WriteUninstaller "$%TEMP%\${UNINSTALLER_NAME}"
+	  Abort  ; just bail out quickly when running the "inner" installer
+	  !echo "Inner invocation quitting"                  ; just to see what's going on
+	!endif
+  !endif
+  !ifndef INNER	 	
 	${If} ${RunningX64}
 	${Else}
 		MessageBox MB_OK "The Longaccess Client works only on 64-bit Windows."
@@ -207,20 +224,63 @@ Function .onInit
 		
 		IfErrors no_remove_uninstaller
 
-		IfFileExists "$INSTDIR\Uninstall.exe" 0 no_remove_uninstaller
-			Delete "$INSTDIR\Uninstall.exe"
+		IfFileExists "$INSTDIR\${UNINSTALLER_NAME}" 0 no_remove_uninstaller
+			Delete "$INSTDIR\${UNINSTALLER_NAME}"
 			RMDir $INSTDIR
 
 		no_remove_uninstaller:
 		
 	done:
-	
+  !endif	
 FunctionEnd
+
+!ifdef INNER
+  !echo "Inner invocation"                  ; just to see what's going on
+  OutFile "$%TEMP%\tempinstaller.exe"       ; not really important where this is
+  SetCompress off                           ; for speed
+!else
+  !ifdef SIGN
+    ; we are signing the installer and need to sign the uninstaller as well.
+
+    !echo "Outer invocation"
+ 
+    ; Call makensis again, defining INNER.  This writes an installer for us which, when
+    ; it is invoked, will just write the uninstaller to some location, and then exit.
+    ; Be sure to substitute the name of this script here.
+ 
+    !system "$\"${NSISDIR}\makensis$\" $\"/DSIGN=${SIGN}$\" /DINNER /V4 lawapp_installer.nsi" = 0
+ 
+    ; So now run that installer we just created as %TEMP%\tempinstaller.exe.  Since it
+    ; calls quit the return value isn't zero.
+ 
+    !system "$%TEMP%\tempinstaller.exe" = 2
+ 
+    ; That will have written an uninstaller binary for us.  Now we sign it with your
+    ; favourite code signing tool.
+  
+    !ifdef TIMESTAMP
+      !define EXTRASIGNARG "/tr ${TIMESTAMP}"
+    !else
+      !define EXTRASIGNARG ""
+    !endif
+    !system "SIGNTOOL sign /a /n $\"${SIGN}$\" ${EXTRASIGNARG} $%TEMP%\${UNINSTALLER_NAME}" = 0 
+  !endif
+
+  ; Good.  Now we can carry on writing the real installer.
+
+  !ifdef VERSION
+    OutFile "${NAME}-${VERSION}-${PLATFORM}.exe"
+  !else
+    OutFile "${NAME}-unknown-${PLATFORM}.exe"
+  !endif
+
+!endif
 
 ;----------------------------------------------
 ;Installer Section
 
 Section "Core Installation" SecInstall
+  !ifndef INNER
 	SetRegView 64
 	
 	;Make this component section mandatory in the components selection page.
@@ -249,7 +309,6 @@ Section "Core Installation" SecInstall
 	IntFmt $0 "0x%08X" $0
 	
 	;Set variable for uninstaller executable name and its registry entry key
-	!define UNINSTALLER_NAME "Uninstall.exe"
 	!define REG_UNINSTALL "Software\Microsoft\Windows\CurrentVersion\Uninstall\Longaccess"
 	!define WEBSITE_LINK "http://longaccess.com"
 
@@ -291,14 +350,19 @@ Section "Core Installation" SecInstall
 	System::Call 'shell32.dll::SHChangeNotify(i, i, i, i) v (0x08000000, 0, 0, 0)'
 	
 	;Create uninstaller
-	WriteUninstaller "$INSTDIR\${UNINSTALLER_NAME}"
+	!ifdef SIGN
+		; this packages the signed uninstaller
+		File $%TEMP%\${UNINSTALLER_NAME}
+	!else
+		WriteUninstaller "$INSTDIR\${UNINSTALLER_NAME}"
+	!endif
 
 	;Create shortcuts
 	CreateDirectory $SMPROGRAMS\Longaccess
 	CreateShortCut "$DESKTOP\Longaccess.lnk" "$INSTDIR\GuiClient.exe" ;"-i" ; use defaults for parameters, icon, etc.
 	CreateShortCut "$SMPROGRAMS\Longaccess\Longaccess.lnk" "$INSTDIR\GuiClient.exe" ;"-i" ; use defaults for parameters, icon, etc.
 	CreateShortCut "$SMPROGRAMS\Longaccess\Uninstall Longaccess.lnk" "$INSTDIR\${UNINSTALLER_NAME}" ; use defaults for parameters, icon, etc.
-	
+  !endif	
 SectionEnd
 
 ;----------------------------------------------
@@ -320,6 +384,8 @@ SectionEnd
 
 ;----------------------------------------------
 ;Uninstaller Section
+; only included in the inner invocation that calls WriteUninstaller
+!ifdef INNER
 Section "Uninstall"
 
 	;SetOutPath "$INSTDIR"
@@ -354,6 +420,7 @@ Section "Uninstall"
 	DeleteRegKey HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\Longaccess"
  
 SectionEnd
+!endif
 
 ;----------------------------------------------
 ;Uninstaller Functions
