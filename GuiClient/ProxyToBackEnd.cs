@@ -23,8 +23,12 @@ namespace GuiClient
         public ProxyToBackEnd(string BackendPath)
         {
             this.BackendPath = BackendPath;
-
-
+            //    - Kill previous process if found
+            var procs = GetRelevantProcesses(System.IO.Path.GetFileNameWithoutExtension(BackendPath));
+            foreach (var proc in procs)
+            {
+                proc.Process.Kill();
+            }
         }
         private string GetArguments(int port)
         {
@@ -167,30 +171,29 @@ namespace GuiClient
             Exception ex = null;
             int counter = 0;
             CLI.Iface tempCli = null;
+            TTransport transport = null; 
+            Process tempCliProc = null;
             var sw = Stopwatch.StartNew();
             do
             {
                 try
                 {
-                    int port = AvailablePorts[counter];
-                    //    - Kill previous process if found
                     var procs = GetRelevantProcesses(System.IO.Path.GetFileNameWithoutExtension(BackendPath));
-                    foreach (var proc in procs)
+                    if (transport == null || procs.Length == 0)
                     {
-                        proc.Process.Kill();
-                    }
-                    //    - start new process. Log it.
-                    ProcessStartInfo ProcInfo = new ProcessStartInfo(BackendPath, GetArguments(port));                    
-                    ProcInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                    ProcInfo.CreateNoWindow = true;
-                    Process tempCliProc = new Process();                    
-                    tempCliProc.StartInfo = ProcInfo;
-                    tempCliProc.Start();
+                        //    - start new process. Log it.
+                        int port = AvailablePorts[counter++];
+                        ProcessStartInfo ProcInfo = new ProcessStartInfo(BackendPath, GetArguments(port));
+                        ProcInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                        ProcInfo.CreateNoWindow = true;
+                        tempCliProc = new Process();
+                        tempCliProc.StartInfo = ProcInfo;
+                        tempCliProc.Start();
 
-                    TTransport transport = new TFramedTransport(new TSocket("localhost", port));
-                    TProtocol protocol = new TBinaryProtocol(transport);
-                    tempCli = new CLI.Client(protocol);
-                    
+                        transport = new TFramedTransport(new TSocket("localhost", port));
+                        TProtocol protocol = new TBinaryProtocol(transport);
+                        tempCli = new CLI.Client(protocol);
+                    }
 
                     backendInitialized = TryOpenAndPingUntilTimeOut(tempCli, transport, PingTimeOut);
                     Wrapped = tempCli;
@@ -199,8 +202,11 @@ namespace GuiClient
                 {
                     SaveToLog("On starting new proc: " + e.Message);
                     ex = e;
+                    if (transport != null)
+                        transport.Close();
+                    if (tempCliProc != null)
+                        tempCliProc.Dispose();
                 }
-                counter++;
             } while (!backendInitialized && sw.ElapsedMilliseconds < Timeout & counter < AvailablePorts.Length - 1);
             if (!backendInitialized)
             {
