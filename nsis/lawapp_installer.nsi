@@ -220,15 +220,19 @@ Function .onInit
 	;Run the uninstaller
 	uninst:
 		ClearErrors
-		ExecWait '$R0 _?=$INSTDIR' ;Do not copy the uninstaller to a temp file. Also need this so the executed installers waits for the exec of the uninstaller
+		ExecWait '$R0 _?=$INSTDIR' $R1 ;Do not copy the uninstaller to a temp file. Also need this so the executed installers waits for the exec of the uninstaller
 		
-		IfErrors no_remove_uninstaller
+		StrCmp $R1 1 0 no_uninst_cancel
+		Abort
+		
+		no_uninst_cancel:
+			IfErrors no_remove_uninstaller
 
-		IfFileExists "$INSTDIR\${UNINSTALLER_NAME}" 0 no_remove_uninstaller
-			Delete "$INSTDIR\${UNINSTALLER_NAME}"
-			RMDir $INSTDIR
+			IfFileExists "$INSTDIR\${UNINSTALLER_NAME}" 0 no_remove_uninstaller
+				Delete "$INSTDIR\${UNINSTALLER_NAME}"
+				RMDir $INSTDIR
 
-		no_remove_uninstaller:
+			no_remove_uninstaller:
 		
 	done:
   !endif	
