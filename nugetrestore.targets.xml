@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <PropertyGroup>
+      <NuGetExe Condition="$(NuGetExe) == ''">nuget</NuGetExe>
+      <NuGetSource Condition="$(NuGetSource) == ''">C:\nugetsource</NuGetSource>
+    </PropertyGroup>
+    <Target Name="BeforeBuild" Condition="'$(BuildingInsideVisualStudio)' == '' or '$(BuildingInsideVisualStudio)' == 'False'">
+      <ItemGroup>
+        <NuGetPackageConfigs Include="packages.config" />
+      </ItemGroup>
+      <Exec Command="$(NuGetExe) restore $(NuGetPackageConfigs) -o ..\packages -Source $(NuGetSource)" />
+    </Target>
+</Project>
