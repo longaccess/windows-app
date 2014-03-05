@@ -34,12 +34,26 @@
 	!define PLATFORM Windows
 	!endif
 
+    ; if this is a 64 bit only release
+    
+	!searchparse /noerrors ${PLATFORM} "32-bit" THIRTYTWO
+	!ifndef THIRTYTWO
+		!define SIXTYFOUR 1
+	!else
+		!define SIXTYFOUR 0
+	!endif
+
 	; the application name that appears in files (like the installer)
 	!define NAME Longaccess
 
-    ; the location of the backend files	
+	; the location of the backend files	
 	!ifndef LACLI
 	!define LACLI lacli
+	!endif
+
+	; the location of the release files	
+	!ifndef RELEASE
+	!define RELEASE Release
 	!endif
 
 ;----------------------------------------------
@@ -197,12 +211,14 @@ Function .onInit
 	  !echo "Inner invocation quitting"                  ; just to see what's going on
 	!endif
   !endif
-  !ifndef INNER	 	
+  !ifndef INNER	 
+    !if ${SIXTYFOUR}	
 	${If} ${RunningX64}
 	${Else}
-		MessageBox MB_OK "The Longaccess Client works only on 64-bit Windows."
+		MessageBox MB_OK "This installation of the Longaccess Client only works on 64-bit Windows."
 		Abort
 	${EndIf}
+    !endif
 	
 	!insertmacro MUI_LANGDLL_DISPLAY
 	
@@ -285,8 +301,9 @@ FunctionEnd
 
 Section "Core Installation" SecInstall
   !ifndef INNER
+	!if ${SIXTYFOUR}
 	SetRegView 64
-	
+	!endif
 	;Make this component section mandatory in the components selection page.
 	SectionIn RO
 	
@@ -301,9 +318,9 @@ Section "Core Installation" SecInstall
 
 	;specify files to go in output path
 	File /r "${LACLI}"
-	File /oname=GuiClient.exe Release\GuiClient.exe
-	File /oname=GuiClient.exe.config Release\GuiClient.exe.config
-	File /oname=Thrift.dll Release\Thrift.dll
+	File /oname=GuiClient.exe ${RELEASE}\GuiClient.exe
+	File /oname=GuiClient.exe.config ${RELEASE}\GuiClient.exe.config
+	File /oname=Thrift.dll ${RELEASE}\Thrift.dll
 	
 	Call setVersion
 	Call setExtensionVars
