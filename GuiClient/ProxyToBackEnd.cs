@@ -339,9 +339,9 @@ namespace GuiClient
             return Wrapper(() => Wrapped.GetUploads(), "GetUploads");
         }
 
-        void CLI.Iface.UploadToCapsule(string ArchiveLocalID, string CapsuleID, string title, string description)
+        void CLI.Iface.UploadToCapsule(string ArchiveLocalID, string CapsuleID, string title, string description, bool sandbox)
         {
-            Wrapper(() => { Wrapped.UploadToCapsule(ArchiveLocalID, CapsuleID, title, description); return VoidStruct.Empty(); }, "UploadToCapsule");
+            Wrapper(() => { Wrapped.UploadToCapsule(ArchiveLocalID, CapsuleID, title, description, sandbox); return VoidStruct.Empty(); }, "UploadToCapsule");
         }
 
         void CLI.Iface.ResumeUpload(string ArchiveLocalID)

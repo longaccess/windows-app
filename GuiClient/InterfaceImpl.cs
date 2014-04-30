@@ -149,7 +149,7 @@ namespace ThriftInterface
             return Archives;
         }
 
-        void CLI.Iface.UploadToCapsule(string ArchiveLocalID, string CapsuleID, string title, string description)
+        void CLI.Iface.UploadToCapsule(string ArchiveLocalID, string CapsuleID, string title, string description, bool sandbox)
         {
             var caps = Capsules.First(c => c.ID == CapsuleID);
             var arch = Archives.First(a => a.LocalID == ArchiveLocalID);
