@@ -23,7 +23,7 @@ When removing archives and certificates from the disk the app supports [secure d
 * [Eraser][] (Windows, open-source)
 
 [la]: https://www.longaccess.com "the Longaccess website"
-[lad]: https://downloads.longaccess.com "the Longaccess downloads page"
+[lad]: http://the.longaccess.com/downloads/ "the Longaccess downloads page"
 [py]: http://www.python.org "the python website"
 [What is Longaccess?]: https://github.com/longaccess/longaccess-docs/blob/master/what_is_longaccess.md "what is Longaccess?"
 [sd]: https://ssd.eff.org/tech/deletion "Secure deletion - EFF"
