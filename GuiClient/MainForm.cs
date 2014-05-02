@@ -573,6 +573,7 @@ namespace GuiClient
             lblReportSelFiles.Text = "";
             txtTitle.Text = "";
             txtDescr.Text = "";
+            chkTestArchive.Checked = false;
             btnUpload.Enabled = false;
             LoadCapsulesToControl(0);
         }
@@ -656,7 +657,7 @@ namespace GuiClient
             try
             {
                 Cli.UploadToCapsule(ArchiveToUpload.LocalID, SelectedCapsuleID,
-                    txtTitle.Text, txtDescr.Text);
+                    txtTitle.Text, txtDescr.Text, chkTestArchive.Checked);
                 ShowPage(TabPages.Uploads);
                 ResetUploadScreen();
             }

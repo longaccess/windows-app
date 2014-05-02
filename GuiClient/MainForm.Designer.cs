@@ -123,6 +123,9 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tmrCertificateReminder = new System.Windows.Forms.Timer(this.components);
             this.btnUpdate = new System.Windows.Forms.Button();
+            this.chkTestArchive = new System.Windows.Forms.CheckBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
             this.tabPageContainer.SuspendLayout();
             this.tbpgLogin.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -299,6 +302,9 @@
             // tbpgUpload
             // 
             this.tbpgUpload.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.tbpgUpload.Controls.Add(this.label25);
+            this.tbpgUpload.Controls.Add(this.label24);
+            this.tbpgUpload.Controls.Add(this.chkTestArchive);
             this.tbpgUpload.Controls.Add(this.btnReloadCapsules);
             this.tbpgUpload.Controls.Add(this.lblReportSelFiles);
             this.tbpgUpload.Controls.Add(this.btnUpload);
@@ -346,7 +352,7 @@
             // 
             this.btnUpload.Enabled = false;
             this.btnUpload.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.btnUpload.Location = new System.Drawing.Point(175, 455);
+            this.btnUpload.Location = new System.Drawing.Point(170, 497);
             this.btnUpload.Margin = new System.Windows.Forms.Padding(7);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(189, 39);
@@ -1151,6 +1157,40 @@
             this.btnUpdate.Visible = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
+            // chkTestArchive
+            // 
+            this.chkTestArchive.AutoSize = true;
+            this.chkTestArchive.Location = new System.Drawing.Point(102, 452);
+            this.chkTestArchive.Name = "chkTestArchive";
+            this.chkTestArchive.Size = new System.Drawing.Size(171, 21);
+            this.chkTestArchive.TabIndex = 25;
+            this.chkTestArchive.Text = "Yes, this is a test archive.";
+            this.chkTestArchive.UseVisualStyleBackColor = true;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.label24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label24.Location = new System.Drawing.Point(62, 418);
+            this.label24.Margin = new System.Windows.Forms.Padding(7);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(28, 25);
+            this.label24.TabIndex = 26;
+            this.label24.Text = "5.";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label25.Location = new System.Drawing.Point(98, 421);
+            this.label25.Margin = new System.Windows.Forms.Padding(7);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(152, 21);
+            this.label25.TabIndex = 27;
+            this.label25.Text = "Is this a test archive?";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -1291,6 +1331,9 @@
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Timer tmrCertificateReminder;
         private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.CheckBox chkTestArchive;
     }
 }
 
