@@ -185,6 +185,7 @@ namespace GuiClient
                         clearSigninPage();
                     break;
                 case TabPages.Upload:
+                    LoadCapsulesToControl(0);
                     //ResetUploadScreen(); dont reset it, may loose an arcive
                     break;
                 case TabPages.Decrypt:
@@ -570,6 +571,7 @@ namespace GuiClient
 
         private void ResetUploadScreen()
         {
+            lblAvailableSpace.Text = "";
             lblReportSelFiles.Text = "";
             txtTitle.Text = "";
             txtDescr.Text = "";
@@ -577,6 +579,12 @@ namespace GuiClient
             btnUpload.Enabled = false;
             LoadCapsulesToControl(0);
         }
+
+        private void btnReloadCapsules_MouseUp(object sender, MouseEventArgs e)
+        {
+            lblAvailableSpace.Text = "calculating...";
+        }
+
         private void btnReloadCapsules_Click(object sender, EventArgs e)
         {
             if (ArchiveToUpload != null)
@@ -615,6 +623,31 @@ namespace GuiClient
                     {
                         BindData(validCapsules, out bsCapsules, cmbCapsules, c => c.DisplayProp,
                                                 () => SelectedCapsuleID = ((Capsule)bsCapsules.Current).ID);
+
+                        // Calculate remaining size in KB, MB and GB.
+                        double sizeInKB = (double)((Capsule)bsCapsules.Current).AvailableSizeInBytes / 1024;
+                        double sizeInMB = sizeInKB / 1024;
+                        double sizeInGB = sizeInMB / 1024;
+
+                        lblAvailableSpace.Text = "";
+
+                        if (sizeInMB < 1)
+                            lblAvailableSpace.Text += Math.Round(sizeInKB, 2).ToString() + " KB out of ";
+                        else if (sizeInGB < 1)
+                            lblAvailableSpace.Text += Math.Round(sizeInMB, 2).ToString() + " MB out of ";
+                        else
+                            lblAvailableSpace.Text += Math.Round(sizeInGB, 2).ToString() + " GB out of ";
+
+                        sizeInKB = (double)((Capsule)bsCapsules.Current).TotalSizeInBytes / 1024;
+                        sizeInMB = sizeInKB / 1024;
+                        sizeInGB = sizeInMB / 1024;
+
+                        if (sizeInMB < 1)
+                            lblAvailableSpace.Text += Math.Round(sizeInKB, 2).ToString() + " KB.";
+                        else if (sizeInGB < 1)
+                            lblAvailableSpace.Text += Math.Round(sizeInMB, 2).ToString() + " MB.";
+                        else
+                            lblAvailableSpace.Text += Math.Round(sizeInGB, 2).ToString() + " GB.";
                     }
 
                 });
@@ -967,7 +1000,5 @@ namespace GuiClient
                     break;
             }
         }
-
-
     }
 }
