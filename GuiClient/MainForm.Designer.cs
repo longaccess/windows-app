@@ -43,7 +43,14 @@
             this.lblSignUp = new System.Windows.Forms.LinkLabel();
             this.btnSignIn = new System.Windows.Forms.Button();
             this.tbpgUpload = new System.Windows.Forms.TabPage();
+            this.linkLabelReload = new System.Windows.Forms.LinkLabel();
+            this.label26 = new System.Windows.Forms.Label();
+            this.lblAvailableSpace = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
             this.btnReloadCapsules = new System.Windows.Forms.Button();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.chkTestArchive = new System.Windows.Forms.CheckBox();
             this.lblReportSelFiles = new System.Windows.Forms.Label();
             this.btnUpload = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
@@ -123,9 +130,6 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tmrCertificateReminder = new System.Windows.Forms.Timer(this.components);
             this.btnUpdate = new System.Windows.Forms.Button();
-            this.chkTestArchive = new System.Windows.Forms.CheckBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
             this.tabPageContainer.SuspendLayout();
             this.tbpgLogin.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -302,10 +306,14 @@
             // tbpgUpload
             // 
             this.tbpgUpload.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.tbpgUpload.Controls.Add(this.linkLabelReload);
+            this.tbpgUpload.Controls.Add(this.label26);
+            this.tbpgUpload.Controls.Add(this.lblAvailableSpace);
             this.tbpgUpload.Controls.Add(this.label25);
+            this.tbpgUpload.Controls.Add(this.btnReloadCapsules);
+            this.tbpgUpload.Controls.Add(this.label28);
             this.tbpgUpload.Controls.Add(this.label24);
             this.tbpgUpload.Controls.Add(this.chkTestArchive);
-            this.tbpgUpload.Controls.Add(this.btnReloadCapsules);
             this.tbpgUpload.Controls.Add(this.lblReportSelFiles);
             this.tbpgUpload.Controls.Add(this.btnUpload);
             this.tbpgUpload.Controls.Add(this.label17);
@@ -328,22 +336,108 @@
             this.tbpgUpload.TabIndex = 1;
             this.tbpgUpload.Text = "Upload";
             // 
+            // linkLabelReload
+            // 
+            this.linkLabelReload.AutoSize = true;
+            this.linkLabelReload.Location = new System.Drawing.Point(260, 34);
+            this.linkLabelReload.Name = "linkLabelReload";
+            this.linkLabelReload.Size = new System.Drawing.Size(49, 17);
+            this.linkLabelReload.TabIndex = 33;
+            this.linkLabelReload.TabStop = true;
+            this.linkLabelReload.Text = "Reload";
+            this.linkLabelReload.Click += new System.EventHandler(this.btnReloadCapsules_Click);
+            this.linkLabelReload.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnReloadCapsules_MouseUp);
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.label26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label26.Location = new System.Drawing.Point(104, 31);
+            this.label26.Margin = new System.Windows.Forms.Padding(7);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(146, 21);
+            this.label26.TabIndex = 28;
+            this.label26.Text = "Your Storage Space";
+            // 
+            // lblAvailableSpace
+            // 
+            this.lblAvailableSpace.AutoSize = true;
+            this.lblAvailableSpace.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblAvailableSpace.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblAvailableSpace.Location = new System.Drawing.Point(228, 66);
+            this.lblAvailableSpace.Margin = new System.Windows.Forms.Padding(7);
+            this.lblAvailableSpace.Name = "lblAvailableSpace";
+            this.lblAvailableSpace.Size = new System.Drawing.Size(93, 21);
+            this.lblAvailableSpace.TabIndex = 32;
+            this.lblAvailableSpace.Text = "calculating...";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label25.Location = new System.Drawing.Point(100, 463);
+            this.label25.Margin = new System.Windows.Forms.Padding(7);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(152, 21);
+            this.label25.TabIndex = 27;
+            this.label25.Text = "Is this a test archive?";
+            // 
             // btnReloadCapsules
             // 
+            this.btnReloadCapsules.BackColor = System.Drawing.Color.Transparent;
+            this.btnReloadCapsules.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnReloadCapsules.FlatAppearance.BorderSize = 0;
             this.btnReloadCapsules.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.btnReloadCapsules.Location = new System.Drawing.Point(441, 378);
+            this.btnReloadCapsules.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnReloadCapsules.Location = new System.Drawing.Point(466, 35);
             this.btnReloadCapsules.Margin = new System.Windows.Forms.Padding(7);
             this.btnReloadCapsules.Name = "btnReloadCapsules";
-            this.btnReloadCapsules.Size = new System.Drawing.Size(60, 29);
+            this.btnReloadCapsules.Size = new System.Drawing.Size(24, 24);
             this.btnReloadCapsules.TabIndex = 24;
-            this.btnReloadCapsules.Text = "Reload";
-            this.btnReloadCapsules.UseVisualStyleBackColor = true;
+            this.btnReloadCapsules.UseVisualStyleBackColor = false;
+            this.btnReloadCapsules.Visible = false;
             this.btnReloadCapsules.Click += new System.EventHandler(this.btnReloadCapsules_Click);
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.label28.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label28.Location = new System.Drawing.Point(104, 66);
+            this.label28.Margin = new System.Windows.Forms.Padding(7);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(119, 21);
+            this.label28.TabIndex = 31;
+            this.label28.Text = "Available space:";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.label24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label24.Location = new System.Drawing.Point(64, 460);
+            this.label24.Margin = new System.Windows.Forms.Padding(7);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(28, 25);
+            this.label24.TabIndex = 26;
+            this.label24.Text = "4.";
+            // 
+            // chkTestArchive
+            // 
+            this.chkTestArchive.AutoSize = true;
+            this.chkTestArchive.Location = new System.Drawing.Point(108, 497);
+            this.chkTestArchive.Name = "chkTestArchive";
+            this.chkTestArchive.Size = new System.Drawing.Size(171, 21);
+            this.chkTestArchive.TabIndex = 25;
+            this.chkTestArchive.Text = "Yes, this is a test archive.";
+            this.chkTestArchive.UseVisualStyleBackColor = true;
             // 
             // lblReportSelFiles
             // 
             this.lblReportSelFiles.AutoSize = true;
-            this.lblReportSelFiles.Location = new System.Drawing.Point(103, 86);
+            this.lblReportSelFiles.Location = new System.Drawing.Point(101, 184);
             this.lblReportSelFiles.Name = "lblReportSelFiles";
             this.lblReportSelFiles.Size = new System.Drawing.Size(0, 17);
             this.lblReportSelFiles.TabIndex = 23;
@@ -352,7 +446,7 @@
             // 
             this.btnUpload.Enabled = false;
             this.btnUpload.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.btnUpload.Location = new System.Drawing.Point(170, 497);
+            this.btnUpload.Location = new System.Drawing.Point(172, 528);
             this.btnUpload.Margin = new System.Windows.Forms.Padding(7);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(189, 39);
@@ -366,7 +460,7 @@
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label17.Location = new System.Drawing.Point(102, 24);
+            this.label17.Location = new System.Drawing.Point(104, 118);
             this.label17.Margin = new System.Windows.Forms.Padding(7);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(153, 21);
@@ -375,7 +469,7 @@
             // 
             // txtDescr
             // 
-            this.txtDescr.Location = new System.Drawing.Point(102, 226);
+            this.txtDescr.Location = new System.Drawing.Point(104, 324);
             this.txtDescr.Name = "txtDescr";
             this.txtDescr.Size = new System.Drawing.Size(335, 118);
             this.txtDescr.TabIndex = 20;
@@ -386,7 +480,7 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label15.Location = new System.Drawing.Point(102, 195);
+            this.label15.Location = new System.Drawing.Point(104, 293);
             this.label15.Margin = new System.Windows.Forms.Padding(7);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(171, 21);
@@ -398,17 +492,18 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label16.Location = new System.Drawing.Point(62, 352);
+            this.label16.Location = new System.Drawing.Point(51, 565);
             this.label16.Margin = new System.Windows.Forms.Padding(7);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(28, 25);
             this.label16.TabIndex = 18;
             this.label16.Text = "4.";
+            this.label16.Visible = false;
             // 
             // txtTitle
             // 
             this.txtTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtTitle.Location = new System.Drawing.Point(102, 151);
+            this.txtTitle.Location = new System.Drawing.Point(104, 249);
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(335, 29);
             this.txtTitle.TabIndex = 17;
@@ -418,7 +513,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label14.Location = new System.Drawing.Point(102, 120);
+            this.label14.Location = new System.Drawing.Point(104, 218);
             this.label14.Margin = new System.Windows.Forms.Padding(7);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(121, 21);
@@ -430,7 +525,7 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label13.Location = new System.Drawing.Point(62, 192);
+            this.label13.Location = new System.Drawing.Point(64, 290);
             this.label13.Margin = new System.Windows.Forms.Padding(7);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(28, 25);
@@ -442,7 +537,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label12.Location = new System.Drawing.Point(62, 117);
+            this.label12.Location = new System.Drawing.Point(64, 215);
             this.label12.Margin = new System.Windows.Forms.Padding(7);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(28, 25);
@@ -452,7 +547,7 @@
             // btnSelectFiles
             // 
             this.btnSelectFiles.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.btnSelectFiles.Location = new System.Drawing.Point(102, 50);
+            this.btnSelectFiles.Location = new System.Drawing.Point(104, 144);
             this.btnSelectFiles.Margin = new System.Windows.Forms.Padding(7);
             this.btnSelectFiles.Name = "btnSelectFiles";
             this.btnSelectFiles.Size = new System.Drawing.Size(135, 29);
@@ -466,7 +561,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label11.Location = new System.Drawing.Point(62, 21);
+            this.label11.Location = new System.Drawing.Point(64, 115);
             this.label11.Margin = new System.Windows.Forms.Padding(7);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(28, 25);
@@ -478,22 +573,24 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label10.Location = new System.Drawing.Point(98, 355);
+            this.label10.Location = new System.Drawing.Point(75, 571);
             this.label10.Margin = new System.Windows.Forms.Padding(7);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(110, 21);
             this.label10.TabIndex = 10;
             this.label10.Text = "Select Capsule";
+            this.label10.Visible = false;
             // 
             // cmbCapsules
             // 
             this.cmbCapsules.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.cmbCapsules.FormattingEnabled = true;
-            this.cmbCapsules.Location = new System.Drawing.Point(102, 378);
+            this.cmbCapsules.Location = new System.Drawing.Point(196, 568);
             this.cmbCapsules.Margin = new System.Windows.Forms.Padding(7);
             this.cmbCapsules.Name = "cmbCapsules";
             this.cmbCapsules.Size = new System.Drawing.Size(335, 29);
             this.cmbCapsules.TabIndex = 9;
+            this.cmbCapsules.Visible = false;
             // 
             // tbpgDownload
             // 
@@ -1157,40 +1254,6 @@
             this.btnUpdate.Visible = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // chkTestArchive
-            // 
-            this.chkTestArchive.AutoSize = true;
-            this.chkTestArchive.Location = new System.Drawing.Point(102, 452);
-            this.chkTestArchive.Name = "chkTestArchive";
-            this.chkTestArchive.Size = new System.Drawing.Size(171, 21);
-            this.chkTestArchive.TabIndex = 25;
-            this.chkTestArchive.Text = "Yes, this is a test archive.";
-            this.chkTestArchive.UseVisualStyleBackColor = true;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.label24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label24.Location = new System.Drawing.Point(62, 418);
-            this.label24.Margin = new System.Windows.Forms.Padding(7);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(28, 25);
-            this.label24.TabIndex = 26;
-            this.label24.Text = "5.";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label25.Location = new System.Drawing.Point(98, 421);
-            this.label25.Margin = new System.Windows.Forms.Padding(7);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(152, 21);
-            this.label25.TabIndex = 27;
-            this.label25.Text = "Is this a test archive?";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -1324,7 +1387,6 @@
         private System.Windows.Forms.OpenFileDialog dlgSelectArchive;
         private System.Windows.Forms.Label lblUploadStatus;
         private System.Windows.Forms.FolderBrowserDialog dlgSelectUploadFiles;
-        private System.Windows.Forms.Button btnReloadCapsules;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Button btnRemoveUploads;
@@ -1334,6 +1396,11 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.CheckBox chkTestArchive;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label lblAvailableSpace;
+        private System.Windows.Forms.Button btnReloadCapsules;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.LinkLabel linkLabelReload;
     }
 }
 
