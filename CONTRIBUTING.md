@@ -26,7 +26,7 @@ Copyright Assignment
 --------------------
 
 LONG ACCESS Private Company is the copyright holder for Longaccess. For more
-information about the company see:l
+information about the company see:
 
 http://www.longaccess.com
 
